@@ -1,34 +1,51 @@
-:set clipboard=unnamed
-:set encoding=utf-8
+set clipboard=unnamed
+set encoding=utf-8
 
-syntax enable 
-colorscheme luciuse
+colorscheme gruvbox
 set background=dark
-set nocompatible 
-set number 
+"set nocompatible 
 
-" ƒc[ƒ‹ƒo[‚ğíœ 
+" ãƒ„ãƒ¼ãƒ«ãƒãƒ¼ã‚’å‰Šé™¤ 
 set guioptions-=T 
 
-"ƒƒjƒ…[‚ğíœ 
+" ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’å‰Šé™¤ 
 set guioptions-=m 
 
-"ƒXƒNƒ[ƒ‹ƒo[íœ
+" ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼å‰Šé™¤
 set guioptions=s
 
-" ƒXƒƒbƒvƒtƒ@ƒCƒ‹‚ğì¬‚µ‚È‚¢ 
-:set noswapfile 
-" ƒoƒbƒNƒAƒbƒvƒtƒ@ƒCƒ‹‚ğì¬‚µ‚È‚¢ 
-:set nobackup 
-" undofile–³Œø‰» 
-:set noundofile
-"ƒtƒHƒ“ƒg
-":set guifont=MeiryoKe_Gothic:h10
-:set guifont=consolas
-:set guifontwide=MS_GOTHIC
-"Beep–³Œø
-:set vb t_vb=
-"Œ»İs‹­’²•\¦
-:set cursorline
+" ã‚¹ãƒ¯ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãªã„ 
+set noswapfile 
+" ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãªã„ 
+set nobackup 
+" undofileç„¡åŠ¹åŒ– 
+set noundofile
+" Beepç„¡åŠ¹
+set vb t_vb=
+" ç¾åœ¨è¡Œå¼·èª¿è¡¨ç¤º
+set cursorline
 
-autocmd GUIEnter * set transparency=250
+" ç¸¦å¹…
+set lines=30
+" æ¨ªå¹…
+set columns=100
+
+if has('unix') 
+endif
+
+if has('mac')
+    set transparency=5
+    "2byteæ–‡å­—å¯¾å¿œ
+    set ambiwidth=double
+endif
+
+if has('unix') || has('mac')
+endif
+
+if has('win32') || has ('win64')
+    GUIEnter * set transparency=250
+"ãƒ•ã‚©ãƒ³ãƒˆ
+":set guifont=MeiryoKe_Gothic:h10
+set guifont=consolas
+set guifontwide=MS_GOTHIC
+endif

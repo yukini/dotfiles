@@ -1,11 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""
 "                    common                   "
 """""""""""""""""""""""""""""""""""""""""""""""
-" TAB
-scriptencoding utf8
+scriptencoding utf-8
 
-set encoding=utf8
-set fileencoding=utf-8
+
+set encoding=utf-8
+set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set fileformats=unix,dos,mac
 
 set tabstop=4
 set autoindent
@@ -14,17 +15,14 @@ set shiftwidth=4
 
 syntax on
 
-set laststatus=2
-"set t_Co=256
-
 " カーソル上下に表示する行数
 set scrolloff=5
 set noswapfile
 set nowritebackup
 set nobackup
 " ビープ音を消す
-set vb t_vb=
 set novisualbell
+set vb t_vb=
 " OSのクリップボードを使う
 set clipboard+=unnamed
 set clipboard=unnamed
@@ -51,97 +49,71 @@ set hlsearch
 set history=1000
 " コマンド表示
 set showcmd
-
-set ff=unix
-
-"""""""""""""""""""""""""""""""""""""""""""""""
+" lightline表示のため
+set laststatus=2
 
 """""""""""""""""""""""""""""""""""""""""""""""
-"                 NeoBundle                   "
+"                dein                         "
 """""""""""""""""""""""""""""""""""""""""""""""
-
-" Note: Skip initialization for vim-tiny or vim-small.
 if &compatible
-  set nocompatible
+    set nocompatible
 endif
-set runtimepath+=~/.vim/dein/dein.vim
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('~/.vim/dein'))
+if dein#load_state('~/.vim/dein')
+    call dein#begin('~/.vim/dein')
+    "call dein#add('Shougo/neocomplete.vim')
+    call dein#add('scrooloose/nerdtree')
+    call dein#add('thinca/vim-quickrun')
+    call dein#add('myhere/vim-nodejs-complete')
+    call dein#add('pangloss/vim-javascript')
+    call dein#add('jelera/vim-javascript-syntax')
+    call dein#add('rust-lang/rust.vim')
+    call dein#add('itchyny/lightline.vim')
+    call dein#add('nathanaelkane/vim-indent-guides')
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+    " colorscheme
+    call dein#add('jonathanfilip/vim-lucius')
+    call dein#add('w0ng/vim-hybrid')
+    call dein#add('morhetz/gruvbox')
+    call dein#add('nightsense/seabird')
+    call dein#add('rakr/vim-one')
+    " elixir
+    call dein#add('elixir-lang/vim-elixir')
+    call dein#add('slashmili/alchemist.vim')
+    call dein#end()
+    call dein#save_state()
+endif
 
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neosnippet')
-
-call dein#add('Shougo/neobundle.vim')
-call dein#add('jonathanfilip/vim-lucius')
-call dein#add('scrooloose/nerdtree')
-call dein#add('thinca/vim-quickrun')
-call dein#add('myhere/vim-nodejs-complete')
-call dein#add('pangloss/vim-javascript')
-call dein#add('jelera/vim-javascript-syntax')
-call dein#add('scrooloose/syntastic')
-call dein#add('itchyny/lightline.vim')
-
-" elixir
-call dein#add('elixir-lang/vim-elixir')
-
-" clojure
-call dein#add('tpope/vim-fireplace')
-
-call dein#end()
-
-filetype plugin indent on     " required!
-filetype indent on
+filetype plugin indent on
+syntax enable
 
 """""""""""""""""""""""""""""""""""""""""""""""
+"                                             "
+"""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme default
 
 """""""""""""""""""""""""""""""""""""""""""""""
-"                syntastic                    "
+"                                             "
 """""""""""""""""""""""""""""""""""""""""""""""
 let g:nodejs_complete_config = {
 \  'js_compl_fn': 'jscomplete#CompleteJS',
 \  'max_node_compl_len': 15
 \}
-" ファイルを開いたときはチェックしない
-let g:syntastic_check_on_open=0
-" 保存時にはチェック
-let g:syntastic_check_on_save=1
-" wqではチェックしない
-let g:syntastic_check_on_wq = 0
-"エラーがあったら自動でロケーションリストを開く
-let g:syntastic_auto_loc_list=1
-" エラー表示ウィンドウの高さ
-let g:syntastic_loc_list_height=6
-" エラーメッセージの書式
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
-let g:syntastic_mode_map = {
-            \ 'mode': 'active',
-            \ 'active_filetypes': ['javascript'],
-            \ 'passive_filetypes': []
-            \ }
-
-"let g:quickrun_config["java"] = {
-"            \ 'exec' : ['javac -J-Dfile.encoding=UTF8 %o %s', '%c -Dfile.encoding=UTF8 %s:t:r %a']
-"            \}
-
-" .vimrc
-
-"let g:quickrun_config['vim'] = { 
-"\   "hook/output_encode/enable" : 1,
-"\   "hook/output_encode/encoding" : "utf-8",
-"\}
-
-"""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""
-"                syntastic                    "
+"                indent                       "
+"""""""""""""""""""""""""""""""""""""""""""""""
+" 起動時に機能ON
+let g:indent_guides_enable_on_vim_startup=1
+" 
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+"               lightline                     "
 """""""""""""""""""""""""""""""""""""""""""""""
 let g:lightline = {
       \ 'colorscheme': 'seoul256'
@@ -149,7 +121,11 @@ let g:lightline = {
 """""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""
-"                NERDTree                     "
+"               quick run                     "
 """""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeShowHidden = 1
+"let g:quickrun_config['java'] = { 
+"            \   "hook/output_encode/enable" : 1,
+"            \   "hook/output_encode/encoding" : "utf-8",
+"            \}
 """""""""""""""""""""""""""""""""""""""""""""""
+

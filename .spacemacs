@@ -86,7 +86,8 @@ values."
    dotspacemacs-editing-style 'vim
    dotspacemacs-verbose-loading nil
    dotspacemacs-startup-banner 'nil
-   dotspacemacs-startup-lists '((recents . 5)
+   dotspacemacs-startup-lists '((bookmarks . 3)
+                                (recents . 5)
                                 (projects . 7))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
@@ -179,10 +180,17 @@ values."
   (spacemacs/toggle-transparency)
   (setq scroll-step 1
         scroll-margin 15
-        ;; GC時のメッセージ表示
         garbage-collection-messages t
-        ;; GCの閾値を10倍に
         ;; gc-cons-threshold (* gc-cons-threshold 10)
+        nrepl-log-messages t
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t
+        cider-prompt-for-project-on-connect 'always-save
+        ;; cider-font-lock-dynamically '(macro core function var)
+        cider-overlays-use-font-lock t
+        ;; ;; cider-eval-result-prefix ";; => "
+        cider-repl-toggle-pretty-printing t
+        neo-theme 'icons
         )))
 
 ;; Do not write anything past this comment. This is where Emacs will
