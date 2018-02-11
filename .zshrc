@@ -2,7 +2,10 @@ set completion-ignore-case on
 
 RPROMPT='[%F{green}%d%f]'
 
-echo "$(date)\n morning!" | cowsay | lolcat -a -s 500
+if type lolcat cowsay 2>/dev/null 1>/dev/null
+then
+    echo "$(date)\n morning!" | cowsay | lolcat -a -s 500
+fi
 
 # figlet morning!
 alias ls='ls -Gp'
