@@ -31,11 +31,10 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     themes-megapack
      ruby
      javascript
-     (colors :variables
-             ;; colors-colorize-identifiers 'all
-             colors-enable-nyan-cat-progress-bar t)
+     colors
      java
      yaml
      sql
@@ -45,7 +44,7 @@ values."
      django
      elixir
      clojure
-     ivy
+     helm
      auto-completion
      better-defaults
      emacs-lisp
@@ -70,7 +69,8 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -94,7 +94,11 @@ values."
                                 (projects . 10))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(jazz)
+   dotspacemacs-themes '(zenburn
+                         ample-flat
+                         jazz
+                         zen-and-art
+                         brin)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Menlo"
                                :size 12
@@ -148,7 +152,14 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers '(:relative nil
+                                         :disabled-for-modes dired-mode
+                                         doc-view-mode
+                                         markdown-mode
+                                         org-mode
+                                         pdf-view-mode
+                                         text-mode
+                                         :size-limit-kb 1000)
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis nil
@@ -173,12 +184,11 @@ values."
                          (height . 60)))
 
 (defun dotspacemacs/user-config ()
-  ;; transparency
   (spacemacs/toggle-transparency)
+  (blink-cursor-mode t)
 
   (when (eq system-type 'windows-nt)
     ;; Windows
-
     ;; enable to get the clojure.core source code in cider
     ;; https://github.com/clojure-emacs/cider/issues/113
     (add-to-list 'exec-path "C:/Program Files/7-Zip" t)
@@ -205,27 +215,30 @@ values."
   ;; Better looking colors for diff indicators
   ;; https://www.reddit.com/r/emacs/comments/582yms/
   (custom-set-faces
-   '(diff-hl-insert ((t (:background "#7E8E50"))))
-   '(diff-hl-change ((t (:background "#4B6B88"))))
+   '(diff-hl-insert ((t (:background "#4B6B88"))))
+   '(diff-hl-change ((t (:background "#7E8E50"))))
    '(diff-hl-delete ((t (:background "#AC4142")))))
 
   ;; On-the-fly diff updates
   (diff-hl-flydiff-mode)
 
-  (setq-default scroll-step 1
-        scroll-margin 15
-        garbage-collection-messages t
-        ;; gc-cons-threshold (* gc-cons-threshold 10)
-        nrepl-log-messages t
-        cider-repl-display-in-current-window t
-        cider-repl-use-clojure-font-lock t
-        cider-prompt-for-project-on-connect 'always-save
-        ;; cider-font-lock-dynamically '(macro core function var)
-        cider-overlays-use-font-lock t
-        ;; ;; cider-eval-result-prefix ";; => "
-        cider-repl-toggle-pretty-printing t
-        neo-theme 'icons
-        )))
+  (setq-default
+   scroll-step 1
+   scroll-margin 15
+   garbage-collection-messages t
+   ;; gc-cons-threshold (* gc-cons-threshold 10)
+   nrepl-log-messages t
+   cider-repl-display-in-current-window t
+   cider-repl-use-clojure-font-lock t
+   cider-prompt-for-project-on-connect 'always-save
+   ;; cider-font-lock-dynamically '(macro core function var)
+   cider-overlays-use-font-lock t
+   ;; ;; cider-eval-result-prefix ";; => "
+   cider-repl-toggle-pretty-printing t
+   neo-theme 'icons
+   indicate-unused-lines t
+   powerline-default-separator nil
+   )))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -234,11 +247,9 @@ values."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(package-selected-packages
    (quote
-    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby nodejs-repl org-mime memoize all-the-icons web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc company-tern tern coffee-mode rainbow-mode rainbow-identifiers color-identifiers-mode company-emacs-eclim eclim yaml-mode sql-indent web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode haml-mode emmet-mode company-web web-completion-data hy-mode pony-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode dash-functional cython-mode company-anaconda anaconda-mode pythonic org-pomodoro markdown-toc org-projectile org-category-capture org-present alert log4e gntp org-download mmm-mode markdown-mode htmlize gnuplot git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md diff-hl fuzzy company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete ob-elixir flycheck-mix flycheck-credo flycheck alchemist company elixir-mode xterm-color unfill smeargle shell-pop orgit mwim multi-term magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
+    (helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag ace-jump-helm-line zenburn-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme alect-themes afternoon-theme colorsarenice-theme niflheim-theme rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby nodejs-repl org-mime memoize all-the-icons web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc company-tern tern coffee-mode rainbow-mode rainbow-identifiers color-identifiers-mode company-emacs-eclim eclim yaml-mode sql-indent web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode haml-mode emmet-mode company-web web-completion-data hy-mode pony-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode dash-functional cython-mode company-anaconda anaconda-mode pythonic org-pomodoro markdown-toc org-projectile org-category-capture org-present alert log4e gntp org-download mmm-mode markdown-mode htmlize gnuplot git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md diff-hl fuzzy company-statistics clojure-snippets auto-yasnippet ac-ispell auto-complete ob-elixir flycheck-mix flycheck-credo flycheck alchemist company elixir-mode xterm-color unfill smeargle shell-pop orgit mwim multi-term magit-gitflow gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode ws-butler winum which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f dash s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed async aggressive-indent adaptive-wrap ace-window ace-link avy)))
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "integrant.repl/resume")
@@ -250,4 +261,7 @@ values."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 89)) (:foreground "#c6a57b" :background "#151515")))))
+ '(default ((t (:foreground "#DCDCCC" :background "#3F3F3F"))))
+ '(diff-hl-change ((t (:background "#7E8E50"))))
+ '(diff-hl-delete ((t (:background "#AC4142"))))
+ '(diff-hl-insert ((t (:background "#4B6B88")))))
