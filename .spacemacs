@@ -87,7 +87,7 @@ values."
 
 (defun dotspacemacs/init ()
   (setq-default
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    dotspacemacs-elpa-timeout 5
    dotspacemacs-check-for-update nil
    dotspacemacs-elpa-subdirectory nil
@@ -228,7 +228,7 @@ values."
    cider-overlays-use-font-lock t
    ;; cider-eval-result-prefix ";; => "
    cider-repl-toggle-pretty-printing t
-   neo-theme 'icons
+   neo-theme 'nerd
    indicate-unused-lines t
    powerline-default-separator nil
    )
