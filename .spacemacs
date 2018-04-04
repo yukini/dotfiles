@@ -105,8 +105,8 @@ values."
                          zen-and-art
                          brin)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Menlo"
-                               :size 12
+   dotspacemacs-default-font '("Consolas"
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -174,7 +174,7 @@ values."
    initial-frame-alist '((left . 0)
                          (top . 0)
                          (width . 100)
-                         (height . 60)))
+                         (height . 50)))
 
 (defun dotspacemacs/user-config ()
   (spacemacs/toggle-transparency)
