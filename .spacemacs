@@ -32,7 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      nlinum
-     ;; tabbar
+     tabbar
      octave
      themes-megapack
      ruby
@@ -47,8 +47,8 @@ values."
      django
      elixir
      clojure
-     ;; helm
-     ivy
+     helm
+     ;; ivy
      auto-completion
      ;; better-defaults
      emacs-lisp
@@ -167,6 +167,17 @@ values."
   )
 
 (defun dotspacemacs/user-init ()
+  ;;--------------------------------------------------------
+  ;; tabbar
+  ;;--------------------------------------------------------
+  ;; 画像をつかわない
+  (setq tabbar-use-images nil) 
+  ;; 左に表示されるボタンを無効化
+  (dolist (btn '(tabbar-buffer-home-button
+                 tabbar-scroll-left-button
+                 tabbar-scroll-right-button))
+    (set btn (cons (cons "" nil)
+                   (cons "" nil))))
   (setq-default
    css-indent-offset 2
    web-mode-css-indent-offset 2
@@ -179,6 +190,30 @@ values."
                          (height . 50)))
 
 (defun dotspacemacs/user-config ()
+  ;;--------------------------------------------------------
+  ;; tabbar
+  ;;--------------------------------------------------------
+  ;; グループ化しない
+  (setq tabbar-buffer-groups-function nil)
+  ;; CTRL-Nで次のタブ
+  (define-key evil-normal-state-map (kbd "C-n") 'tabbar-forward-tab)
+  ;; CTRL-Pで前のタブ
+  (define-key evil-normal-state-map (kbd "C-p") 'tabbar-backward-tab)
+  ;; タブに表示するバッファをフィルタするカスタム関数
+  (defun my-tabbar-buffer-list ()
+    (delq nil
+          (mapcar #'(lambda (b)
+                      (cond
+                       ((eq (current-buffer) b) b)
+                       ((buffer-file-name b) b)
+                       ((char-equal ?\  (aref (buffer-name b) 0)) nil)
+                       ;;((equal "*scratch*" (buffer-name b)) b)
+                       ((char-equal ?* (aref (buffer-name b) 0)) nil)
+                       ((buffer-live-p b) b)))
+                  (buffer-list))))
+  ;; カスタム関数を登録
+  (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
   (spacemacs/toggle-transparency)
   (blink-cursor-mode t)
 
@@ -221,7 +256,7 @@ values."
    scroll-step 1
    ;; scroll-margin nil
    garbage-collection-messages t
-   gc-cons-threshold (* gc-cons-threshold 50)
+   gc-cons-threshold (* gc-cons-threshold 500)
    nrepl-log-messages t
    cider-repl-display-in-current-window t
    cider-repl-use-clojure-font-lock t
@@ -250,6 +285,10 @@ values."
   (add-to-list 'vue-mode-hook #'tern-mode smartparens-mode)
   (setq mmm-js-mode-exit-hook (lambda () (setq tern-mode nil)))
   (setq mmm-js-mode-enter-hook (lambda () (setq tern-mode t)))
+  (setq find-program "\"C:\\Program Files\\Git\\usr\\bin\\find.exe\""
+        grep-program "\"C:\\Program Files\\Git\\usr\\bin\\grep.exe\""
+        diff-command "\"C:\\Program Files\\Git\\usr\\bin\\diff.exe\""
+        null-device "/dev/null")
   ))
 
 ;; Do not write anything past this comment. This is where Emacs will
