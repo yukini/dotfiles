@@ -70,7 +70,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vue-mode
+   dotspacemacs-additional-packages '(quickrun
+                                      vue-mode
                                       all-the-icons
                                       nodejs-repl)
    ;; A list of packages that cannot be updated.
@@ -108,7 +109,7 @@ values."
                          brin)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Consolas"
-                               :size 15
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -207,7 +208,8 @@ values."
                        ((eq (current-buffer) b) b)
                        ((buffer-file-name b) b)
                        ((char-equal ?\  (aref (buffer-name b) 0)) nil)
-                       ;;((equal "*scratch*" (buffer-name b)) b)
+                       ((equal "*scratch*" (buffer-name b)) b)
+                       ((string-match "cider-repl*" (buffer-name b)) b)
                        ((char-equal ?* (aref (buffer-name b) 0)) nil)
                        ((buffer-live-p b) b)))
                   (buffer-list))))
