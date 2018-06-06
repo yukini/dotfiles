@@ -25,6 +25,8 @@ endif
 
 if has('win32') || has ('win64')
     autocmd GUIEnter * set transparency=250
-    set guifont=consolas:h12
-    set guifontwide=MS_GOTHIC:h12
+    " set guifont=Migu_1M:h12
+    " set guifontwide=Migu_1M:h12
+    set guifont=consolas:h11
+    set guifontwide=MS_GOTHIC:h11
 endif

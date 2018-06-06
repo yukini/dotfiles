@@ -206,10 +206,11 @@ let g:tagbar_autofocus = 1
 " ----------------------------------------------------------------------------------
 "
 if has('win64')
-    nn <silent> <leader>t :terminal ++close bash<CR>
+    nn <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
     nn <silent> <leader>o :TagbarToggle<CR>
 endif
 if has('mac')
     nn <silent> <leader>t :terminal ++close<CR>
 endif
 
+nn <silent> <leader>q :QuickRun<CR>
