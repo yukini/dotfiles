@@ -19,6 +19,7 @@ set noswapfile
 set nowritebackup
 set nobackup
 set noundofile
+set autoread
 set novisualbell " ビープ音を消す
 set vb t_vb=     " ビープ音を消す
 set clipboard=unnamed " OSのクリップボードを使う
@@ -37,6 +38,8 @@ set history=1000 " 履歴拡充
 set showcmd " コマンド表示
 set laststatus=2 " lightline表示
 let mapleader = "\<Space>"
+set list lcs=tab:\|\  " tab indent line
+set ambiwidth=double
 
 "
 " common
@@ -47,10 +50,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'thinca/vim-quickrun'
 
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
 " Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'Yggdroot/indentLine'
 
 " colorscheme
 Plug 'jonathanfilip/vim-lucius'
@@ -59,8 +66,13 @@ Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'AlessandroYorba/Alduin'
 Plug 'severin-lemaignan/vim-minimap'
+Plug 'cocopon/iceberg.vim'
+
 " syntax check
 Plug 'w0rp/ale'
+
+" surround
+Plug 'tpope/vim-surround'
 
 " Rust
 " Plug 'rust-lang/rust.vim'
@@ -74,8 +86,9 @@ Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' 
 
 " Auto Completion
 " Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Valloric/YouCompleteMe'
 
 " completion with tab
 Plug 'ervandew/supertab'
@@ -103,31 +116,38 @@ call plug#end()
 " indent guide
 " ----------------------------------------------------------------------------------
 "
-" 起動時に機能ON
-let g:indent_guides_enable_on_vim_startup=1
-" ガイドの幅
+let g:indent_guides_tab_guides = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
+
+" 
+" indentLine
+" ----------------------------------------------------------------------------------
+"
+let g:indentLine_faster = 1
+nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 
 " 
 " lightline
 " ----------------------------------------------------------------------------------
 "
 let g:lightline = {
-      \ 'colorscheme': 'seoul256'
-      \ }
+            \ 'colorscheme': 'seoul256',
+            \ 'component_function': {
+            \   'filetype': 'MyFiletype',
+            \   'fileformat': 'MyFileformat',
+            \ }
+            \ }
 
-" 
-" golang
-" ----------------------------------------------------------------------------------
-"
-let g:go_fmt_command = "goimports"
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_autosave = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
+function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
 
+function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 " 
 " deoplete
 " ----------------------------------------------------------------------------------
@@ -155,17 +175,13 @@ highlight link ALEErrorSign Tag
 highlight link ALEWarningSign StorageClass
 
 "
-" godef
-" ----------------------------------------------------------------------------------
-"
-let g:go_def_mode = 'godef'
-let g:go_def_mapping_enabled = 1
-
-"
 " startify
 " ----------------------------------------------------------------------------------
 "
 let g:startify_bookmarks= ["~/.vimrc", "~/.gvimrc"]
+function! StartifyEntryFormat()
+    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
 
 "
 " supertab
@@ -177,17 +193,24 @@ let g:SuperTabDefaultCompletionType = "context"
 " vim-go
 " ----------------------------------------------------------------------------------
 "
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1 
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'godef'
+let g:go_def_mapping_enabled = 1
+let g:go_fmt_autosave = 1
 let g:rehash256 = 1
 let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
 
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_function = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_functions = 1
 "
 " gocode
 " ----------------------------------------------------------------------------------
@@ -202,15 +225,23 @@ let g:tagbar_left = 0
 let g:tagbar_autofocus = 1
 
 "
-" terminal
+" NERDTree
+" ----------------------------------------------------------------------------------
+"
+let g:NERDTreeChDirMode = 2
+
+
+"
+" keybind
 " ----------------------------------------------------------------------------------
 "
 if has('win64')
-    nn <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
-    nn <silent> <leader>o :TagbarToggle<CR>
+    nnoremap <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
 endif
 if has('mac')
     nn <silent> <leader>t :terminal ++close<CR>
 endif
 
-nn <silent> <leader>q :QuickRun<CR>
+nnoremap <silent> <leader>o :TagbarToggle<CR>
+nnoremap <silent> <leader>q :QuickRun<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
