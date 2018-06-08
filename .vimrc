@@ -259,7 +259,7 @@ endif
 
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 nnoremap <silent> <leader>q :QuickRun<CR>
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 
 "
 " Denite
@@ -274,6 +274,8 @@ nnoremap <silent> <C-t> :<C-u>Denite
       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
 
 nnoremap <silent> <leader><Space>
+      \ :<C-u>Denite -mode=normal file_mru<CR>
+nnoremap <silent> <leader>m
       \ :<C-u>Denite file_rec:~/.vim/rc<CR>
 
 nnoremap <silent> <leader>b :Denite buffer<CR>
@@ -293,11 +295,11 @@ xnoremap <silent> <leader>r
 nnoremap <silent> ft :<C-u>Denite filetype<CR>
 nnoremap <silent> n :<C-u>Denite -buffer-name=search
       \ -resume -mode=normal -refresh<CR>
-nnoremap <silent><expr> tp  &filetype == 'help' ?
-      \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
-      \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
-      \  tag:include\<CR>"
+" nnoremap <silent><expr> tp  &filetype == 'help' ?
+"       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+" nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+"       \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+"       \  tag:include\<CR>"
 
 "
 " Auto change current directory
