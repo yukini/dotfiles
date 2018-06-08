@@ -7,6 +7,7 @@ scriptencoding utf-8
 "
 colorscheme default
 syntax on
+set fileencoding=utf-8
 set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
 set fileformats=unix,dos,mac
 set tabstop=4
@@ -49,9 +50,18 @@ call plug#begin('~/.vim/plugged')
 " File manager
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Shougo/denite.nvim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/neoyank.vim'
+
+" Projct root
+Plug 'airblade/vim-rooter'
+
+" nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" quickrun
 Plug 'thinca/vim-quickrun'
 
 Plug 'itchyny/lightline.vim'
@@ -230,6 +240,11 @@ let g:tagbar_autofocus = 1
 "
 let g:NERDTreeChDirMode = 2
 
+"
+" vim rooter
+" ----------------------------------------------------------------------------------
+"
+let g:rooter_change_directory_for_non_project_files = 'current'
 
 "
 " keybind
@@ -245,3 +260,51 @@ endif
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 nnoremap <silent> <leader>q :QuickRun<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+
+"
+" Denite
+" ----------------------------------------------------------------------------------
+"
+nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+      \ -auto-highlight -mode=normal line<CR>
+nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+      \ line<CR>
+nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+nnoremap <silent> <C-t> :<C-u>Denite
+      \ -select=`tabpagenr()-1` -mode=normal deol<CR>
+
+nnoremap <silent> <leader><Space>
+      \ :<C-u>Denite file_rec:~/.vim/rc<CR>
+
+nnoremap <silent> <leader>b :Denite buffer<CR>
+nnoremap <silent> <leader>r
+      \ :<C-u>Denite -buffer-name=register
+      \ register neoyank<CR>
+nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
+      \ -sorters=sorter_rank
+      \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+nnoremap <silent> <leader>f :<C-u>Denite file_rec -path=
+nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
+      \ -no-empty -mode=normal grep<CR>
+xnoremap <silent> <leader>r
+      \ :<C-u>Denite -default-action=replace -buffer-name=register
+      \ register neoyank<CR>
+
+nnoremap <silent> ft :<C-u>Denite filetype<CR>
+nnoremap <silent> n :<C-u>Denite -buffer-name=search
+      \ -resume -mode=normal -refresh<CR>
+nnoremap <silent><expr> tp  &filetype == 'help' ?
+      \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
+nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
+      \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
+      \  tag:include\<CR>"
+
+"
+" Auto change current directory
+" ----------------------------------------------------------------------------------
+"
+" function! ChangeCurrentDirectoryToProjectRoot()
+"     let root = denite#util#path2project_directory(expand('%'))
+"     execute 'lcd' root
+" endfunction
+" :au BufEnter * :call ChangeCurrentDirectoryToProjectRoot()
