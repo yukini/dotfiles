@@ -262,6 +262,12 @@ nnoremap <silent> <leader>q :QuickRun<CR>
 nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 
 "
+" ctrlP
+" ----------------------------------------------------------------------------------
+"
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+"
 " Denite
 " ----------------------------------------------------------------------------------
 "
@@ -278,7 +284,7 @@ nnoremap <silent> <leader><Space>
 nnoremap <silent> <leader>m
       \ :<C-u>Denite file_rec:~/.vim/rc<CR>
 
-nnoremap <silent> <leader>b :Denite buffer<CR>
+nnoremap <silent> <leader>b :Denite -mode=normal buffer<CR>
 nnoremap <silent> <leader>r
       \ :<C-u>Denite -buffer-name=register
       \ register neoyank<CR>
