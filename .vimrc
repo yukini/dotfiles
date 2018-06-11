@@ -8,7 +8,7 @@ scriptencoding utf-8
 colorscheme default
 syntax on
 set fileencoding=utf-8
-set fileencodings=ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932,utf-8
+set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set tabstop=4
 set autoindent
@@ -41,6 +41,7 @@ set laststatus=2 " lightline表示
 let mapleader = "\<Space>"
 set list lcs=tab:\|\  " tab indent line
 set ambiwidth=double
+set t_Co=256
 
 "
 " common
@@ -84,11 +85,8 @@ Plug 'w0rp/ale'
 " surround
 Plug 'tpope/vim-surround'
 
-" Rust
-" Plug 'rust-lang/rust.vim'
-" elixir
-" Plug 'elixir-lang/vim-elixir'
-" Plug 'slashmili/alchemist.vim'
+" comment
+Plug 'tpope/vim-commentary'
 
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -120,6 +118,13 @@ Plug 'dbakker/vim-projectroot'
 
 " completion of parentheses
 Plug 'cohama/lexima.vim'
+
+" outline
+Plug 'junegunn/goyo.vim'
+
+" ack
+Plug 'mileszs/ack.vim'
+
 call plug#end()
 
 " 
@@ -158,6 +163,7 @@ endfunction
 function! MyFileformat()
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
+
 " 
 " deoplete
 " ----------------------------------------------------------------------------------
@@ -266,11 +272,41 @@ nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 " ----------------------------------------------------------------------------------
 "
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+if executable('ag')
+  let g:ctrlp_use_caching=0
+  let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+endif
+"
+" git gutter
+" ----------------------------------------------------------------------------------
+"
+let g:gitgutter_sign_added = '∙'
+let g:gitgutter_sign_modified = '∙'
+let g:gitgutter_sign_removed = '∙'
+let g:gitgutter_sign_modified_removed = '∙'
+
+"
+" ag ack.vim
+" ----------------------------------------------------------------------------------
+"
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 "
 " Denite
 " ----------------------------------------------------------------------------------
 "
+" Ag command on grep source
+if executable('ag')
+    call denite#custom#var('grep', 'command', ['ag'])
+    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+endif
+
+" key map
 nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
       \ -auto-highlight -mode=normal line<CR>
 nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
@@ -291,7 +327,7 @@ nnoremap <silent> <leader>r
 nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
       \ -sorters=sorter_rank
       \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-nnoremap <silent> <leader>f :<C-u>Denite file_rec -path=
+nnoremap <silent> <leader>f :<C-u>Denite file_rec<CR>
 nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
       \ -no-empty -mode=normal grep<CR>
 xnoremap <silent> <leader>r
@@ -301,18 +337,3 @@ xnoremap <silent> <leader>r
 nnoremap <silent> ft :<C-u>Denite filetype<CR>
 nnoremap <silent> n :<C-u>Denite -buffer-name=search
       \ -resume -mode=normal -refresh<CR>
-" nnoremap <silent><expr> tp  &filetype == 'help' ?
-"       \ ":\<C-u>pop\<CR>" : ":\<C-u>Denite -mode=normal jump\<CR>"
-" nnoremap <silent><expr> tt  &filetype == 'help' ?  "g\<C-]>" :
-"       \ ":\<C-u>DeniteCursorWord -buffer-name=tag -immediately
-"       \  tag:include\<CR>"
-
-"
-" Auto change current directory
-" ----------------------------------------------------------------------------------
-"
-" function! ChangeCurrentDirectoryToProjectRoot()
-"     let root = denite#util#path2project_directory(expand('%'))
-"     execute 'lcd' root
-" endfunction
-" :au BufEnter * :call ChangeCurrentDirectoryToProjectRoot()
