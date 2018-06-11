@@ -62,13 +62,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" indent line
+Plug 'Yggdroot/indentLine'
+
 " quickrun
 Plug 'thinca/vim-quickrun'
 
+" decoration
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'Yggdroot/indentLine'
 
 " colorscheme
 Plug 'jonathanfilip/vim-lucius'
@@ -92,11 +94,8 @@ Plug 'tpope/vim-commentary'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
-" Auto Completion
-" Plug 'Shougo/deoplete.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
-" Plug 'Valloric/YouCompleteMe'
+" vue
+Plug 'posva/vim-vue'
 
 " completion with tab
 Plug 'ervandew/supertab'
@@ -127,15 +126,6 @@ Plug 'mileszs/ack.vim'
 
 call plug#end()
 
-" 
-" indent guide
-" ----------------------------------------------------------------------------------
-"
-let g:indent_guides_tab_guides = 1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
 
 " 
 " indentLine
