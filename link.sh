@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-ln -f .zshrc ~/.zshrc
-ln -f .zsh_profile ~/.zsh_profile
-ln -f .bashrc ~/.bashrc
-ln -f .bash_profile ~/.bash_profile
-ln -f .vimrc ~/.vimrc
-ln -f .gvimrc ~/.gvimrc
-ln -f .ideavimrc ~/.ideavimrc
-ln -f .spacemacs ~/.spacemacs
-ln -f .tern-config ~/.tern-config
+ln .zshrc ~/.zshrc
+ln .zsh_profile ~/.zsh_profile
+ln .bashrc ~/.bashrc
+ln .bash_profile ~/.bash_profile
+ln .vimrc ~/.vimrc
+ln .gvimrc ~/.gvimrc
+ln .ideavimrc ~/.ideavimrc
+ln .spacemacs ~/.spacemacs
+ln .tern-config ~/.tern-config
 
