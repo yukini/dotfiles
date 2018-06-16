@@ -4,7 +4,7 @@ RPROMPT='[%F{green}%d%f]'
 
 if type lolcat cowsay 2>/dev/null 1>/dev/null
 then
-    echo "$(date)\n morning!" | cowsay | lolcat -F 0.6 -S 0 -a -s 500
+    echo "$(date)\n morning!" | cowsay | lolcat -F 0.6 -S 0 -a -s 800
 fi
 
 echo $'\e[32m##################################################'
@@ -32,3 +32,8 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 # echo $'\e[31m.---------------- minute (0 - 59)                                                \e[m'
 # ######################################################
 
+# Go lang
+if [ -x "`which go`" ]; then
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+fi

@@ -1,3 +1,5 @@
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 export PATH=$PATH:/Users/yukini/.local/bin
+
+echo "=-------------------------"
