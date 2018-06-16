@@ -42,9 +42,10 @@ let mapleader = "\<Space>"
 set list lcs=tab:\|\  " tab indent line
 set ambiwidth=double
 set t_Co=256
+set noequalalways " 自動ウィンドウサイズ調整無効
 
 "
-" common
+" Plug
 " ----------------------------------------------------------------------------------
 "
 call plug#begin('~/.vim/plugged')
@@ -124,8 +125,33 @@ Plug 'junegunn/goyo.vim'
 " ack
 Plug 'mileszs/ack.vim'
 
+" Clojure
+Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
+Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
+Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+Plug 'luochen1990/rainbow', { 'for': 'clojure' }
+
+" HTML & CSS
+Plug 'mattn/emmet-vim'
+Plug 'tyru/open-browser.vim'
+
 call plug#end()
 
+" 
+" Clojure
+" ----------------------------------------------------------------------------------
+"
+" Evaluate Clojure buffers on load
+autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+
+" setup clojure rainbow highlighting
+let g:rainbow_active = 1
 
 " 
 " indentLine
@@ -133,6 +159,7 @@ call plug#end()
 "
 let g:indentLine_faster = 1
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 
 " 
 " lightline
@@ -193,7 +220,8 @@ endfunction
 " supertab
 " ----------------------------------------------------------------------------------
 "
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 "
 " vim-go
@@ -229,12 +257,15 @@ let g:go_gocode_unimported_packages = 1
 "
 let g:tagbar_left = 0
 let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
 
 "
 " NERDTree
 " ----------------------------------------------------------------------------------
 "
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeShowHidden = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 "
 " vim rooter
@@ -254,14 +285,16 @@ if has('mac')
 endif
 
 nnoremap <silent> <leader>o :TagbarToggle<CR>
-nnoremap <silent> <leader>q :QuickRun<CR>
+" nnoremap <silent> <leader>q :QuickRun<CR>
 nnoremap <silent> <leader>n :NERDTreeCWD<CR>
+" nnoremap <silent> <leader>n :NERDTreeTabsToggle<CR>
 
 "
 " ctrlP
 " ----------------------------------------------------------------------------------
 "
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_lazy_update=1
 if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
@@ -295,6 +328,7 @@ if executable('ag')
     call denite#custom#var('grep', 'final_opts', [])
     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
+call denite#custom#option('default', 'winheight', 10)
 
 " key map
 nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
@@ -327,3 +361,19 @@ xnoremap <silent> <leader>r
 nnoremap <silent> ft :<C-u>Denite filetype<CR>
 nnoremap <silent> n :<C-u>Denite -buffer-name=search
       \ -resume -mode=normal -refresh<CR>
+
+"
+" emmet
+" ----------------------------------------------------------------------------------
+"
+" autocmd FileType html,css,scss imap <buffer><expr><tab>
+"     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+"     \ "\<tab>"
+let g:user_emmet_expandabbr_key = '<C-Space>'
+
+"
+" commands
+" ----------------------------------------------------------------------------------
+"
+command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
+
