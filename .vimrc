@@ -377,3 +377,8 @@ let g:user_emmet_expandabbr_key = '<C-Space>'
 "
 command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
 
+let g:startify_custom_header = [
+	\ '           +-+-+-+-+ +-+-+-+-+-+',
+	\ '           |h|j|k|l| |p|o|w|e|r|',
+	\ '           +-+-+-+-+ +-+-+-+-+-+',
+	\ ]
