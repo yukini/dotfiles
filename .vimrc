@@ -135,7 +135,9 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
 Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
-Plug 'luochen1990/rainbow', { 'for': 'clojure' }
+" Plug 'luochen1990/rainbow', { 'for': 'clojure' }
+Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
+Plug 'tpope/vim-repeat'
 
 " HTML & CSS
 Plug 'mattn/emmet-vim'
@@ -151,7 +153,31 @@ call plug#end()
 autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
 
 " setup clojure rainbow highlighting
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+"" let g:rbpt_colorpairs = [
+""     \ ['darkyellow',  'RoyalBlue3'],
+""     \ ['darkgreen',   'SeaGreen3'],
+""     \ ['darkcyan',    'DarkOrchid3'],
+""     \ ['Darkblue',    'firebrick3'],
+""     \ ['DarkMagenta', 'RoyalBlue3'],
+""     \ ['darkred',     'SeaGreen3'],
+""     \ ['darkyellow',  'DarkOrchid3'],
+""     \ ['darkgreen',   'firebrick3'],
+""     \ ['darkcyan',    'RoyalBlue3'],
+""     \ ['Darkblue',    'SeaGreen3'],
+""     \ ['DarkMagenta', 'DarkOrchid3'],
+""     \ ['Darkblue',    'firebrick3'],
+""     \ ['darkcyan',    'SeaGreen3'],
+""     \ ['darkgreen',   'RoyalBlue3'],
+""     \ ['darkyellow',  'DarkOrchid3'],
+""     \ ['darkred',     'firebrick3'],
+""     \ ]
 
 " 
 " indentLine
@@ -227,6 +253,7 @@ let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 " vim-go
 " ----------------------------------------------------------------------------------
 "
+let g:go_build_tags = "-tags"
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'godef'
 let g:go_def_mapping_enabled = 1
@@ -378,7 +405,8 @@ let g:user_emmet_expandabbr_key = '<C-Space>'
 command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
 
 let g:startify_custom_header = [
-	\ '           +-+-+-+-+ +-+-+-+-+-+',
-	\ '           |h|j|k|l| |p|o|w|e|r|',
-	\ '           +-+-+-+-+ +-+-+-+-+-+',
+	\ '     +-+-+-+-+-+-+-+-+',
+	\ '     | h | j | k | l |',
+	\ '     +-+-+-+-+-+-+-+-+',
 	\ ]
+
