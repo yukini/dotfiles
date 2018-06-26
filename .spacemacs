@@ -32,7 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      nlinum
-     ;; tabbar
+     tabbar
      octave
      themes-megapack
      ruby
@@ -47,8 +47,8 @@ values."
      django
      elixir
      clojure
-     ;; helm
-     ivy
+     helm
+     ;; ivy
      auto-completion
      ;; better-defaults
      emacs-lisp
@@ -70,7 +70,8 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(vue-mode
+   dotspacemacs-additional-packages '(quickrun
+                                      vue-mode
                                       all-the-icons
                                       nodejs-repl)
    ;; A list of packages that cannot be updated.
@@ -89,7 +90,7 @@ values."
 
 (defun dotspacemacs/init ()
   (setq-default
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    dotspacemacs-elpa-timeout 5
    dotspacemacs-check-for-update nil
    dotspacemacs-elpa-subdirectory nil
@@ -107,8 +108,8 @@ values."
                          zen-and-art
                          brin)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Menlo"
-                               :size 12
+   dotspacemacs-default-font '("Consolas"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -167,6 +168,17 @@ values."
   )
 
 (defun dotspacemacs/user-init ()
+  ;;--------------------------------------------------------
+  ;; tabbar
+  ;;--------------------------------------------------------
+  ;; 画像をつかわない
+  (setq tabbar-use-images nil) 
+  ;; 左に表示されるボタンを無効化
+  (dolist (btn '(tabbar-buffer-home-button
+                 tabbar-scroll-left-button
+                 tabbar-scroll-right-button))
+    (set btn (cons (cons "" nil)
+                   (cons "" nil))))
   (setq-default
    css-indent-offset 2
    web-mode-css-indent-offset 2
@@ -176,9 +188,34 @@ values."
    initial-frame-alist '((left . 0)
                          (top . 0)
                          (width . 100)
-                         (height . 60)))
+                         (height . 50)))
 
 (defun dotspacemacs/user-config ()
+  ;;--------------------------------------------------------
+  ;; tabbar
+  ;;--------------------------------------------------------
+  ;; グループ化しない
+  (setq tabbar-buffer-groups-function nil)
+  ;; CTRL-Nで次のタブ
+  (define-key evil-normal-state-map (kbd "C-n") 'tabbar-forward-tab)
+  ;; CTRL-Pで前のタブ
+  (define-key evil-normal-state-map (kbd "C-p") 'tabbar-backward-tab)
+  ;; タブに表示するバッファをフィルタするカスタム関数
+  (defun my-tabbar-buffer-list ()
+    (delq nil
+          (mapcar #'(lambda (b)
+                      (cond
+                       ((eq (current-buffer) b) b)
+                       ((buffer-file-name b) b)
+                       ((char-equal ?\  (aref (buffer-name b) 0)) nil)
+                       ((equal "*scratch*" (buffer-name b)) b)
+                       ((string-match "cider-repl*" (buffer-name b)) b)
+                       ((char-equal ?* (aref (buffer-name b) 0)) nil)
+                       ((buffer-live-p b) b)))
+                  (buffer-list))))
+  ;; カスタム関数を登録
+  (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
+
   (spacemacs/toggle-transparency)
   (blink-cursor-mode t)
 
@@ -221,7 +258,7 @@ values."
    scroll-step 1
    ;; scroll-margin nil
    garbage-collection-messages t
-   gc-cons-threshold (* gc-cons-threshold 50)
+   gc-cons-threshold (* gc-cons-threshold 500)
    nrepl-log-messages t
    cider-repl-display-in-current-window t
    cider-repl-use-clojure-font-lock t
@@ -230,7 +267,7 @@ values."
    cider-overlays-use-font-lock t
    ;; cider-eval-result-prefix ";; => "
    cider-repl-toggle-pretty-printing t
-   neo-theme 'icons
+   neo-theme 'nerd
    indicate-unused-lines t
    powerline-default-separator nil
    )
@@ -250,6 +287,10 @@ values."
   (add-to-list 'vue-mode-hook #'tern-mode smartparens-mode)
   (setq mmm-js-mode-exit-hook (lambda () (setq tern-mode nil)))
   (setq mmm-js-mode-enter-hook (lambda () (setq tern-mode t)))
+  (setq find-program "\"C:\\Program Files\\Git\\usr\\bin\\find.exe\""
+        grep-program "\"C:\\Program Files\\Git\\usr\\bin\\grep.exe\""
+        diff-command "\"C:\\Program Files\\Git\\usr\\bin\\diff.exe\""
+        null-device "/dev/null")
   ))
 
 ;; Do not write anything past this comment. This is where Emacs will

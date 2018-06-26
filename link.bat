@@ -1,7 +1,11 @@
 @echo off
+setlocal
+set REPO=%~dp0
 
-mklink /H %HOME%\.vimrc .vimrc
-mklink /H %HOME%\.gvimrc .gvimrc
-mklink /H %HOME%\.ideavimrc .ideavimrc
-mklink /H %HOME%\.spacemacs .spacemacs
-mklink /H %HOME%\.tern-config .tern-config
+mklink %HOME%\.vimrc       %REPO%\.vimrc
+mklink %HOME%\.gvimrc      %REPO%\.gvimrc
+mklink %HOME%\.ideavimrc   %REPO%\.ideavimrc
+mklink %HOME%\.spacemacs   %REPO%\.spacemacs
+mklink %HOME%\.tern-config %REPO%\.tern-config
+
+endlocal
