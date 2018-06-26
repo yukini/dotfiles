@@ -14,3 +14,5 @@ echo $'\e[31m|  \e[32m|  \e[33m|  \e[34m.------- month (1 - 12)                 
 echo $'\e[31m|  \e[32m|  \e[33m.---------- day of month (1 - 31)                              \e[m'
 echo $'\e[31m|  \e[32m.------------- hour (0 - 23)                                            \e[m'
 echo $'\e[31m.---------------- minute (0 - 59)                                                \e[m'
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
