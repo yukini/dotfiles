@@ -307,21 +307,30 @@ let g:user_emmet_expandabbr_key = '<C-Space>'
 Plug 'tyru/open-browser.vim'
 command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
 
-call plug#end()
-
 " 
 " deoplete
 " ----------------------------------------------------------------------------------
 "
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_complete_delay = 0
-" if has('win32')
-"     let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
-" endif
-" let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode.exe'
-" let g:deoplete#enable_smart_case = 1
-" let g:deoplete#enable_camel_case_completion = 1
-" let g:deoplete#enable_underbar_completion = 1
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
+if has('win32')
+    let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
+endif
+let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode.exe'
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case_completion = 1
+let g:deoplete#enable_underbar_completion = 1
+
+call plug#end()
+
 
 
 "
