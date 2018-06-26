@@ -17,14 +17,11 @@ set columns=100
 
 if has('mac')
     set transparency=5
-    "2byte文字対応
-    " set ambiwidth=double
 endif
 
-if has('win32') || has ('win64')
+if has('win32')
     autocmd GUIEnter * set transparency=245
     set guifont=Cica:h12
     set guifontwide=Cica:h12
-    " set rop=type:directx,renmode:5
 endif
 
