@@ -43,6 +43,8 @@ set list lcs=tab:\|\  " tab indent line
 set ambiwidth=double
 set t_Co=256
 set noequalalways " 自動ウィンドウサイズ調整無効
+set shortmess=a " spf13/spf13-vim/issues/540
+set cmdheight=2 " spf13/spf13-vim/issues/540
 
 "
 " Plug

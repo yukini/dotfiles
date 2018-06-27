@@ -17,6 +17,8 @@ set columns=100
 
 if has('mac')
     set transparency=5
+    set guifont=Cica:h16
+    set guifontwide=Cica:h16
 endif
 
 if has('win32')
