@@ -40,4 +40,8 @@ fi
 
 export PATH=$PATH:~/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if type rbenv 2>/dev/null 1>/dev/null
+then
+    eval "$(rbenv init -)"
+fi
+
