@@ -45,3 +45,10 @@ then
     eval "$(rbenv init -)"
 fi
 
+# completion
+autoload -Uz compinit
+compinit
+
+# smart-case
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+
