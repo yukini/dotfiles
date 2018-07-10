@@ -367,3 +367,5 @@ call denite#custom#option('default', 'winheight', 10)
 "
 colorscheme gruvbox
 set background=dark
+
+" let g:python3_host_prog=

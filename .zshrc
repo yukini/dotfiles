@@ -4,7 +4,7 @@ RPROMPT='[%F{green}%d%f]'
 
 if type lolcat cowsay 2>/dev/null 1>/dev/null
 then
-    echo "$(date)\n morning!" | cowsay | lolcat -F 0.6 -S 0 -a -s 800
+    echo "$(date)\n morning!" | cowsay | lolcat -F 0.6 -S 0
 fi
 
 echo $'\e[32m##################################################'
@@ -16,6 +16,8 @@ export SAVEHIST=100000
 setopt EXTENDED_HISTORY
 
 # figlet morning!
+alias vi='nvim'
+alias vim='nvim'
 alias ls='ls -Gp'
 alias ll='ls -l'
 alias la='ll -A'
@@ -52,3 +54,12 @@ compinit
 # smart-case
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
+
+# origin
+TERM=xterm-256color
+autoload colors
+colors
+PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
+PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
+SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
+RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
