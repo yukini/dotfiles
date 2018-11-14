@@ -1,6 +1,5 @@
 set encoding=utf-8
-scriptencoding utf-8
-
+scriptencoding utf-8 
 "
 " common
 " ----------------------------------------------------------------------------------
@@ -100,7 +99,7 @@ xnoremap <silent> <leader>r
       \ :<C-u>Denite -default-action=replace -buffer-name=register
       \ register neoyank<CR>
 
-nnoremap <silent> ft :<C-u>Denite filetype<CR>
+" nnoremap <silent> ft :<C-u>Denite filetype<CR>
 nnoremap <silent> n :<C-u>Denite -buffer-name=search
       \ -resume -mode=normal -refresh<CR>
 
@@ -272,25 +271,28 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Clojure
 " ----------------------------------------------------------------------------------
 "
-Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-Plug 'guns/vim-sexp', { 'for': 'clojure' }
-Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-Plug 'tpope/vim-salve', { 'for': 'clojure' }
-Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
-Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
-Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
-Plug 'tpope/vim-repeat'
-" Evaluate Clojure buffers on load
-autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
-" setup clojure rainbow highlighting
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
-autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+"
+Plug 'guns/vim-sexp',    {'for': 'clojure'}
+Plug 'liquidz/vim-iced', {'for': 'clojure'}
+"" "Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+"" "Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+"" "Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+"" "Plug 'guns/vim-sexp', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-salve', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+"" "Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
+"" "Plug 'tpope/vim-repeat'
+"" "" Evaluate Clojure buffers on load
+"" "autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
+"" "" setup clojure rainbow highlighting
+"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
 
 "
 " emmet
@@ -326,7 +328,7 @@ let g:deoplete#auto_complete_delay = 0
 if has('win32')
     let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
 endif
-let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode.exe'
+let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_camel_case_completion = 1
 let g:deoplete#enable_underbar_completion = 1
@@ -343,7 +345,7 @@ if has('win32')
     nnoremap <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
 endif
 if has('mac')
-    nn <silent> <leader>t :terminal ++close<CR>
+    nn <silent> <leader>t :terminal ++rows=5 ++close zsh<CR>
 endif
 
 nnoremap <silent> <leader>o :TagbarToggle<CR>

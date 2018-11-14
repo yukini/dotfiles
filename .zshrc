@@ -2,12 +2,12 @@ set completion-ignore-case on
 
 RPROMPT='[%F{green}%d%f]'
 
-if type lolcat cowsay 2>/dev/null 1>/dev/null
-then
-    echo "$(date)\n morning!" | cowsay | lolcat -F 0.6 -S 0
-fi
+# if type lolcat cowsay 2>/dev/null 1>/dev/null
+# then
+#     echo "$(date)\n morning!" | cowsay | lolcat -F 0.7
+#     echo $'\e[32m##################################################'
+# fi
 
-echo $'\e[32m##################################################'
 
 # history
 export HISTFILE=~/.zsh_history
@@ -19,9 +19,12 @@ setopt EXTENDED_HISTORY
 alias vi='nvim'
 alias vim='nvim'
 alias ls='ls -Gp'
+alias l='ls -l'
 alias ll='ls -l'
 alias la='ll -A'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+
+alias ssh="~/bin/ssh-change-profile.sh"
 
 ######################################################
 # echo ""
@@ -66,3 +69,4 @@ RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
