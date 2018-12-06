@@ -25,6 +25,7 @@ alias la='ll -A'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 alias ssh="~/bin/ssh-change-profile.sh"
+alias cjob="code ~/dev/jobshot/jobshot-front/ & code ~/dev/jobshot/jobshot-server"
 
 ######################################################
 # echo ""
@@ -69,4 +70,9 @@ RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
 
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+# Genymotion
+export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
 
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh

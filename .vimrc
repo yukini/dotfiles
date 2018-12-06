@@ -333,6 +333,8 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_camel_case_completion = 1
 let g:deoplete#enable_underbar_completion = 1
 
+let g:deoplete#souces#go#package_dot = 1
+
 call plug#end()
 
 
@@ -345,7 +347,7 @@ if has('win32')
     nnoremap <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
 endif
 if has('mac')
-    nn <silent> <leader>t :terminal ++rows=5 ++close zsh<CR>
+    nnoremap <silent> <leader>t :terminal ++rows=5 ++close zsh<CR>
 endif
 
 nnoremap <silent> <leader>o :TagbarToggle<CR>
