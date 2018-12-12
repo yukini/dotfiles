@@ -11,7 +11,7 @@ RPROMPT='[%F{green}%d%f]'
 
 # history
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
+export HISTSIZE=100000
 export SAVEHIST=100000
 setopt EXTENDED_HISTORY
 
