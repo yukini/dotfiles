@@ -76,3 +76,7 @@ export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+
+# iTerm2 language
+export LANG="ja_JP.UTF-8"
+
