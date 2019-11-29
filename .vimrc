@@ -72,13 +72,13 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
 
 " key map
-nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-      \ -auto-highlight -mode=normal line<CR>
-nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
-      \ line<CR>
-nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-nnoremap <silent> <C-t> :<C-u>Denite
-      \ -select=`tabpagenr()-1` -mode=normal deol<CR>
+" nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+"       \ -auto-highlight -mode=normal line<CR>
+" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+"       \ line<CR>
+" nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+" nnoremap <silent> <C-t> :<C-u>Denite
+"       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
 
 nnoremap <silent> <leader><Space>
       \ :<C-u>Denite -mode=normal file_mru<CR>

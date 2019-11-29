@@ -24,7 +24,7 @@ alias ll='ls -l'
 alias la='ll -A'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-alias ssh="~/bin/ssh-change-profile.sh"
+# alias ssh="~/bin/ssh-change-profile.sh"
 alias cjob="code ~/dev/jobshot/jobshot-front/ & code ~/dev/jobshot/jobshot-server"
 
 ######################################################
@@ -78,5 +78,8 @@ export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
 [[ -f /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 
 # iTerm2 language
-export LANG="ja_JP.UTF-8"
+# export LANG="ja_JP.UTF-8"
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
+export PATH="/usr/local/sbin:$PATH"
