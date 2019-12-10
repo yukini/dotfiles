@@ -50,9 +50,10 @@ set cmdheight=2 " spf13/spf13-vim/issues/540
 " ----------------------------------------------------------------------------------
 "
 call plug#begin('~/.vim/plugged')
-" File manager
+
 "
-" ctrlP
+" CtrlP
+" File manager
 " ----------------------------------------------------------------------------------
 "
 Plug 'ctrlpvim/ctrlp.vim'
@@ -62,46 +63,6 @@ if executable('ag')
   let g:ctrlp_use_caching=0
   let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 endif
-
-"
-" Denite
-" ----------------------------------------------------------------------------------
-"
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neoyank.vim'
-
-" key map
-" nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-"       \ -auto-highlight -mode=normal line<CR>
-" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
-"       \ line<CR>
-" nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-" nnoremap <silent> <C-t> :<C-u>Denite
-"       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-
-nnoremap <silent> <leader><Space>
-      \ :<C-u>Denite -mode=normal file_mru<CR>
-nnoremap <silent> <leader>m
-      \ :<C-u>Denite file_rec:~/.vim/rc<CR>
-
-nnoremap <silent> <leader>b :Denite -mode=normal buffer<CR>
-nnoremap <silent> <leader>r
-      \ :<C-u>Denite -buffer-name=register
-      \ register neoyank<CR>
-nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
-      \ -sorters=sorter_rank
-      \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-nnoremap <silent> <leader>f :<C-u>Denite file_rec<CR>
-nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
-      \ -no-empty -mode=normal grep<CR>
-xnoremap <silent> <leader>r
-      \ :<C-u>Denite -default-action=replace -buffer-name=register
-      \ register neoyank<CR>
-
-" nnoremap <silent> ft :<C-u>Denite filetype<CR>
-nnoremap <silent> n :<C-u>Denite -buffer-name=search
-      \ -resume -mode=normal -refresh<CR>
 
 "
 " vim rooter
@@ -131,9 +92,11 @@ let g:indentLine_faster = 1
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 
+"
 " quickrun
+" ----------------------------------------------------------------------------------
+"
 Plug 'thinca/vim-quickrun'
-" nnoremap <silent> <leader>q :QuickRun<CR>
 
 " 
 " lightline
@@ -156,59 +119,63 @@ function! s:MyFileformat()
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
+"
 " colorscheme
-Plug 'jonathanfilip/vim-lucius'
-Plug 'w0ng/vim-hybrid'
+" ----------------------------------------------------------------------------------
+"
 Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
-Plug 'AlessandroYorba/Alduin'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'cocopon/iceberg.vim'
+" Plug 'jonathanfilip/vim-lucius'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'rakr/vim-one'
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'severin-lemaignan/vim-minimap'
+" Plug 'cocopon/iceberg.vim'
 
 "
 " ale - syntax check
 " ----------------------------------------------------------------------------------
 "
-Plug 'w0rp/ale'
-let g:ale_lint_on_text_changed = 0
-let g:airline_theme='one'
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
+" Plug 'w0rp/ale'
+" let g:ale_lint_on_text_changed = 0
+" let g:airline_theme='one'
+" let g:airline#extensions#ale#open_lnum_symbol = '('
+" let g:airline#extensions#ale#close_lnum_symbol = ')'
+" let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+" highlight link ALEErrorSign Tag
+" highlight link ALEWarningSign StorageClass
 
 " surround
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 
 " comment
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 
 "
 " golang
 " ----------------------------------------------------------------------------------
 "
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-let g:go_gocode_unimported_packages = 1
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-let g:go_build_tags = "-tags"
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = 'godef'
-let g:go_def_mapping_enabled = 1
-let g:go_fmt_autosave = 1
-let g:rehash256 = 1
-let g:go_auto_type_info = 1
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" let g:go_gocode_unimported_packages = 1
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go'
+" let g:go_build_tags = "-tags"
+" let g:go_fmt_command = "goimports"
+" let g:go_def_mode = 'godef'
+" let g:go_def_mapping_enabled = 1
+" let g:go_fmt_autosave = 1
+" let g:rehash256 = 1
+" let g:go_auto_type_info = 1
 " set updatetime=100
-let g:go_auto_sameids = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1 
-let g:go_highlight_methods = 1
-let g:go_highlight_function = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_functions = 1
+" let g:go_auto_sameids = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_structs = 1 
+" let g:go_highlight_methods = 1
+" let g:go_highlight_function = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_functions = 1
 
 "
 " supertab - completion with tab
@@ -272,19 +239,19 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " ----------------------------------------------------------------------------------
 "
 "
-Plug 'guns/vim-sexp',    {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
-"" "Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"" "Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-"" "Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-"" "Plug 'guns/vim-sexp', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-salve', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
-"" "Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
-"" "Plug 'tpope/vim-repeat'
+" Plug 'guns/vim-sexp',    {'for': 'clojure'}
+" Plug 'liquidz/vim-iced', {'for': 'clojure'}
+" Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+" Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+" Plug 'guns/vim-sexp', { 'for': 'clojure' }
+" Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+" Plug 'tpope/vim-salve', { 'for': 'clojure' }
+" Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
+" Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
+" Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
+" Plug 'tpope/vim-repeat'
 "" "" Evaluate Clojure buffers on load
 "" "autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
 "" "" setup clojure rainbow highlighting
@@ -298,43 +265,43 @@ Plug 'liquidz/vim-iced', {'for': 'clojure'}
 " emmet
 " ----------------------------------------------------------------------------------
 "
-Plug 'mattn/emmet-vim'
-autocmd FileType html,css,scss imap <buffer><expr><tab>
-    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
-    \ "\<tab>"
-let g:user_emmet_expandabbr_key = '<C-Space>'
+" Plug 'mattn/emmet-vim'
+" autocmd FileType html,css,scss imap <buffer><expr><tab>
+"     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+"     \ "\<tab>"
+" let g:user_emmet_expandabbr_key = '<C-Space>'
 
 "
 " open browser
 " ----------------------------------------------------------------------------------
 "
-Plug 'tyru/open-browser.vim'
-command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
+" Plug 'tyru/open-browser.vim'
+" command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
 
 " 
 " deoplete
 " ----------------------------------------------------------------------------------
 "
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-if has('win32')
-    let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
-endif
-let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case_completion = 1
-let g:deoplete#enable_underbar_completion = 1
-
-let g:deoplete#souces#go#package_dot = 1
-
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#auto_complete_delay = 0
+" if has('win32')
+"     let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
+" endif
+" let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#enable_camel_case_completion = 1
+" let g:deoplete#enable_underbar_completion = 1
+" 
+" let g:deoplete#souces#go#package_dot = 1
+" 
 call plug#end()
 
 
@@ -354,16 +321,16 @@ nnoremap <silent> <leader>o :TagbarToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 
 " Ag command on grep source
-if executable('ag')
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-endif
-call denite#custom#option('default', 'winheight', 10)
+" if executable('ag')
+"     call denite#custom#var('grep', 'command', ['ag'])
+"     call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+"     call denite#custom#var('grep', 'recursive_opts', [])
+"     call denite#custom#var('grep', 'pattern_opt', [])
+"     call denite#custom#var('grep', 'separator', ['--'])
+"     call denite#custom#var('grep', 'final_opts', [])
+"     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" endif
+" call denite#custom#option('default', 'winheight', 10)
 
 "
 " colorscheme
