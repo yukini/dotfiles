@@ -87,10 +87,10 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " indentLine
 " ----------------------------------------------------------------------------------
 "
-Plug 'Yggdroot/indentLine'
-let g:indentLine_faster = 1
-nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
+" Plug 'Yggdroot/indentLine'
+" let g:indentLine_faster = 1
+" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
+" let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 
 "
 " quickrun
@@ -154,35 +154,35 @@ Plug 'morhetz/gruvbox'
 " golang
 " ----------------------------------------------------------------------------------
 "
-" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-" let g:go_gocode_unimported_packages = 1
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+let g:go_gocode_unimported_packages = 1
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'fatih/vim-go'
-" let g:go_build_tags = "-tags"
-" let g:go_fmt_command = "goimports"
-" let g:go_def_mode = 'godef'
-" let g:go_def_mapping_enabled = 1
-" let g:go_fmt_autosave = 1
-" let g:rehash256 = 1
-" let g:go_auto_type_info = 1
-" set updatetime=100
-" let g:go_auto_sameids = 1
-" let g:go_highlight_types = 1
-" let g:go_highlight_fields = 1
-" let g:go_highlight_structs = 1 
-" let g:go_highlight_methods = 1
-" let g:go_highlight_function = 1
-" let g:go_highlight_functions = 1
-" let g:go_highlight_operators = 1
-" let g:go_highlight_build_constraints = 1
-" let g:go_highlight_functions = 1
+Plug 'fatih/vim-go'
+let g:go_build_tags = "-tags"
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'godef'
+let g:go_def_mapping_enabled = 1
+let g:go_fmt_autosave = 1
+let g:rehash256 = 1
+let g:go_auto_type_info = 1
+set updatetime=100
+let g:go_auto_sameids = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_function = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_functions = 1
 
 "
 " supertab - completion with tab
 " ----------------------------------------------------------------------------------
 "
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" Plug 'ervandew/supertab'
+" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 "
 " startify
@@ -203,10 +203,10 @@ endfunction
 " tagbar
 " ----------------------------------------------------------------------------------
 "
-Plug 'majutsushi/tagbar'
-let g:tagbar_left = 0
-let g:tagbar_autofocus = 1
-let g:tagbar_sort = 0
+" Plug 'majutsushi/tagbar'
+" let g:tagbar_left = 0
+" let g:tagbar_autofocus = 1
+" let g:tagbar_sort = 0
 
 "
 " git gutter
@@ -222,7 +222,7 @@ let g:gitgutter_sign_modified_removed = '∙'
 Plug 'tpope/vim-fugitive'
 
 " completion of parentheses
-Plug 'cohama/lexima.vim'
+" Plug 'cohama/lexima.vim'
 
 " outline
 Plug 'junegunn/goyo.vim'
@@ -260,6 +260,27 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 "" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
 "" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
 "" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+
+" 
+" SBCL
+" ----------------------------------------------------------------------------------
+"
+Plug 'kovisoft/slimv'
+let g:slimv_lisp='ros run'
+let g:slimv_impl='sbcl'
+let g:lisp_rainbow=1
+" 開き括弧を入力すると自動的に閉じ括弧を挿入する(デフォルト1)
+let g:paredit_mode=1
+" 括弧内で改行すると追加でもう一つ改行を挿入する。サブフォーム入力支援用。(デフォルト1)
+let g:paredit_electric_return=1
+
+" connected swank serverの際、対話窓が縦分割の右側に出てくる
+let g:slimv_repl_split=4
+let g:slimv_repl_name='REPL'
+" let g:slimv_ctags='ctags --language-force=lisp *.lisp *.clj'
+
+" Ctrl+Entreでeval
+let g:slimv_repl_simple_eval=0
 
 "
 " emmet
@@ -299,9 +320,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:deoplete#enable_smart_case = 1
 " let g:deoplete#enable_camel_case_completion = 1
 " let g:deoplete#enable_underbar_completion = 1
-" 
 " let g:deoplete#souces#go#package_dot = 1
-" 
+ 
 call plug#end()
 
 
