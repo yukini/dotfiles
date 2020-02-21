@@ -11,7 +11,8 @@ set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set tabstop=4
 set autoindent
-set expandtab
+" tabをスペースで挿入
+" set expandtab
 set shiftwidth=4
 set completeopt=menuone
 set scrolloff=5 " カーソル上下に表示する行数
@@ -67,41 +68,41 @@ endif
 " Denite
 " ----------------------------------------------------------------------------------
 "
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/neoyank.vim'
+"Plug 'Shougo/denite.nvim'
+"Plug 'Shougo/neomru.vim'
+"Plug 'Shougo/neoyank.vim'
 
 " key map
-nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
-      \ -auto-highlight -mode=normal line<CR>
-nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
-      \ line<CR>
-nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
-nnoremap <silent> <C-t> :<C-u>Denite
-      \ -select=`tabpagenr()-1` -mode=normal deol<CR>
-
-nnoremap <silent> <leader><Space>
-      \ :<C-u>Denite -mode=normal file_mru<CR>
-nnoremap <silent> <leader>m
-      \ :<C-u>Denite file_rec:~/.vim/rc<CR>
-
-nnoremap <silent> <leader>b :Denite -mode=normal buffer<CR>
-nnoremap <silent> <leader>r
-      \ :<C-u>Denite -buffer-name=register
-      \ register neoyank<CR>
-nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
-      \ -sorters=sorter_rank
-      \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-nnoremap <silent> <leader>f :<C-u>Denite file_rec<CR>
-nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
-      \ -no-empty -mode=normal grep<CR>
-xnoremap <silent> <leader>r
-      \ :<C-u>Denite -default-action=replace -buffer-name=register
-      \ register neoyank<CR>
-
-" nnoremap <silent> ft :<C-u>Denite filetype<CR>
-nnoremap <silent> n :<C-u>Denite -buffer-name=search
-      \ -resume -mode=normal -refresh<CR>
+" nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search
+"       \ -auto-highlight -mode=normal line<CR>
+" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-highlight
+"       \ line<CR>
+" nnoremap <silent> <C-k> :<C-u>Denite -mode=normal change jump<CR>
+" nnoremap <silent> <C-t> :<C-u>Denite
+"       \ -select=`tabpagenr()-1` -mode=normal deol<CR>
+" 
+" nnoremap <silent> <leader><Space>
+"       \ :<C-u>Denite -mode=normal file_mru<CR>
+" nnoremap <silent> <leader>m
+"       \ :<C-u>Denite file_rec:~/.vim/rc<CR>
+" 
+" nnoremap <silent> <leader>b :Denite -mode=normal buffer<CR>
+" nnoremap <silent> <leader>r
+"       \ :<C-u>Denite -buffer-name=register
+"       \ register neoyank<CR>
+" nnoremap <silent> <leader>s :<C-u>Denite file_point file_old
+"       \ -sorters=sorter_rank
+"       \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+" nnoremap <silent> <leader>f :<C-u>Denite file_rec<CR>
+" nnoremap <silent> <leader>g :<C-u>Denite -buffer-name=search
+"       \ -no-empty -mode=normal grep<CR>
+" xnoremap <silent> <leader>r
+"       \ :<C-u>Denite -default-action=replace -buffer-name=register
+"       \ register neoyank<CR>
+" 
+" " nnoremap <silent> ft :<C-u>Denite filetype<CR>
+" nnoremap <silent> n :<C-u>Denite -buffer-name=search
+"       \ -resume -mode=normal -refresh<CR>
 
 "
 " vim rooter
@@ -157,32 +158,32 @@ function! s:MyFileformat()
 endfunction
 
 " colorscheme
-Plug 'jonathanfilip/vim-lucius'
-Plug 'w0ng/vim-hybrid'
+" Plug 'jonathanfilip/vim-lucius'
+" Plug 'w0ng/vim-hybrid'
 Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
-Plug 'AlessandroYorba/Alduin'
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'cocopon/iceberg.vim'
+" Plug 'rakr/vim-one'
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'severin-lemaignan/vim-minimap'
+" Plug 'cocopon/iceberg.vim'
 
 "
 " ale - syntax check
 " ----------------------------------------------------------------------------------
 "
-Plug 'w0rp/ale'
-let g:ale_lint_on_text_changed = 0
-let g:airline_theme='one'
-let g:airline#extensions#ale#open_lnum_symbol = '('
-let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-highlight link ALEErrorSign Tag
-highlight link ALEWarningSign StorageClass
+" Plug 'w0rp/ale'
+" let g:ale_lint_on_text_changed = 0
+" let g:airline_theme='one'
+" let g:airline#extensions#ale#open_lnum_symbol = '('
+" let g:airline#extensions#ale#close_lnum_symbol = ')'
+" let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+" highlight link ALEErrorSign Tag
+" highlight link ALEWarningSign StorageClass
 
 " surround
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 
 " comment
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 
 "
 " golang
@@ -190,7 +191,9 @@ Plug 'tpope/vim-commentary'
 "
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 let g:go_gocode_unimported_packages = 1
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" アップデートは手動でやりたい
+Plug 'fatih/vim-go'
 let g:go_build_tags = "-tags"
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'godef'
@@ -214,8 +217,8 @@ let g:go_highlight_functions = 1
 " supertab - completion with tab
 " ----------------------------------------------------------------------------------
 "
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" Plug 'ervandew/supertab'
+" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 "
 " startify
@@ -226,7 +229,23 @@ let g:startify_custom_header = [
 	\ '     +-+-+-+-+-+-+-+-+',
 	\ '     | h | j | k | l |',
 	\ '     +-+-+-+-+-+-+-+-+',
+	\ '     【M00463】ｲﾝﾃﾘｼﾞｪﾝﾄｻｰﾁ',
+	\ '     B#  請求書番号(請求書単位)',
+	\ '     C#  契約者番号(顧客単位)',
+	\ '     F#  グループID(回線単位/G#と同じ)',
+	\ '     G#  グループID(回線単位)',
+	\ '     D#  請求/督促状',
+	\ '     DL# MSNとS#を紐付ける番号(交換機管理)',
+	\ '     K#  企業番号',
+	\ '     S#  サービス管理番号(回線単位)',
+	\ '     U#  使用者ID',
+	\ '     統括：私たちは、一人ひとりがIT技術者として成長し、ソフトバンクKKと新規事業の相乗効果を生み出す',
+	\ '           共通システムと標準ミドルウェアプラットフォームを提供するチームであり続けます。',
+	\ '     部  ・ITシステム化を上流から下流までコンサルティングできるチームとなり、正社員中心でソリューションを提供する。',
+	\ '         ・一人ひとりが得意なIT知識エリアを持ち、お互いに教えあい、高め合う。',
+	\ '         ・高いレベルの社外活動に参加して人脈を作り、要求に応じてタイムリーに技術力を行使できるように常に備え、振り返り改善する。',
 	\ ]
+
 let g:startify_bookmarks= ["~/.vimrc", "~/.gvimrc"]
 function! StartifyEntryFormat()
     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
@@ -256,6 +275,7 @@ Plug 'tpope/vim-fugitive'
 
 " completion of parentheses
 Plug 'cohama/lexima.vim'
+let g:lexima_enable_basic_rules = 1
 
 " outline
 Plug 'junegunn/goyo.vim'
@@ -268,12 +288,45 @@ Plug 'mileszs/ack.vim'
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " 
+" Common Lisp
+" ----------------------------------------------------------------------------------
+"
+"
+Plug 'kovisoft/slimv'
+let g:slimv_lisp = 'ros run'
+let g:slimv_impl = 'sbcl'
+" 開き括弧を入力すると自動的に閉じ括弧を挿入する(デフォルト1)
+let g:paredit_mode=1
+" 括弧内で改行すると追加でもう一つ改行を挿入する。サブフォーム入力支援用。(デフォルト1)
+let g:paredit_electric_return=1
+
+" connected swank serverの際、対話窓が縦分割の右側に出てくる
+let g:slimv_repl_split=4
+let g:slimv_repl_name='REPL'
+" 評価する画面ではCtrl-Returnをすることで評価されるようにする
+let g:slimv_repl_simple_eval=0
+
+" 現在のファイルだけを対象としてタグファイルを作成
+function! s:generate_lisp_tags()
+  let g:slimv_ctags='ctags -a -f '.$HOME.'/.tags/lisp.tags '.expand('%:p').' --language-force=Lisp'
+  call SlimvGenerateTags()
+endfunction
+command! -nargs=0 GenerateLispTags call <SID>generate_lisp_tags()
+
+" 再帰的にタグファイルを作成
+function! s:generate_lisp_tags_recursive()
+  let g:slimv_ctags='ctags -a -f '.$HOME.'/.tags/lisp.tags -R '.expand('%:p:h').' --language-force=Lisp'
+  call SlimvGenerateTags()
+endfunction
+command! -nargs=0 GenerateLispTagsRecursive call <SID>generate_lisp_tags_recursive()
+
+" 
 " Clojure
 " ----------------------------------------------------------------------------------
 "
 "
-Plug 'guns/vim-sexp',    {'for': 'clojure'}
-Plug 'liquidz/vim-iced', {'for': 'clojure'}
+"" "Plug 'guns/vim-sexp',    {'for': 'clojure'}
+"" "Plug 'liquidz/vim-iced', {'for': 'clojure'}
 "" "Plug 'tpope/vim-classpath', { 'for': 'clojure' }
 "" "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 "" "Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
@@ -298,18 +351,18 @@ Plug 'liquidz/vim-iced', {'for': 'clojure'}
 " emmet
 " ----------------------------------------------------------------------------------
 "
-Plug 'mattn/emmet-vim'
-autocmd FileType html,css,scss imap <buffer><expr><tab>
-    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
-    \ "\<tab>"
-let g:user_emmet_expandabbr_key = '<C-Space>'
+" Plug 'mattn/emmet-vim'
+" autocmd FileType html,css,scss imap <buffer><expr><tab>
+"     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+"     \ "\<tab>"
+" let g:user_emmet_expandabbr_key = '<C-Space>'
 
 "
 " open browser
 " ----------------------------------------------------------------------------------
 "
-Plug 'tyru/open-browser.vim'
-command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
+" Plug 'tyru/open-browser.vim'
+" command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
 
 " 
 " deoplete
@@ -354,16 +407,16 @@ nnoremap <silent> <leader>o :TagbarToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 
 " Ag command on grep source
-if executable('ag')
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-endif
-call denite#custom#option('default', 'winheight', 10)
+" if executable('ag')
+"     call denite#custom#var('grep', 'command', ['ag'])
+"     call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+"     call denite#custom#var('grep', 'recursive_opts', [])
+"     call denite#custom#var('grep', 'pattern_opt', [])
+"     call denite#custom#var('grep', 'separator', ['--'])
+"     call denite#custom#var('grep', 'final_opts', [])
+"     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" endif
+" call denite#custom#option('default', 'winheight', 10)
 
 "
 " colorscheme

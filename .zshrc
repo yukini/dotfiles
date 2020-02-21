@@ -22,10 +22,14 @@ alias ls='ls -Gp'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ll -A'
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+alias stat='stat -x'
+alias rm='rm -i'
+alias grep='grep --color'
+alias updatedb='sudo /usr/libexec/locate.updatedb'
 
-alias ssh="~/bin/ssh-change-profile.sh"
-alias cjob="code ~/dev/jobshot/jobshot-front/ & code ~/dev/jobshot/jobshot-server"
+# alias ssh="~/bin/ssh-change-profile.sh"
+alias m='mkdir -p ~/memos/daily_memo/`date '+%Y/%m'` && vi ~/memos/daily_memo/`date '+%Y/%m/%d'`.md'
+
 
 ######################################################
 # echo ""
@@ -52,8 +56,7 @@ then
 fi
 
 # completion
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 # smart-case
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -78,5 +81,7 @@ export PATH=$PATH:/Applications/Genymotion.app/Contents/MacOS/tools
 [[ -f /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/mukuna/.nodebrew/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
 
 # iTerm2 language
-export LANG="ja_JP.UTF-8"
+# export LANG="ja_JP.UTF-8"
+export LANG="en_US.UTF-8"
 
+export PATH="/usr/local/sbin:$PATH"

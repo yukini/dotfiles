@@ -12,13 +12,13 @@ set vb t_vb=
 " current line
 set cursorline
 
-set lines=30
-set columns=100
+set lines=60
+set columns=140
 
 if has('mac')
     set transparency=5
-    set guifont=Cica:h16
-    set guifontwide=Cica:h16
+    set guifont=Cica:h14
+    set guifontwide=Cica:h14
 endif
 
 if has('win32')
