@@ -13,5 +13,7 @@ ln -sf $(pwd)/.spacemacs ~/.spacemacs
 ln -sf $(pwd)/.tern-config ~/.tern-config
 
 # neovim
-mkdir -p ~/.config/nvim
-ln -sf $(pwd)/.vimrc ~/.config/nvim/init.vim
+if hash nvim; then
+  mkdir -p ~/.config/nvim
+  ln -sf $(pwd)/.vimrc ~/.config/nvim/init.vim
+fi

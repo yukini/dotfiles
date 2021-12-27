@@ -19,13 +19,15 @@ setopt EXTENDED_HISTORY
 alias vi='nvim'
 alias vim='nvim'
 alias ls='ls -Gp'
-alias l='ls -l'
-alias ll='ls -l'
-alias la='ll -A'
+alias l='ls -lF'
+alias ll='ls -lF'
+alias la='ll -AF'
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # alias ssh="~/bin/ssh-change-profile.sh"
 alias cjob="code ~/dev/jobshot/jobshot-front/ & code ~/dev/jobshot/jobshot-server"
+alias b="brew update"
+alias rm="rm -i"
 
 ######################################################
 # echo ""
@@ -83,3 +85,7 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export PATH="/usr/local/sbin:$PATH"
+
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+export PATH="/opt/homebrew/bin:$PATH"

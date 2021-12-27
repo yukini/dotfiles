@@ -45,6 +45,10 @@ set noequalalways " 自動ウィンドウサイズ調整無効
 set shortmess=a " spf13/spf13-vim/issues/540
 set cmdheight=2 " spf13/spf13-vim/issues/540
 
+if has('nvim')
+  set viminfo='100,n$HOME/.vim/files/info/viminfo
+endif
+
 "
 " Plug
 " ----------------------------------------------------------------------------------
@@ -222,7 +226,7 @@ let g:gitgutter_sign_modified_removed = '∙'
 Plug 'tpope/vim-fugitive'
 
 " completion of parentheses
-" Plug 'cohama/lexima.vim'
+Plug 'cohama/lexima.vim'
 
 " outline
 Plug 'junegunn/goyo.vim'
