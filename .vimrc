@@ -13,7 +13,7 @@ set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
-set completeopt=menuone
+set completeopt=menuone,noinsert
 set scrolloff=5 " カーソル上下に表示する行数
 set noswapfile
 set nowritebackup
@@ -101,6 +101,8 @@ Plug 'morhetz/gruvbox'
 " ----------------------------------------------------------------------------------
 "
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Language server
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "
 " startify
