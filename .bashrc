@@ -16,3 +16,5 @@ echo $'\e[31m|  \e[32m.------------- hour (0 - 23)                              
 echo $'\e[31m.---------------- minute (0 - 59)                                                \e[m'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

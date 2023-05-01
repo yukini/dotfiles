@@ -49,52 +49,19 @@ if has('nvim')
   set viminfo='100,n$HOME/.vim/files/info/viminfo
 endif
 
+
 "
 " Plug
 " ----------------------------------------------------------------------------------
 "
-call plug#begin('~/.vim/plugged')
-
-"
-" CtrlP
-" File manager
-" ----------------------------------------------------------------------------------
-"
-Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_lazy_update=1
-if executable('ag')
-  let g:ctrlp_use_caching=0
-  let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+" vim-plug auto installation https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-"
-" vim rooter
-" ----------------------------------------------------------------------------------
-"
-Plug 'airblade/vim-rooter'
-let g:rooter_change_directory_for_non_project_files = 'current'
-
-"
-" NERDTree, Projectroot - project manager
-" ----------------------------------------------------------------------------------
-"
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'dbakker/vim-projectroot'
-let g:NERDTreeChDirMode = 2
-let g:NERDTreeShowHidden = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
-" 
-" indentLine
-" ----------------------------------------------------------------------------------
-"
-" Plug 'Yggdroot/indentLine'
-" let g:indentLine_faster = 1
-" nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-" let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
+call plug#begin('~/.vim/plugged')
 
 "
 " quickrun
@@ -128,65 +95,12 @@ endfunction
 " ----------------------------------------------------------------------------------
 "
 Plug 'morhetz/gruvbox'
-" Plug 'jonathanfilip/vim-lucius'
-" Plug 'w0ng/vim-hybrid'
-" Plug 'rakr/vim-one'
-" Plug 'AlessandroYorba/Alduin'
-" Plug 'severin-lemaignan/vim-minimap'
-" Plug 'cocopon/iceberg.vim'
-
-"
-" ale - syntax check
-" ----------------------------------------------------------------------------------
-"
-" Plug 'w0rp/ale'
-" let g:ale_lint_on_text_changed = 0
-" let g:airline_theme='one'
-" let g:airline#extensions#ale#open_lnum_symbol = '('
-" let g:airline#extensions#ale#close_lnum_symbol = ')'
-" let g:ale_echo_msg_format = '[%linter%]%code: %%s'
-" highlight link ALEErrorSign Tag
-" highlight link ALEWarningSign StorageClass
-
-" surround
-" Plug 'tpope/vim-surround'
-
-" comment
-" Plug 'tpope/vim-commentary'
 
 "
 " golang
 " ----------------------------------------------------------------------------------
 "
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-let g:go_gocode_unimported_packages = 1
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'fatih/vim-go'
-let g:go_build_tags = "-tags"
-let g:go_fmt_command = "goimports"
-let g:go_def_mode = 'godef'
-let g:go_def_mapping_enabled = 1
-let g:go_fmt_autosave = 1
-let g:rehash256 = 1
-let g:go_auto_type_info = 1
-set updatetime=100
-let g:go_auto_sameids = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_structs = 1 
-let g:go_highlight_methods = 1
-let g:go_highlight_function = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_functions = 1
-
-"
-" supertab - completion with tab
-" ----------------------------------------------------------------------------------
-"
-" Plug 'ervandew/supertab'
-" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "
 " startify
@@ -204,15 +118,6 @@ function! StartifyEntryFormat()
 endfunction
 
 "
-" tagbar
-" ----------------------------------------------------------------------------------
-"
-" Plug 'majutsushi/tagbar'
-" let g:tagbar_left = 0
-" let g:tagbar_autofocus = 1
-" let g:tagbar_sort = 0
-
-"
 " git gutter
 " ----------------------------------------------------------------------------------
 "
@@ -222,139 +127,21 @@ let g:gitgutter_sign_modified = '∙'
 let g:gitgutter_sign_removed = '∙'
 let g:gitgutter_sign_modified_removed = '∙'
 
-" fugitive
-Plug 'tpope/vim-fugitive'
-
 " completion of parentheses
 Plug 'cohama/lexima.vim'
 
 " outline
 Plug 'junegunn/goyo.vim'
 
-"
-" ack.vim - ag
-" ----------------------------------------------------------------------------------
-"
-Plug 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-" 
-" Clojure
-" ----------------------------------------------------------------------------------
-"
-"
-" Plug 'guns/vim-sexp',    {'for': 'clojure'}
-" Plug 'liquidz/vim-iced', {'for': 'clojure'}
-" Plug 'tpope/vim-classpath', { 'for': 'clojure' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-" Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
-" Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
-" Plug 'guns/vim-sexp', { 'for': 'clojure' }
-" Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
-" Plug 'tpope/vim-salve', { 'for': 'clojure' }
-" Plug 'tpope/vim-projectionist', { 'for': 'clojure' }
-" Plug 'tpope/vim-dispatch', { 'for': 'clojure' }
-" Plug 'kien/rainbow_parentheses.vim', { 'for': 'clojure' }
-" Plug 'tpope/vim-repeat'
-"" "" Evaluate Clojure buffers on load
-"" "autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
-"" "" setup clojure rainbow highlighting
-"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
-"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
-"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
-"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
-"" "autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
-
-" 
-" SBCL
-" ----------------------------------------------------------------------------------
-"
-Plug 'kovisoft/slimv'
-let g:slimv_lisp='ros run'
-let g:slimv_impl='sbcl'
-let g:lisp_rainbow=1
-" 開き括弧を入力すると自動的に閉じ括弧を挿入する(デフォルト1)
-let g:paredit_mode=1
-" 括弧内で改行すると追加でもう一つ改行を挿入する。サブフォーム入力支援用。(デフォルト1)
-let g:paredit_electric_return=1
-
-" connected swank serverの際、対話窓が縦分割の右側に出てくる
-let g:slimv_repl_split=4
-let g:slimv_repl_name='REPL'
-" let g:slimv_ctags='ctags --language-force=lisp *.lisp *.clj'
-
-" Ctrl+Entreでeval
-let g:slimv_repl_simple_eval=0
-
-"
-" emmet
-" ----------------------------------------------------------------------------------
-"
-" Plug 'mattn/emmet-vim'
-" autocmd FileType html,css,scss imap <buffer><expr><tab>
-"     \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
-"     \ "\<tab>"
-" let g:user_emmet_expandabbr_key = '<C-Space>'
-
-"
-" open browser
-" ----------------------------------------------------------------------------------
-"
-" Plug 'tyru/open-browser.vim'
-" command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
-
-" 
-" deoplete
-" ----------------------------------------------------------------------------------
-"
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" Plug 'zchee/deoplete-go', { 'do': 'make'}
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_complete_delay = 0
-" if has('win32')
-"     let g:python3_host_prog = expand('~/AppData/Local/Programs/Python/Python35/python.exe')
-" endif
-" let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-" let g:deoplete#enable_smart_case = 1
-" let g:deoplete#enable_camel_case_completion = 1
-" let g:deoplete#enable_underbar_completion = 1
-" let g:deoplete#souces#go#package_dot = 1
- 
 call plug#end()
-
 
 
 "
 " keybind
 " ----------------------------------------------------------------------------------
 "
-if has('win32')
-    nnoremap <silent> <leader>t :terminal ++rows=5 ++close bash<CR>
-endif
-if has('mac')
-    nnoremap <silent> <leader>t :terminal ++rows=5 ++close zsh<CR>
-endif
-
 nnoremap <silent> <leader>o :TagbarToggle<CR>
 nnoremap <silent> <leader>n :NERDTreeCWD<CR>
-
-" Ag command on grep source
-" if executable('ag')
-"     call denite#custom#var('grep', 'command', ['ag'])
-"     call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-"     call denite#custom#var('grep', 'recursive_opts', [])
-"     call denite#custom#var('grep', 'pattern_opt', [])
-"     call denite#custom#var('grep', 'separator', ['--'])
-"     call denite#custom#var('grep', 'final_opts', [])
-"     call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-" endif
-" call denite#custom#option('default', 'winheight', 10)
 
 "
 " colorscheme
@@ -362,5 +149,3 @@ nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 "
 colorscheme gruvbox
 set background=dark
-
-" let g:python3_host_prog=
