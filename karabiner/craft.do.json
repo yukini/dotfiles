@@ -1,25 +1,25 @@
 {
   "title": "craft.do",
-  "conditions": [
-    {
-      "type": "frontmost_application_if",
-      "bundle_identifiers": [
-        "^com\\.lukilabs\\.lukiapp"
-      ]
-    }
-  ],
   "rules": [
     {
       "description": "emacs for craft",
       "manipulators": [
         {
           "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.lukilabs\\.lukiapp"
+              ]
+            }
+          ],
           "from": {
             "key_code": "d",
             "modifiers": {
-                "mandatory": [
-                  "control"
-                ]
+              "mandatory": [
+                "control"
+              ]
             }
           },
           "to": [
@@ -30,12 +30,20 @@
         },
         {
           "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.lukilabs\\.lukiapp"
+              ]
+            }
+          ],
           "from": {
             "key_code": "p",
             "modifiers": {
-                "mandatory": [
-                  "control"
-                ]
+              "mandatory": [
+                "control"
+              ]
             }
           },
           "to": [
@@ -46,12 +54,20 @@
         },
         {
           "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.lukilabs\\.lukiapp"
+              ]
+            }
+          ],
           "from": {
             "key_code": "n",
             "modifiers": {
-                "mandatory": [
-                  "control"
-                ]
+              "mandatory": [
+                "control"
+              ]
             }
           },
           "to": [
