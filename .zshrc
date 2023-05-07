@@ -15,6 +15,7 @@ alias ll='ls -lF'
 alias la='ll -AF'
 
 alias rm="rm -i"
+alias cp="cp -i"
 
 # Go lang
 if [ -x "`which go`" ]; then
