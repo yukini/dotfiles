@@ -11,6 +11,7 @@ ln -sf $(pwd)/.gvimrc ~/.gvimrc
 ln -sf $(pwd)/.ideavimrc ~/.ideavimrc
 ln -sf $(pwd)/.spacemacs ~/.spacemacs
 ln -sf $(pwd)/.tern-config ~/.tern-config
+ln -sf $(pwd)/.tmux.conf ~/.tmux.conf
 
 # neovim
 if hash nvim; then

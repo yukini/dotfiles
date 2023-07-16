@@ -8,3 +8,4 @@ export PATH=~/.npm-global/bin:$PATH
 # export PATH=/opt/homebrew/bin:$PATH
 
 export DOCKER_HOST_IP=$(ipconfig getifaddr en1)
+. "$HOME/.cargo/env"

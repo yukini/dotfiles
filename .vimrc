@@ -74,7 +74,7 @@ Plug 'thinca/vim-quickrun'
 " ----------------------------------------------------------------------------------
 "
 Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 let g:lightline = {
             \ 'colorscheme': 'seoul256',
             \ 'component_function': {
@@ -82,13 +82,13 @@ let g:lightline = {
             \   'fileformat': 'MyFileformat',
             \ }
             \ }
-function! s:MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! s:MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+" function! s:MyFiletype()
+"     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+" endfunction
+" 
+" function! s:MyFileformat()
+"     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+" endfunction
 
 "
 " colorscheme
@@ -115,9 +115,9 @@ let g:startify_custom_header = [
 	\ '     +-+-+-+-+-+-+-+-+',
 	\ ]
 let g:startify_bookmarks= ["~/.vimrc", "~/.gvimrc"]
-function! StartifyEntryFormat()
-    return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
+" function! StartifyEntryFormat()
+"     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+" endfunction
 
 "
 " git gutter
