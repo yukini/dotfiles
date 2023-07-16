@@ -1,5 +1,19 @@
+
 set encoding=utf-8
 scriptencoding utf-8 
+
+if has('nvim')
+  set viminfo='100,n$HOME/.vim/files/info/viminfo
+endif
+
+"
+" keybind
+" ----------------------------------------------------------------------------------
+"
+nmap <Tab> :tabnext<CR>
+nmap <S-Tab> :tabprevious<CR>
+nmap te :tabedit
+
 "
 " common
 " ----------------------------------------------------------------------------------
@@ -11,7 +25,6 @@ set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
 set tabstop=4
 set autoindent
-set expandtab
 set shiftwidth=4
 set completeopt=menuone,noinsert
 set scrolloff=5 " カーソル上下に表示する行数
@@ -44,10 +57,6 @@ set t_Co=256
 set noequalalways " 自動ウィンドウサイズ調整無効
 set shortmess=a " spf13/spf13-vim/issues/540
 set cmdheight=2 " spf13/spf13-vim/issues/540
-
-if has('nvim')
-  set viminfo='100,n$HOME/.vim/files/info/viminfo
-endif
 
 
 "

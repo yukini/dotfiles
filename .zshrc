@@ -4,7 +4,7 @@ zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
 zplug "zsh-users/zsh-history-substring-search"
 
-zplug "plugins/git",   from:oh-my-zsh
+# zplug "plugins/git",   from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
@@ -23,7 +23,7 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
 
 #################################
@@ -90,3 +90,9 @@ fi
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+function ide () {
+    tmux split-window -v -p 30
+    tmux split-window -h -p 66
+    tmux split-window -h -p 50
+}
