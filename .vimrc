@@ -27,7 +27,7 @@ set tabstop=4
 set autoindent
 set shiftwidth=4
 set completeopt=menuone,noinsert
-set scrolloff=5 " カーソル上下に表示する行数
+set scrolloff=10
 set noswapfile
 set nowritebackup
 set nobackup

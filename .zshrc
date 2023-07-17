@@ -2,16 +2,17 @@ source ~/.zplug/init.zsh
 
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
 
-zplug "zsh-users/zsh-history-substring-search"
 
 # zplug "plugins/git",   from:oh-my-zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting", as:plugin, defer:2
+zplug "zsh-users/zsh-autosuggestions", as:plugin, defer:2
+zplug "zsh-users/zsh-completions"
 
 zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
+
 zplug "chrissicool/zsh-256color"
 
 # Install plugins if there are plugins that have not been installed
@@ -31,23 +32,31 @@ zplug load
 #################################
 
 set completion-ignore-case on
+# smart-case
+zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
+#################################
+#  Prompt
+#################################
 PURE_PROMPT_SYMBOL="%B%F{1}❯%F{3}❯%F{2}❯%f%b"
 
-# history
+#################################
+#  History
+#################################
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 setopt EXTENDED_HISTORY
 
-# figlet morning!
+#################################
+#  Aliases
+#################################
 alias vi='nvim'
 alias vim='nvim'
 alias ls='ls -Gp'
 alias l='ls -lF'
 alias ll='ls -lF'
 alias la='ll -AF'
-
 alias rm="rm -i"
 alias cp="cp -i"
 
@@ -57,8 +66,6 @@ if [ -x "`which go`" ]; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
-# smart-case
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 # origin
 # TERM=xterm-256color
@@ -91,8 +98,35 @@ fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+# tmux shortcut
 function ide () {
-    tmux split-window -v -p 30
-    tmux split-window -h -p 66
-    tmux split-window -h -p 50
+	if [ "$1" = "3" ]
+	then
+		tmux split-window -v -p 30
+		tmux split-window -h -p 66
+		tmux split-window -h -p 50
+	else
+		tmux split-window -v -p 30
+		tmux split-window -h -p 50
+	fi
 }
+
+# https://qiita.com/ssh0/items/a9956a74bff8254a606a
+if [[ ! -n $TMUX && $- == *l* ]]; then
+  # get the IDs
+  ID="`tmux list-sessions`"
+  if [[ -z "$ID" ]]; then
+    tmux new-session
+  fi
+  create_new_session="Create New Session"
+  ID="$ID\n${create_new_session}:"
+  PERCOL=fzf
+  ID="`echo $ID | $PERCOL | cut -d: -f1`"
+  if [[ "$ID" = "${create_new_session}" ]]; then
+    tmux new-session
+  elif [[ -n "$ID" ]]; then
+    tmux attach-session -t "$ID"
+  else
+    :  # Start terminal normally
+  fi
+fi
