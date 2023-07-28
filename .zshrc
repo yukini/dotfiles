@@ -130,3 +130,4 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     :  # Start terminal normally
   fi
 fi
+export PATH="/opt/homebrew/sbin:$PATH"

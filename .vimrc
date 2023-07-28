@@ -20,6 +20,8 @@ nmap te :tabedit
 "
 colorscheme default
 syntax on
+syntax enable
+filetype plugin indent on
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
@@ -83,21 +85,31 @@ Plug 'thinca/vim-quickrun'
 " ----------------------------------------------------------------------------------
 "
 Plug 'itchyny/lightline.vim'
-" Plug 'ryanoasis/vim-devicons'
 let g:lightline = {
+			\ 'active': { 
+			\   'left': [
+			\     ['mode', 'paste'],
+			\     ['ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method']
+			\   ],
+			\   'right': [ 
+			\     ['lineinfo'], 
+			\     ['percent'], 
+			\     ['fileformat', 'fileencoding', 'filetype'],
+			\     ['coc', 'coc-function'],
+			\     ['git-status', 'git-blame']
+			\   ]
+			\ },
             \ 'colorscheme': 'seoul256',
             \ 'component_function': {
-            \   'filetype': 'MyFiletype',
-            \   'fileformat': 'MyFileformat',
+            \   'coc': 'coc#status',
+            \   'coc-function': 'LightlineCocFunction',
+            \   'git-status': 'LightlineGitStatus',
+            \   'git-blame': 'LightlineGitBlame',
+            \   },
+			\ 'component': {
+			\   'charvaluehex': '0x%B'
+			\   }
             \ }
-            \ }
-" function! s:MyFiletype()
-"     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-" endfunction
-" 
-" function! s:MyFileformat()
-"     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-" endfunction
 
 "
 " colorscheme
@@ -110,8 +122,95 @@ Plug 'morhetz/gruvbox'
 " ----------------------------------------------------------------------------------
 "
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Language server
+
+"
+" coc
+" ----------------------------------------------------------------------------------
+"
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+      \'coc-actions',
+      \'coc-cspell-dicts', 
+      \'coc-deno', 
+      \'coc-diagnostic', 
+      \'coc-dictionary', 
+      \'coc-eslint', 
+      \'coc-floaterm', 
+      \'coc-git', 
+      \'coc-highlight',
+      \'coc-java', 
+      \'coc-jedi', 
+      \'coc-json', 
+      \'coc-lists', 
+      \'coc-markdownlint', 
+      \'coc-metals', 
+      \'coc-pairs', 
+      \'coc-prettier', 
+      \'coc-snippets', 
+      \'coc-spell-checker', 
+      \'coc-tslint-plugin', 
+      \'coc-tsserver', 
+      \'coc-ultisnips', 
+      \'coc-yaml',
+      \'coc-rust-analyzer'
+\]
+" Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+" delays and poor user experience
+set updatetime=300
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() 
+								\ ? coc#pum#confirm()
+								\ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 
 "
 " startify
@@ -123,26 +222,73 @@ let g:startify_custom_header = [
 	\ '     | h | j | k | l |',
 	\ '     +-+-+-+-+-+-+-+-+',
 	\ ]
-let g:startify_bookmarks= ["~/.vimrc", "~/.gvimrc"]
-" function! StartifyEntryFormat()
-"     return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-" endfunction
+let g:startify_bookmarks= ["~/.vimrc", "~/.zshrc"]
+
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+
+function! LightlineCocFunction() abort
+  let result = get(b:, 'coc_function', '')
+  return result
+  " return winwidth(0) > 120 ? result : ''
+endfunction
+
+function! LightlineGitStatus() abort
+  let result = get(g:, 'coc_git_status', '')
+  return result
+  " return winwidth(0) > 120 ? result : ''
+endfunction
+
+function! LightlineGitBlame() abort
+  let result = get(b:, 'coc_git_blame', '')
+  return result
+  " return winwidth(0) > 120 ? result : ''
+endfunction
 
 "
 " git gutter
 " ----------------------------------------------------------------------------------
 "
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_sign_added = '∙'
-let g:gitgutter_sign_modified = '∙'
-let g:gitgutter_sign_removed = '∙'
-let g:gitgutter_sign_modified_removed = '∙'
+" Plug 'airblade/vim-gitgutter'
+" let g:gitgutter_sign_added = '∙'
+" let g:gitgutter_sign_modified = '∙'
+" let g:gitgutter_sign_removed = '∙'
+" let g:gitgutter_sign_modified_removed = '∙'
 
 " completion of parentheses
 Plug 'cohama/lexima.vim'
 
 " outline
 Plug 'junegunn/goyo.vim'
+
+"
+" Rust
+" ----------------------------------------------------------------------------------
+"
+Plug 'rust-lang/rust.vim'
+" 保存時に自動でrustfmt
+let g:rustfmt_autosave = 1
 
 call plug#end()
 
@@ -160,3 +306,4 @@ nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 "
 colorscheme gruvbox
 set background=dark
+
