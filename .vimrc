@@ -94,7 +94,7 @@ let g:lightline = {
 			\     ['git-status', 'git-blame']
 			\   ]
 			\ },
-            \ 'colorscheme': 'seoul256',
+            \ 'colorscheme': 'gruvbox_material',
             \ 'component_function': {
             \   'coc': 'coc#status',
             \   'coc-function': 'LightlineCocFunction',
@@ -111,6 +111,9 @@ let g:lightline = {
 " ----------------------------------------------------------------------------------
 "
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/gruvbox-material'
+Plug 'AlexvZyl/nordic.nvim'
 
 "
 " golang
@@ -241,20 +244,17 @@ let g:startify_lists = [
 
 function! LightlineCocFunction() abort
   let result = get(b:, 'coc_function', '')
-  return result
-  " return winwidth(0) > 120 ? result : ''
+  return winwidth(0) > 120 ? result : ''
 endfunction
 
 function! LightlineGitStatus() abort
   let result = get(g:, 'coc_git_status', '')
-  return result
-  " return winwidth(0) > 120 ? result : ''
+  return winwidth(0) > 120 ? result : ''
 endfunction
 
 function! LightlineGitBlame() abort
   let result = get(b:, 'coc_git_blame', '')
-  return result
-  " return winwidth(0) > 120 ? result : ''
+  return winwidth(0) > 120 ? result : ''
 endfunction
 
 "
@@ -288,6 +288,7 @@ let g:rustfmt_autosave = 1
 "ファイラ
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 
 "
 " Telescope
@@ -340,7 +341,16 @@ EOF
 " colorscheme
 " ----------------------------------------------------------------------------------
 "
-colorscheme gruvbox
+let g:gruvbox_material_enable_bold=1
+let g:gruvbox_material_enable_italic=1
+let g:gruvbox_material_diagnostic_text_highlight=1
+let g:gruvbox_material_diagnostic_line_highlig=1
+let g:gruvbox_material_transparent_background=2
+let g:gruvbox_material_foreground='material'
+let g:gruvbox_material_ui_contrast='high'
+colorscheme gruvbox-material
+
+set termguicolors
 set background=dark
 
 " transparency in iTerm2
