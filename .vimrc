@@ -25,15 +25,17 @@ filetype plugin indent on
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis
 set fileformats=unix,dos,mac
-set tabstop=4
 set autoindent
+set tabstop=4
 set shiftwidth=4
 set completeopt=menuone,noinsert
 set scrolloff=10
+
 set noswapfile
 set nowritebackup
 set nobackup
 set noundofile
+
 set autoread
 set novisualbell " ビープ音を消す
 set vb t_vb=     " ビープ音を消す
@@ -54,7 +56,7 @@ set showcmd " コマンド表示
 set laststatus=2 " lightline表示
 let mapleader = "\<Space>"
 set list lcs=tab:\|\  " tab indent line
-set ambiwidth=double
+" set ambiwidth=double " ■や※の表示が崩れるのを防ぐ → 諸々デザインが崩れるためrbtnn/vim-ambiwidth(setcellwidths)で対処済み
 set t_Co=256
 set noequalalways " 自動ウィンドウサイズ調整無効
 set shortmess=a " spf13/spf13-vim/issues/540
@@ -65,13 +67,6 @@ set cmdheight=2 " spf13/spf13-vim/issues/540
 " Plug
 " ----------------------------------------------------------------------------------
 "
-" vim-plug auto installation https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/plugged')
 
 "
@@ -152,7 +147,8 @@ let g:coc_global_extensions = [
       \'coc-tsserver', 
       \'coc-ultisnips', 
       \'coc-yaml',
-      \'coc-rust-analyzer'
+      \'coc-rust-analyzer',
+      \'coc-explorer',
 \]
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
@@ -161,6 +157,9 @@ set updatetime=300
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
 set signcolumn=yes
+
+" coc-explorer
+nmap <space>e <Cmd>CocCommand explorer<CR>
 
 " 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -282,15 +281,60 @@ Plug 'rust-lang/rust.vim'
 " 保存時に自動でrustfmt
 let g:rustfmt_autosave = 1
 
+"
+" Fern
+" ----------------------------------------------------------------------------------
+"
+"ファイラ
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+
+"
+" Telescope
+" ----------------------------------------------------------------------------------
+"
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
+
+Plug 'rbtnn/vim-ambiwidth'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 call plug#end()
 
 
-"
-" keybind
-" ----------------------------------------------------------------------------------
-"
-nnoremap <silent> <leader>o :TagbarToggle<CR>
-nnoremap <silent> <leader>n :NERDTreeCWD<CR>
+
+" Treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  sync_install = false,
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
+  ensure_installed = { 
+    "c", 
+    "lua", 
+    "vim", 
+    "vimdoc", 
+    "query", 
+    "java", 
+    "rust", 
+    "javascript", 
+    "go", 
+    "graphql", 
+    "json", 
+  },
+}
+EOF
 
 "
 " colorscheme
@@ -299,3 +343,5 @@ nnoremap <silent> <leader>n :NERDTreeCWD<CR>
 colorscheme gruvbox
 set background=dark
 
+" transparency in iTerm2
+hi Normal ctermbg=NONE guibg=NONE
