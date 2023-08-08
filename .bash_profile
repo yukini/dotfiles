@@ -24,3 +24,5 @@ unset __conda_setup
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 . "$HOME/.cargo/env"
+
+source /Users/yukini/.config/broot/launcher/bash/br

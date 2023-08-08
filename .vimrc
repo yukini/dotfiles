@@ -6,13 +6,6 @@ if has('nvim')
   set viminfo='100,n$HOME/.vim/files/info/viminfo
 endif
 
-"
-" keybind
-" ----------------------------------------------------------------------------------
-"
-nmap <Tab> :tabnext<CR>
-nmap <S-Tab> :tabprevious<CR>
-nmap te :tabedit
 
 "
 " common
@@ -141,7 +134,6 @@ let g:coc_global_extensions = [
       \'coc-json', 
       \'coc-lists', 
       \'coc-markdownlint', 
-      \'coc-metals', 
       \'coc-pairs', 
       \'coc-prettier', 
       \'coc-snippets', 
@@ -272,6 +264,7 @@ endfunction
 
 " outline
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 "
 " Rust
@@ -355,3 +348,11 @@ set background=dark
 
 " transparency in iTerm2
 hi Normal ctermbg=NONE guibg=NONE
+
+"
+" keybind
+" ----------------------------------------------------------------------------------
+"
+nmap <leader><Tab> :tabnext<CR>
+nmap <leader><S-Tab> :tabprevious<CR>
+nmap te :tabedit

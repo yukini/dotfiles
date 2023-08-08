@@ -61,30 +61,15 @@ alias rm="rm -i"
 alias cp="cp -i"
 
 # Go lang
-if [ -x "`which go`" ]; then
-    export GOPATH=$HOME/go
-    export PATH=$PATH:$GOPATH/bin
-fi
-
-
-# origin
-# TERM=xterm-256color
-# autoload colors
-# colors
-# PROMPT="%{$fg[green]%}[%n]%(!.#.$) %{$reset_color%}"
-# PROMPT2="%{$fg[green]%}%_> %{$reset_color%}"
-# SPROMPT="%{$fg[red]%}correct: %R -> %r [nyae]? %{$reset_color%}"
-# RPROMPT="%{$fg[cyan]%}[%~]%{$reset_color%}"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # iTerm2 language
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# autojump
-[ -f $(/opt/homebrew/bin/brew --prefix)/etc/profile.d/autojump.sh ] && . $(/opt/homebrew/bin/brew --prefix)/etc/profile.d/autojump.sh
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
-
 
 # zsh completion
 if type brew &>/dev/null
@@ -111,23 +96,8 @@ function ide () {
 	fi
 }
 
-# https://qiita.com/ssh0/items/a9956a74bff8254a606a
-if [[ ! -n $TMUX && $- == *l* ]]; then
-  # get the IDs
-  ID="`tmux list-sessions`"
-  if [[ -z "$ID" ]]; then
-    tmux new-session
-  fi
-  create_new_session="Create New Session"
-  ID="$ID\n${create_new_session}:"
-  PERCOL=fzf
-  ID="`echo $ID | $PERCOL | cut -d: -f1`"
-  if [[ "$ID" = "${create_new_session}" ]]; then
-    tmux new-session
-  elif [[ -n "$ID" ]]; then
-    tmux attach-session -t "$ID"
-  else
-    :  # Start terminal normally
-  fi
-fi
 export PATH="/opt/homebrew/sbin:$PATH"
+
+source /Users/yukini/.config/broot/launcher/bash/br
+
+eval "$(zoxide init zsh)"
