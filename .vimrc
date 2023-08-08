@@ -1,11 +1,9 @@
-
 set encoding=utf-8
 scriptencoding utf-8 
 
 if has('nvim')
-  set viminfo='100,n$HOME/.vim/files/info/viminfo
+	set viminfo='100,n$HOME/.vim/files/info/viminfo
 endif
-
 
 "
 " common
@@ -13,7 +11,6 @@ endif
 "
 colorscheme default
 syntax on
-syntax enable
 filetype plugin indent on
 set fileencoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp,sjis
@@ -30,6 +27,7 @@ set nobackup
 set noundofile
 
 set autoread
+
 set novisualbell " ビープ音を消す
 set vb t_vb=     " ビープ音を消す
 set clipboard=unnamed " OSのクリップボードを使う
@@ -47,7 +45,6 @@ set hlsearch " 検索ハイライト
 set history=1000 " 履歴拡充
 set showcmd " コマンド表示
 set laststatus=2 " lightline表示
-let mapleader = "\<Space>"
 set list lcs=tab:\|\  " tab indent line
 " set ambiwidth=double " ■や※の表示が崩れるのを防ぐ → 諸々デザインが崩れるためrbtnn/vim-ambiwidth(setcellwidths)で対処済み
 set t_Co=256
@@ -55,6 +52,7 @@ set noequalalways " 自動ウィンドウサイズ調整無効
 set shortmess=a " spf13/spf13-vim/issues/540
 set cmdheight=2 " spf13/spf13-vim/issues/540
 
+let g:mapleader = "\<Space>"
 
 "
 " Plug
@@ -87,17 +85,17 @@ let g:lightline = {
 			\     ['git-status', 'git-blame']
 			\   ]
 			\ },
-            \ 'colorscheme': 'gruvbox_material',
-            \ 'component_function': {
-            \   'coc': 'coc#status',
-            \   'coc-function': 'LightlineCocFunction',
-            \   'git-status': 'LightlineGitStatus',
-            \   'git-blame': 'LightlineGitBlame',
-            \   },
+			\ 'colorscheme': 'gruvbox_material',
+			\ 'component_function': {
+			\   'coc': 'coc#status',
+			\   'coc-function': 'LightlineCocFunction',
+			\   'git-status': 'LightlineGitStatus',
+			\   'git-blame': 'LightlineGitBlame',
+			\   },
 			\ 'component': {
 			\   'charvaluehex': '0x%B'
 			\   }
-            \ }
+			\ }
 
 "
 " colorscheme
@@ -120,31 +118,31 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
-      \'coc-actions',
-      \'coc-cspell-dicts', 
-      \'coc-deno', 
-      \'coc-diagnostic', 
-      \'coc-dictionary', 
-      \'coc-eslint', 
-      \'coc-floaterm', 
-      \'coc-git', 
-      \'coc-highlight',
-      \'coc-java', 
-      \'coc-jedi', 
-      \'coc-json', 
-      \'coc-lists', 
-      \'coc-markdownlint', 
-      \'coc-pairs', 
-      \'coc-prettier', 
-      \'coc-snippets', 
-      \'coc-spell-checker', 
-      \'coc-tslint-plugin', 
-      \'coc-tsserver', 
-      \'coc-ultisnips', 
-      \'coc-yaml',
-      \'coc-rust-analyzer',
-      \'coc-explorer',
-\]
+			\'coc-actions',
+			\'coc-cspell-dicts', 
+			\'coc-deno', 
+			\'coc-diagnostic', 
+			\'coc-dictionary', 
+			\'coc-eslint', 
+			\'coc-floaterm', 
+			\'coc-git', 
+			\'coc-highlight',
+			\'coc-java', 
+			\'coc-jedi', 
+			\'coc-json', 
+			\'coc-lists', 
+			\'coc-markdownlint', 
+			\'coc-pairs', 
+			\'coc-prettier', 
+			\'coc-snippets', 
+			\'coc-spell-checker', 
+			\'coc-tslint-plugin', 
+			\'coc-tsserver', 
+			\'coc-ultisnips', 
+			\'coc-yaml',
+			\'coc-rust-analyzer',
+			\'coc-explorer',
+			\]
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
 set updatetime=300
@@ -160,21 +158,21 @@ nmap <space>e <Cmd>CocCommand explorer<CR>
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() 
-								\ ? coc#pum#confirm()
-								\ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+			\ ? coc#pum#confirm()
+			\ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " TAB
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+	inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " GoTo code navigation.
@@ -187,11 +185,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
+	if CocAction('hasProvider', 'hover')
+		call CocActionAsync('doHover')
+	else
+		call feedkeys('K', 'in')
+	endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
@@ -204,63 +202,50 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "
 Plug 'mhinz/vim-startify'
 let g:startify_custom_header = [
-	\ '     +-+-+-+-+-+-+-+-+',
-	\ '     | h | j | k | l |',
-	\ '     +-+-+-+-+-+-+-+-+',
-	\ ]
+			\ '     +-+-+-+-+-+-+-+-+',
+			\ '     | h | j | k | l |',
+			\ '     +-+-+-+-+-+-+-+-+',
+			\ ]
 let g:startify_bookmarks= ["~/.vimrc", "~/.zshrc"]
 
 " returns all modified files of the current git repo
 " `2>/dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
 function! s:gitModified()
-    let files = systemlist('git ls-files -m 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+	let files = systemlist('git ls-files -m 2>/dev/null')
+	return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+	let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+	return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
 let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   MRU']            },
-        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-        \ { 'type': 'sessions',  'header': ['   Sessions']       },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-        \ { 'type': 'commands',  'header': ['   Commands']       },
-        \ ]
+			\ { 'type': 'files',     'header': ['   MRU']            },
+			\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+			\ { 'type': 'sessions',  'header': ['   Sessions']       },
+			\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+			\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+			\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+			\ { 'type': 'commands',  'header': ['   Commands']       },
+			\ ]
 
 function! LightlineCocFunction() abort
-  let result = get(b:, 'coc_function', '')
-  return winwidth(0) > 120 ? result : ''
+	let result = get(b:, 'coc_function', '')
+	return winwidth(0) > 120 ? result : ''
 endfunction
 
 function! LightlineGitStatus() abort
-  let result = get(g:, 'coc_git_status', '')
-  return winwidth(0) > 120 ? result : ''
+	let result = get(g:, 'coc_git_status', '')
+	return winwidth(0) > 120 ? result : ''
 endfunction
 
 function! LightlineGitBlame() abort
-  let result = get(b:, 'coc_git_blame', '')
-  return winwidth(0) > 120 ? result : ''
+	let result = get(b:, 'coc_git_blame', '')
+	return winwidth(0) > 120 ? result : ''
 endfunction
-
-"
-" git gutter
-" ----------------------------------------------------------------------------------
-"
-" Plug 'airblade/vim-gitgutter'
-" let g:gitgutter_sign_added = '∙'
-" let g:gitgutter_sign_modified = '∙'
-" let g:gitgutter_sign_removed = '∙'
-" let g:gitgutter_sign_modified_removed = '∙'
-
-" completion of parentheses
-" Plug 'cohama/lexima.vim'
 
 " outline
 Plug 'junegunn/goyo.vim'
@@ -293,7 +278,6 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 Plug 'rbtnn/vim-ambiwidth'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -303,30 +287,29 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 call plug#end()
 
 
-
 " Treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  sync_install = false,
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-  highlight = {
-    enable = true,
-  },
-  ensure_installed = { 
-    "c", 
-    "lua", 
-    "vim", 
-    "vimdoc", 
-    "query", 
-    "java", 
-    "rust", 
-    "javascript", 
-    "go", 
-    "graphql", 
-    "json", 
-  },
+	sync_install = false,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
+	highlight = {
+		enable = true,
+	},
+	ensure_installed = { 
+		"c", 
+		"lua", 
+		"vim", 
+		"vimdoc", 
+		"query", 
+		"java", 
+		"rust", 
+		"javascript", 
+		"go", 
+		"graphql", 
+		"json", 
+	},
 }
 EOF
 
