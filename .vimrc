@@ -151,38 +151,6 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
-" coc-explorer
-nmap <space>e <Cmd>CocCommand explorer<CR>
-
-" 
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() 
-			\ ? coc#pum#confirm()
-			\ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" TAB
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"
-
-function! CheckBackspace() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion
-if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
-else
-	inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
 	if CocAction('hasProvider', 'hover')
@@ -278,12 +246,6 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
 Plug 'rbtnn/vim-ambiwidth'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
 call plug#end()
 
 
@@ -339,3 +301,45 @@ hi Normal ctermbg=NONE guibg=NONE
 nmap <leader><Tab> :tabnext<CR>
 nmap <leader><S-Tab> :tabprevious<CR>
 nmap te :tabedit
+
+" coc-explorer
+nmap <space>e <Cmd>CocCommand explorer<CR>
+
+"
+" keybind (COC)
+" ----------------------------------------------------------------------------------
+"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() 
+			\ ? coc#pum#confirm()
+			\ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" TAB
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"
+
+" Use <c-space> to trigger completion
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+"
+" keybind (Telescope)
+" ----------------------------------------------------------------------------------
+"
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
