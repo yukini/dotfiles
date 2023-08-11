@@ -1,0 +1,119 @@
+Extra options: []
+Measured: 10 times
+
+Total Average: 40.894400 msec
+Total Max:     41.716000 msec
+Total Min:     40.292000 msec
+
+  AVERAGE       MAX       MIN
+------------------------------
+18.774600 18.964000 18.590000: /Users/yukini/.config/nvim/init.vim
+ 4.869900  5.216000  4.552000: inits 1
+ 4.390700  4.482000  4.257000: loading rtp plugins
+ 4.019200  4.239000  3.790000: /Users/yukini/.vim/plugged/gruvbox-material/colors/gruvbox-material.vim
+ 3.074300  3.187000  3.015000: require('nvim-treesitter.configs')
+ 2.761200  2.868000  2.699000: require('nvim-treesitter.query')
+ 2.501400  2.578000  2.461000: BufEnter autocommands
+ 1.987300  2.007000  1.952000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/syntax/syntax.vim
+ 1.661700  2.110000  1.573000: /Users/yukini/.vim/plugged/coc.nvim/plugin/coc.vim
+ 1.235200  1.307000  1.190000: require('nvim-treesitter.tsrange')
+ 1.221600  1.237000  1.207000: require('nvim-treesitter.compat')
+ 1.142700  1.157000  1.130000: require('vim.treesitter')
+ 1.110800  1.177000  1.067000: require('nvim-treesitter.ts_utils')
+ 0.985500  1.012000  0.965000: reading ShaDa
+ 0.924700  0.936000  0.914000: require('vim.treesitter.languagetree')
+ 0.924100  0.944000  0.904000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/matchit.vim
+ 0.909300  0.964000  0.851000: /Users/yukini/.vim/plugged/nvim-treesitter/plugin/nvim-treesitter.lua
+ 0.860800  0.886000  0.840000: /Users/yukini/.vim/plugged/gruvbox-material/autoload/lightline/colorscheme/gruvbox_material.vim
+ 0.847200  0.894000  0.821000: /Users/yukini/.vim/plugged/fern.vim/autoload/fern/util.vim
+ 0.843100  0.854000  0.831000: /Users/yukini/.local/share/nvim/site/autoload/plug.vim
+ 0.777200  0.843000  0.735000: require('nvim-treesitter.parsers')
+ 0.682300  0.716000  0.668000: require('nvim-treesitter')
+ 0.679700  0.687000  0.671000: require('vim.filetype.detect')
+ 0.661000  0.673000  0.650000: /Users/yukini/.vim/plugged/vim-go/plugin/go.vim
+ 0.649000  0.672000  0.634000: require('vim.filetype')
+ 0.633200  0.642000  0.625000: require('nvim-treesitter.install')
+ 0.451100  0.480000  0.444000: require('vim.treesitter.query')
+ 0.443600  0.460000  0.430000: sourcing vimrc file(s)
+ 0.239800  0.254000  0.227000: locale set
+ 0.220700  0.233000  0.216000: /Users/yukini/.vim/plugged/vim-go/autoload/go/util.vim
+ 0.213900  0.215000  0.212000: /Users/yukini/.vim/plugged/vim-go/autoload/go/config.vim
+ 0.201400  0.228000  0.191000: /Users/yukini/.vim/plugged/lightline.vim/autoload/lightline.vim
+ 0.195200  0.199000  0.190000: init lua interpreter
+ 0.187000  0.242000  0.178000: /Users/yukini/.vim/plugged/coc.nvim/autoload/coc/util.vim
+ 0.186800  0.218000  0.171000: /Users/yukini/.vim/plugged/telescope.nvim/plugin/telescope.lua
+ 0.181900  0.185000  0.179000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/colors/default.vim
+ 0.167900  0.172000  0.164000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/netrwPlugin.vim
+ 0.162000  0.165000  0.160000: init highlight
+ 0.161600  0.172000  0.155000: require('nvim-treesitter.shell_command_selectors')
+ 0.160600  0.172000  0.153000: expanding arguments
+ 0.154000  0.168000  0.147000: require('nvim-treesitter.query_predicates')
+ 0.153300  0.367000  0.034000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/filetype.lua
+ 0.152300  0.173000  0.144000: /Users/yukini/.vim/plugged/fern.vim/autoload/vital/_fern/Async/Promise.vim
+ 0.143000  0.149000  0.139000: /Users/yukini/.vim/plugged/fern.vim/autoload/vital/fern.vim
+ 0.134800  0.142000  0.104000: require('vim.treesitter._range')
+ 0.128300  0.136000  0.123000: require('nvim-treesitter.utils')
+ 0.123800  0.127000  0.121000: require('nvim-treesitter.info')
+ 0.120200  0.124000  0.112000: require('vim.treesitter.language')
+ 0.111100  0.115000  0.104000: require('vim._init_packages')
+ 0.108900  0.125000  0.103000: /Users/yukini/.vim/plugged/coc.nvim/autoload/coc/client.vim
+ 0.102200  0.110000  0.098000: opening buffers
+ 0.101300  0.105000  0.096000: /Users/yukini/.vim/plugged/gruvbox-material/autoload/gruvbox_material.vim
+ 0.096800  0.115000  0.086000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/gzip.vim
+ 0.095600  0.099000  0.093000: /Users/yukini/.vim/plugged/vim-ambiwidth/plugin/ambiwidth.vim
+ 0.093600  0.098000  0.089000: /Users/yukini/.vim/plugged/lightline.vim/autoload/lightline/colorscheme.vim
+ 0.090700  0.097000  0.088000: loading packages
+ 0.089300  0.097000  0.085000: require('nvim-treesitter.statusline')
+ 0.087300  0.103000  0.077000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/rplugin.vim
+ 0.086800  0.092000  0.082000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+ 0.082200  0.192000  0.067000: /Users/yukini/.vim/plugged/coc.nvim/autoload/coc/rpc.vim
+ 0.081400  0.083000  0.079000: init default mappings & autocommands
+ 0.081200  0.084000  0.078000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/matchparen.vim
+ 0.079900  0.085000  0.074000: require('nvim-treesitter.caching')
+ 0.076100  0.089000  0.071000: /Users/yukini/.vim/plugged/coc.nvim/autoload/coc/compat.vim
+ 0.070100  0.077000  0.063000: early init
+ 0.065600  0.068000  0.063000: /Users/yukini/.vim/plugged/coc.nvim/autoload/coc.vim
+ 0.065400  0.077000  0.062000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/zipPlugin.vim
+ 0.056900  0.059000  0.056000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/tohtml.vim
+ 0.053700  0.055000  0.053000: require('vim._editor')
+ 0.051300  0.058000  0.047000: /Users/yukini/.vim/plugged/vim-startify/plugin/startify.vim
+ 0.049100  0.054000  0.046000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/tarPlugin.vim
+ 0.046200  0.050000  0.044000: /Users/yukini/.vim/plugged/fern.vim/autoload/vital/_fern/Async/Later.vim
+ 0.042600  0.051000  0.037000: event init
+ 0.040900  0.049000  0.038000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/syntax/synload.vim
+ 0.040000  0.044000  0.038000: /Users/yukini/.vim/plugged/fern.vim/plugin/fern.vim
+ 0.038000  0.045000  0.034000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/man.lua
+ 0.035000  0.041000  0.033000: /Users/yukini/.vim/plugged/vim-go/ftdetect/gofiletype.vim
+ 0.031600  0.035000  0.029000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/shada.vim
+ 0.029700  0.033000  0.028000: /Users/yukini/.vim/plugged/lightline.vim/plugin/lightline.vim
+ 0.029700  0.038000  0.025000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/editorconfig.lua
+ 0.029000  0.035000  0.022000: require('vim.shared')
+ 0.028800  0.033000  0.027000: init first window
+ 0.028300  0.032000  0.026000: /Users/yukini/.vim/plugged/rust.vim/plugin/cargo.vim
+ 0.027600  0.029000  0.027000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/nvim.lua
+ 0.025900  0.028000  0.025000: /Users/yukini/.vim/plugged/plenary.nvim/plugin/plenary.vim
+ 0.021800  0.057000  0.010000: inits 2
+ 0.020200  0.023000  0.019000: require('vim._meta')
+ 0.020000  0.022000  0.019000: /Users/yukini/.vim/plugged/vim-quickrun/plugin/quickrun.vim
+ 0.019700  0.024000  0.018000: /Users/yukini/.vim/plugged/fern-hijack.vim/plugin/fern_hijack.vim
+ 0.017700  0.018000  0.017000: /Users/yukini/.vim/plugged/lightline.vim/autoload/lightline/tab.vim
+ 0.016800  0.017000  0.016000: /Users/yukini/.vim/plugged/rust.vim/plugin/rust.vim
+ 0.015200  0.018000  0.014000: /Users/yukini/.vim/plugged/limelight.vim/plugin/limelight.vim
+ 0.013633  0.035000  0.004000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/ftplugin.vim
+ 0.013100  0.014000  0.012000: /Users/yukini/.vim/plugged/rust.vim/ftdetect/rust.vim
+ 0.011900  0.014000  0.011000: /Users/yukini/.vim/plugged/fern-git-status.vim/plugin/fern_git_status.vim
+ 0.011200  0.015000  0.008000: window checked
+ 0.010700  0.013000  0.010000: clear screen
+ 0.010400  0.014000  0.009000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/spellfile.vim
+ 0.010300  0.012000  0.010000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/ftoff.vim
+ 0.009300  0.012000  0.009000: /Users/yukini/.vim/plugged/fern.vim/autoload/vital/_fern.vim
+ 0.008900  0.009000  0.008000: /Users/yukini/.vim/plugged/goyo.vim/plugin/goyo.vim
+ 0.008400  0.009000  0.008000: loading after plugins
+ 0.008000  0.022000  0.004000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/indent.vim
+ 0.008000  0.008000  0.008000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/tutor.vim
+ 0.006600  0.007000  0.006000: inits 3
+ 0.006500  0.018000  0.005000: /opt/homebrew/Cellar/neovim/0.9.1/share/nvim/runtime/plugin/health.vim
+ 0.005900  0.020000  0.004000: require('vim.keymap')
+ 0.003600  0.006000  0.002000: --- NVIM STARTING ---
+ 0.001800  0.002000  0.001000: parsing arguments
+ 0.001500  0.004000  0.001000: editing files in windows
