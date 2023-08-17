@@ -98,8 +98,6 @@ function ide () {
 
 export PATH="/opt/homebrew/sbin:$PATH"
 
-source /Users/yukini/.config/broot/launcher/bash/br
-
 eval "$(zoxide init zsh)"
 
 # Add the following line to your ~/.bash_profile or ~/.zshrc file:
