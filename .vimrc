@@ -30,10 +30,13 @@ set autoread
 
 set novisualbell " ビープ音を消す
 set vb t_vb=     " ビープ音を消す
+
 set clipboard=unnamed " OSのクリップボードを使う
+
 set number
 set relativenumber " 行番号
 set ruler " 行列番号表示
+
 set showmatch " 括弧の対を表示
 set matchtime=3 " 括弧の対の表示秒数
 set textwidth=0 " 自動改行無効
@@ -41,12 +44,13 @@ set shiftround " インデント
 set ignorecase " スマートケース補完
 set smartcase " スマートケース補完
 set incsearch " インクリメンタルサーチ
+
 set hlsearch " 検索ハイライト
+
 set history=1000 " 履歴拡充
 set showcmd " コマンド表示
 set laststatus=2 " lightline表示
 set list lcs=tab:\|\  " tab indent line
-" set ambiwidth=double " ■や※の表示が崩れるのを防ぐ → 諸々デザインが崩れるためrbtnn/vim-ambiwidth(setcellwidths)で対処済み
 set t_Co=256
 set noequalalways " 自動ウィンドウサイズ調整無効
 set shortmess=a " spf13/spf13-vim/issues/540
@@ -101,7 +105,6 @@ let g:lightline = {
 " colorscheme
 " ----------------------------------------------------------------------------------
 "
-Plug 'morhetz/gruvbox'
 Plug 'sainnhe/everforest'
 Plug 'sainnhe/gruvbox-material'
 Plug 'AlexvZyl/nordic.nvim'
@@ -123,8 +126,8 @@ let g:coc_global_extensions = [
 			\'coc-deno', 
 			\'coc-diagnostic', 
 			\'coc-dictionary', 
+			\'coc-explorer',
 			\'coc-eslint', 
-			\'coc-floaterm', 
 			\'coc-git', 
 			\'coc-highlight',
 			\'coc-java', 
@@ -134,14 +137,13 @@ let g:coc_global_extensions = [
 			\'coc-markdownlint', 
 			\'coc-pairs', 
 			\'coc-prettier', 
+			\'coc-rust-analyzer',
 			\'coc-snippets', 
 			\'coc-spell-checker', 
 			\'coc-tslint-plugin', 
 			\'coc-tsserver', 
 			\'coc-ultisnips', 
 			\'coc-yaml',
-			\'coc-rust-analyzer',
-			\'coc-explorer',
 			\]
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
@@ -150,7 +152,6 @@ set updatetime=300
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
 set signcolumn=yes
-
 
 function! ShowDocumentation()
 	if CocAction('hasProvider', 'hover')
@@ -162,7 +163,6 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
 
 "
 " startify
@@ -176,48 +176,14 @@ let g:startify_custom_header = [
 			\ ]
 let g:startify_bookmarks= ["~/.vimrc", "~/.zshrc"]
 
-" returns all modified files of the current git repo
-" `2>/dev/null` makes the command fail quietly, so that when we are not
-" in a git repo, the list will be empty
-function! s:gitModified()
-	let files = systemlist('git ls-files -m 2>/dev/null')
-	return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-" same as above, but show untracked files, honouring .gitignore
-function! s:gitUntracked()
-	let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-	return map(files, "{'line': v:val, 'path': v:val}")
-endfunction
-
-let g:startify_lists = [
-			\ { 'type': 'files',     'header': ['   MRU']            },
-			\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-			\ { 'type': 'sessions',  'header': ['   Sessions']       },
-			\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-			\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-			\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-			\ { 'type': 'commands',  'header': ['   Commands']       },
-			\ ]
-
-function! LightlineCocFunction() abort
-	let result = get(b:, 'coc_function', '')
-	return winwidth(0) > 120 ? result : ''
-endfunction
-
-function! LightlineGitStatus() abort
-	let result = get(g:, 'coc_git_status', '')
-	return winwidth(0) > 120 ? result : ''
-endfunction
-
-function! LightlineGitBlame() abort
-	let result = get(b:, 'coc_git_blame', '')
-	return winwidth(0) > 120 ? result : ''
-endfunction
-
+"
 " outline
+" ----------------------------------------------------------------------------------
+"
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 "
 " Rust
@@ -228,52 +194,34 @@ Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 
 "
-" Fern
-" ----------------------------------------------------------------------------------
-"
-"ファイラ
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-
-"
 " Telescope
 " ----------------------------------------------------------------------------------
 "
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.2' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
+if !has('memo')
+	echo "https://github.com/mattn/memo"
+endif
 
-Plug 'rbtnn/vim-ambiwidth'
+"
+" Treesitter
+" ----------------------------------------------------------------------------------
+"
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+"
+" Others
+" ----------------------------------------------------------------------------------
+"
+Plug 'rbtnn/vim-ambiwidth'
+Plug 'nvim-tree/nvim-web-devicons'
+
+Plug 'glidenote/memolist.vim'
+Plug 'delphinus/telescope-memo.nvim'
+
 call plug#end()
-
-
-" Treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-	sync_install = false,
-	-- Automatically install missing parsers when entering buffer
-	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
-	ensure_installed = { 
-		"c", 
-		"lua", 
-		"vim", 
-		"vimdoc", 
-		"query", 
-		"java", 
-		"rust", 
-		"javascript", 
-		"go", 
-		"graphql", 
-		"json", 
-	},
-}
-EOF
 
 "
 " colorscheme
@@ -301,9 +249,6 @@ hi Normal ctermbg=NONE guibg=NONE
 nmap <leader><Tab> :tabnext<CR>
 nmap <leader><S-Tab> :tabprevious<CR>
 nmap te :tabedit
-
-" coc-explorer
-nmap <space>e <Cmd>CocCommand explorer<CR>
 
 "
 " keybind (COC)
@@ -342,4 +287,76 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fd <cmd>Telescope coc diagnostics<cr>
 
+lua <<EOF
+-- To get telescope-file-browser loaded and working with telescope,
+-- you need to call load_extension, somewhere after setup function:
+require("telescope").setup {
+	pickers = {
+		find_files = {
+		}
+	},
+	extensions = {
+		file_browser = {
+			grouped = true,
+			hijack_netrw = true,
+			initial_mode = "normal",
+			depth = 2,
+			auto_depth = true,
+			collapse_dirs = true,
+		},
+		coc = {
+			prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+		}
+	},
+}
+require('telescope').load_extension('file_browser')
+require('telescope').load_extension('coc')
+require('telescope').load_extension('memo')
+
+-- open file_browser with the path of the current buffer
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>e",
+  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+  { noremap = true }
+)
+EOF
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+	sync_install = false,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
+	highlight = {
+		enable = true,
+	},
+	autotag = {
+		enable = true,
+	},
+	ensure_installed = { 
+		"c", 
+		"lua", 
+		"vim", 
+		"vimdoc", 
+		"query", 
+		"java", 
+		"rust", 
+		"javascript", 
+		"go", 
+		"graphql", 
+		"json", 
+		"toml", 
+		"tsx", 
+		"yaml", 
+		"css", 
+		"html", 
+	},
+}
+EOF
+
+if executable('volta')
+  let g:node_host_prog = trim(system("volta which neovim-node-host"))
+endif

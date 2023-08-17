@@ -1,0 +1,7 @@
+{
+	"git.addGBlameToBufferVar": true,
+	"coc.preferences.formatOnType": true,
+	"explorer.icon.enableNerdfont": true,
+	"git.addedSign.text": "│",
+	"git.changedSign.text":"│",
+}

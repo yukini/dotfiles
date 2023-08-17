@@ -1,0 +1,40 @@
+vim.cmd('autocmd!')
+
+vim.encoding        = 'utf-8'
+vim.scriptencoding  = 'utf-8'
+
+vim.g.mapleader     = ' '
+
+vim.wo.number       = true
+
+vim.opt.title       = true
+vim.opt.autoindent  = true
+vim.opt.smartindent = true
+vim.opt.hlsearch    = true
+vim.opt.backup      = false
+vim.opt.writebackup = false
+vim.opt.showcmd     = true
+vim.opt.cmdheight   = 1
+vim.opt.laststatus  = 2
+vim.opt.expandtab   = true
+vim.opt.scrolloff   = 10
+vim.opt.shell       = 'zsh'
+vim.opt.inccommand  = 'split'
+vim.opt.ignorecase  = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.smarttab    = true
+vim.opt.breakindent = true
+vim.opt.shiftwidth  = 2
+vim.opt.tabstop     = 2
+vim.opt.wrap        = false -- No Wrap lines
+vim.opt.updatetime  = 300
+vim.opt.signcolumn  = 'yes'
+vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
+vim.opt.wildignore:append { '*/node_modules/*' }
+
+-- Turn off paste mode when leaving insert
+vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
+
+vim.keymap.set('n', '<leader><Tab>',   ':tabnext<CR>')
+vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>')
+vim.keymap.set('n', 'te',              ':tabedit')
+

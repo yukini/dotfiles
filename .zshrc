@@ -104,3 +104,5 @@ eval "$(zoxide init zsh)"
 
 # Add the following line to your ~/.bash_profile or ~/.zshrc file:
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+bindkey -e
