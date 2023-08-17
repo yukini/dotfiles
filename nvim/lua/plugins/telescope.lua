@@ -1,13 +1,5 @@
 return {
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  },
-  {
-    'fannheyward/telescope-coc.nvim',
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  },
-  {
     'nvim-telescope/telescope.nvim', 
     version = '0.1.2', 
     dependencies = { 
@@ -50,5 +42,21 @@ return {
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
     end
     ,
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+  {
+    'fannheyward/telescope-coc.nvim',
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require"telescope".load_extension("frecency")
+      vim.api.nvim_set_keymap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>", {noremap = true, silent = true})
+    end,
+    dependencies = {"kkharji/sqlite.lua"}
   },
 }
