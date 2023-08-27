@@ -32,7 +32,7 @@ return {
 
         dashboard.button("e",     "  New file",       "<cmd>ene<CR>"),
         dashboard.button("SPC d", "  daily note",     "<cmd>Telekasten goto_today<CR>"),
-        dashboard.button("SPC w", "󰨴   weekly note",    "<cmd>Telekasten goto_weekly<CR>"),
+        dashboard.button("SPC w", "󰨴   weekly note",    "<cmd>Telekasten goto_thisweek<CR>"),
         dashboard.button("c",     "  Configuration",  "<cmd>cd ~/.config/nvim/ <CR>"),
         dashboard.button("u",     "  Update plugins", "<cmd>Lazy sync<CR>"),
         dashboard.button("q",     "󰢃   Quit",           "<cmd>qa<CR>"),

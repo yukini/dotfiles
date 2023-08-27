@@ -8,5 +8,10 @@
   "coc.preferences.formatOnSave": false,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
-  "Lua.diagnostics.globals": ["vim"]
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "cSpell.userWords": [
+    "markmap"
+  ]
 }

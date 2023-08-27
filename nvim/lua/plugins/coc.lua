@@ -17,7 +17,7 @@ return {
       'coc-json',
       'coc-lists',
       'coc-lua',
-      'coc-markdownlint',
+      -- 'coc-markdownlint',
       'coc-markmap',
       'coc-pairs',
       'coc-prettier',
