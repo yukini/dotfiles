@@ -1,8 +1,12 @@
 {
-	"git.addGBlameToBufferVar": true,
-	"coc.preferences.formatOnType": true,
-	"explorer.icon.enableNerdfont": true,
-	"git.addedSign.text": "│",
-	"git.changedSign.text":"│",
-	"explorer.file.showHiddenFiles":true,
+  "git.addGBlameToBufferVar": true,
+  "coc.preferences.formatOnType": true,
+  "explorer.icon.enableNerdfont": true,
+  "git.addedSign.text": "│",
+  "git.changedSign.text": "│",
+  "explorer.file.showHiddenFiles": true,
+  "coc.preferences.formatOnSave": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "Lua.diagnostics.globals": ["vim"]
 }

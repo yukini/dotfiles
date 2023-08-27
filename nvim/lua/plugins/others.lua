@@ -1,6 +1,20 @@
 return {
-  'rbtnn/vim-ambiwidth',
-  'myusuf3/numbers.vim',
+  {
+    'rbtnn/vim-ambiwidth',
+    config = function ()
+      vim.g.ambiwidth_add_list = {
+      }
+    end
+  },
+  {
+    'myusuf3/numbers.vim',
+    config=function()
+      vim.g.numbers_exclude = {
+        'alpha',
+        'calendar',
+      }
+    end,
+  },
   {
     'junegunn/vim-easy-align',
     config = function()
@@ -26,8 +40,8 @@ return {
     version= 'v0.2.0',
     config = function()
       require('modes').setup()
-     end
-   },
+    end
+  },
   {
     'kevinhwang91/nvim-hlslens',
     config = function()
