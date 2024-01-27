@@ -4,4 +4,7 @@
 	"explorer.icon.enableNerdfont": true,
 	"git.addedSign.text": "│",
 	"git.changedSign.text":"│",
+  "floatFactory.floatConfig": {
+    "border": true,
+  },
 }

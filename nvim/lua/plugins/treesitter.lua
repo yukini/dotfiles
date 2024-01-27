@@ -1,5 +1,5 @@
 return {
-  'nvim-treesitter/nvim-treesitter', 
+  'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   config = function()
     require'nvim-treesitter.configs'.setup {
@@ -13,23 +13,23 @@ return {
       autotag = {
         enable = true,
       },
-      ensure_installed = { 
-        "c", 
-        "lua", 
-        "vim", 
-        "vimdoc", 
-        "query", 
-        "java", 
-        "rust", 
-        "javascript", 
-        "go", 
-        "graphql", 
-        "json", 
-        "toml", 
-        "tsx", 
-        "yaml", 
-        "css", 
-        "html", 
+      ensure_installed = {
+        "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "java",
+        "rust",
+        "javascript",
+        "go",
+        "graphql",
+        "json",
+        "toml",
+        "tsx",
+        "yaml",
+        "css",
+        "html",
       },
     }
   end,

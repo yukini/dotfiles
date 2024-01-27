@@ -12,17 +12,6 @@ return {
       [[+-+-+-+-+-+-+-+-+]],
     }
 
-    local pika_header = {
-      [[          ▀████▀▄▄              ▄█ ]],
-      [[            █▀    ▀▀▄▄▄▄▄    ▄▄▀▀█ ]],
-      [[    ▄        █          ▀▀▀▀▄  ▄▀  ]],
-      [[   ▄▀ ▀▄      ▀▄              ▀▄▀  ]],
-      [[  ▄▀    █     █▀   ▄█▀▄      ▄█    ]],
-      [[  ▀▄     ▀▄  █     ▀██▀     ██▄█   ]],
-      [[   ▀▄    ▄▀ █   ▄██▄   ▄  ▄  ▀▀ █  ]],
-      [[    █  ▄▀  █    ▀██▀    ▀▀ ▀▀  ▄▀  ]],
-      [[   █   █  █      ▄▄           ▄▀   ]],
-    }
     local theta = require'alpha.themes.theta'
     local dashboard = require'alpha.themes.dashboard'
     local buttons = {
@@ -31,8 +20,9 @@ return {
         { type = "padding", val = 1 },
 
         dashboard.button("e",     "  New file",       "<cmd>ene<CR>"),
-        dashboard.button("SPC d", "  daily note",     "<cmd>Telekasten goto_today<CR>"),
-        dashboard.button("SPC w", "󰨴   weekly note",    "<cmd>Telekasten goto_thisweek<CR>"),
+        dashboard.button("SPC n", "  New zt note",    "<cmd>Telekasten new_note<CR>"),
+        dashboard.button("SPC d", "  Daily note",     "<cmd>Telekasten goto_today<CR>"),
+        dashboard.button("SPC w", "󰨴   Weekly note",    "<cmd>Telekasten goto_thisweek<CR>"),
         dashboard.button("c",     "  Configuration",  "<cmd>cd ~/.config/nvim/ <CR>"),
         dashboard.button("u",     "  Update plugins", "<cmd>Lazy sync<CR>"),
         dashboard.button("q",     "󰢃   Quit",           "<cmd>qa<CR>"),

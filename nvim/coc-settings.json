@@ -13,5 +13,9 @@
   ],
   "cSpell.userWords": [
     "markmap"
-  ]
+  ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "jedi.enable": true,
+  "jedi.startupMessage": false,
+  "jedi.executable.command": "/opt/homebrew/bin/jedi-language-server",
 }

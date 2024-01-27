@@ -1,6 +1,6 @@
 return {
   {
-    'fatih/vim-go', 
-    build = ':GoUpdateBinaries' 
+    'fatih/vim-go',
+    build = ':GoUpdateBinaries'
   },
 }

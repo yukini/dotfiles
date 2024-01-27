@@ -20,18 +20,12 @@ return {
         template_new_weekly = home .. '/' .. 'templates/weekly.md',
 
         command_palette_theme = "dropdown",
-        show_tags_theme       = "dropdown",
+        show_tags_theme       = "ivy",
       })
 
-      -- Call insert link automatically when we start typing a link
-      vim.api.nvim_exec([[
-      augroup telekasten_keymaps
-      autocmd!
-      autocmd FileType telekasten inoremap <buffer> [[ <cmd>Telekasten insert_link<CR>
-      augroup END
-      ]], false)
-      -- Launch panel if nothing is typed after <leader>z
-      vim.keymap.set("n", "<leader>q", "<cmd>Telekasten panel<CR>");
+      -- Launch panel if nothing is typed after <leader>q
+      vim.keymap.set("n", "<leader>q", "<cmd>Telekasten panel<CR>")
+      vim.keymap.set("i", "[[", "<cmd>:lua require('telekasten').insert_link({ i=true })<CR>")
 
       vim.cmd("highlight tklink ctermfg=72 guifg=#689d6a cterm=bold,underline gui=bold,underline")
       vim.cmd("highlight tkBrackets ctermfg=gray guifg=gray")

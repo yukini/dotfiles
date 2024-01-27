@@ -104,3 +104,5 @@ eval "$(zoxide init zsh)"
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 bindkey -e
+
+export KALEIDOSCOPE_DIR=/Users/yukini/playground/keyboard/Kaleidoscope

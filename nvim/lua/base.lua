@@ -27,6 +27,7 @@ vim.opt.shiftwidth  = 2
 vim.opt.tabstop     = 2
 vim.opt.wrap        = false -- No Wrap lines
 vim.opt.updatetime  = 300
+vim.opt.autochdir   = true -- Change the current working directory automatically
 vim.opt.signcolumn  = 'yes'
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }

@@ -1186,12 +1186,16 @@
 			</dict>
 			<key>Selection Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.18823529779911041</real>
+				<real>0.5353883383795619</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.18823529779911041</real>
+				<real>0.5353883383795619</real>
 				<key>Red Component</key>
-				<real>0.18823529779911041</real>
+				<real>0.535797119140625</real>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
@@ -1346,6 +1350,10 @@
 			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.10185339095744682</real>
+			<key>Unicode Normalization</key>
+			<integer>0</integer>
+			<key>Unicode Version</key>
+			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1443,5 +1451,9 @@
 	<true/>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>

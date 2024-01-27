@@ -26,3 +26,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 . "$HOME/.cargo/env"
 
 source /Users/yukini/.config/broot/launcher/bash/br
+
+export KALEIDOSCOPE_DIR=/Users/yukini/playground/keyboard/Kaleidoscope
+
