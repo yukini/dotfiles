@@ -17,9 +17,9 @@ return {
   {
     'aklt/plantuml-syntax',
   },
-  {
-    'lukas-reineke/headlines.nvim',
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true, -- or `opts = {}`
-  },
+  -- {
+  --   'lukas-reineke/headlines.nvim',
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   config = true, -- or `opts = {}`
+  -- },
 }

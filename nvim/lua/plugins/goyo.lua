@@ -1,15 +1,12 @@
 return {
-  'junegunn/goyo.vim',
-  'junegunn/limelight.vim',
-  -- Lua
   {
     "folke/zen-mode.nvim",
     opts = {
+      window = {
+        options = {
+          number = false, -- disable number column
+        }
+      },
     }
   },
-  {
-    "folke/twilight.nvim",
-    opts = {
-    }
-  }
 }

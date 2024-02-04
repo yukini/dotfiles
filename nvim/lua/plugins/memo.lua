@@ -1,38 +1,50 @@
 return {
   {
-    'renerocksai/telekasten.nvim',
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-      'renerocksai/calendar-vim',
+    "epwalsh/obsidian.nvim",
+    version = "*",  -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    event = {
+      -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+      -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+      "BufReadPre " .. vim.fn.expand "~" .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani/**.md",
+      "BufNewFile " .. vim.fn.expand "~" .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani/**.md",
     },
-    config = function ()
-      local home = vim.fn.expand('~/memo/zettelkasten')
-      require('telekasten').setup({
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter",
 
-        home = home,
-
-        -- dir names for special notes (absolute path or subdir name)
-        dailies             = home .. '/' .. 'daily',
-        weeklies            = home .. '/' .. 'weekly',
-        templates           = home .. '/' .. 'templates',
-        template_new_note   = home .. '/' .. 'templates/new_note.md',
-        template_new_daily  = home .. '/' .. 'templates/daily.md',
-        template_new_weekly = home .. '/' .. 'templates/weekly.md',
-
-        command_palette_theme = "dropdown",
-        show_tags_theme       = "ivy",
+      -- see below for full list of optional dependencies 👇
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani",
+        },
+      },
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    config = function()
+      local status, cmp = pcall(require, "cmp")
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true
+          }),
+        }),
       })
-
-      -- Launch panel if nothing is typed after <leader>q
-      vim.keymap.set("n", "<leader>q", "<cmd>Telekasten panel<CR>")
-      vim.keymap.set("i", "[[", "<cmd>:lua require('telekasten').insert_link({ i=true })<CR>")
-
-      vim.cmd("highlight tklink ctermfg=72 guifg=#689d6a cterm=bold,underline gui=bold,underline")
-      vim.cmd("highlight tkBrackets ctermfg=gray guifg=gray")
-      vim.cmd("highlight tkHighlight ctermbg=214 ctermfg=124 cterm=bold guibg=#fabd2f guifg=#9d0006 gui=bold")
-      vim.cmd("highlight link CalNavi CalRuler")
-      vim.cmd("highlight tkTagSep ctermfg=gray guifg=gray")
-      vim.cmd("highlight tkTag ctermfg=175 guifg=#d3869B")
     end
   },
 }

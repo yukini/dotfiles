@@ -10,17 +10,18 @@ return {
       }
     end
   },
-  {
-    -- 行番号を相対的に表示する
-    'myusuf3/numbers.vim',
-    config=function()
-      vim.g.numbers_exclude = {
-        'alpha',
-        'calendar',
-        'coc-explorer',
-      }
-    end,
-  },
+  -- {
+  --   -- 行番号を相対的に表示する
+  --   'myusuf3/numbers.vim',
+  --   config=function()
+  --     vim.g.numbers_exclude = {
+  --       'alpha',
+  --       'aerial',
+  --       'calendar',
+  --       'coc-explorer',
+  --     }
+  --   end,
+  -- },
   {
     -- いい感じにテキスト整形してくれる `gaip=`で=揃え、`gaip `でスペース揃えなど
     'junegunn/vim-easy-align',
@@ -122,4 +123,6 @@ return {
     main = "ibl",
     opts = {},
   },
+  -- バッファを中央に表示してくれる、とりあえず入れているがzen-modeでも場面は多い
+  {"shortcuts/no-neck-pain.nvim", version = "*"},
 }

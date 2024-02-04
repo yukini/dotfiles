@@ -1,17 +1,14 @@
-
 return {
   'goolord/alpha-nvim',
   dependencies = {
     'nvim-tree/nvim-web-devicons'
   },
   config = function()
-
     local hjkl_header = {
       [[+-+-+-+-+-+-+-+-+]],
       [[| h | j | k | l |]],
       [[+-+-+-+-+-+-+-+-+]],
     }
-
     local theta = require'alpha.themes.theta'
     local dashboard = require'alpha.themes.dashboard'
     local buttons = {

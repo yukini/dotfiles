@@ -30,6 +30,8 @@ return {
         "yaml",
         "css",
         "html",
+        "markdown",
+        "markdown_inline",
       },
     }
   end,
