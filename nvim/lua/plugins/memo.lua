@@ -1,3 +1,6 @@
+local obsidian_vault = vim.g.obsidian_vault
+local obsidian_vault_path = vim.fn.expand(obsidian_vault)
+
 return {
   {
     "epwalsh/obsidian.nvim",
@@ -8,8 +11,8 @@ return {
     event = {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-      "BufReadPre " .. vim.fn.expand "~" .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani/**.md",
-      "BufNewFile " .. vim.fn.expand "~" .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani/**.md",
+      "BufReadPre " .. obsidian_vault_path .. "/**.md",
+      "BufNewFile " .. obsidian_vault_path .. "/**.md",
     },
     dependencies = {
       -- Required.
@@ -17,34 +20,18 @@ return {
       "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter",
-
-      -- see below for full list of optional dependencies 👇
     },
     opts = {
       workspaces = {
         {
           name = "personal",
-          path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani",
+          path = obsidian_vault_path,
         },
       },
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "diary/daily",
+      },
     },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local status, cmp = pcall(require, "cmp")
-      cmp.setup({
-        mapping = cmp.mapping.preset.insert({
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-          }),
-        }),
-      })
-    end
   },
 }

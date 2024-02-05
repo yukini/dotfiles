@@ -25,18 +25,21 @@ vim.opt.smarttab    = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth  = 2
 vim.opt.tabstop     = 2
-vim.opt.wrap        = false -- No Wrap lines
+vim.opt.wrap        = false  -- No Wrap lines
 vim.opt.updatetime  = 300
-vim.opt.autochdir   = true -- Change the current working directory automatically
+vim.opt.autochdir   = true   -- Change the current working directory automatically
 vim.opt.signcolumn  = 'yes'
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
-vim.opt.conceallevel=1 -- 例えばJSONファイル開いたときにパラメータ名を囲うダブルクォーテーションを表示する設定。Obsidian.nvimがlevel=1を要求するため設定する。
+vim.opt.conceallevel = 1     -- 例えばJSONファイル開いたときにパラメータ名を囲うダブルクォーテーションを表示する設定。Obsidian.nvimがlevel=1を要求するため設定する。
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
 
-vim.keymap.set('n', '<leader><Tab>',   ':tabnext<CR>')
+-- common key bind
+vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>')
 vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>')
-vim.keymap.set('n', 'te',              ':tabedit')
+vim.keymap.set('n', 'te', ':tabedit')
 
+-- self variables
+vim.g.obsidian_vault = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani"

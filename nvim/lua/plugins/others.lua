@@ -5,7 +5,7 @@ return {
     -- cocのポップアップなど、ambiwidth=singleでないとレイアウトが崩れる機能に対して
     -- ambiwidth=single + このプラグインでdoubleにしたい文字群を指定することで解決される
     'rbtnn/vim-ambiwidth',
-    config = function ()
+    config = function()
       vim.g.ambiwidth_add_list = {
       }
     end
@@ -48,7 +48,7 @@ return {
     -- normal/insert/visualなどのモードによって行の背景色を変更できる
     -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
     'mvllow/modes.nvim',
-    version= 'v0.2.0',
+    version = 'v0.2.0',
     -- enabled = false,
     config = function()
       require('modes').setup()
@@ -60,16 +60,17 @@ return {
     config = function()
       require('hlslens').setup()
 
-      local kopts = {noremap = true, silent = true}
+      local kopts = { noremap = true, silent = true }
 
-      vim.api.nvim_set_keymap('n', 'n',         [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.api.nvim_set_keymap('n', 'N',         [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
-      vim.api.nvim_set_keymap('n', '*',         [[*<Cmd>lua require('hlslens').start()<CR>]],                                             kopts)
-      vim.api.nvim_set_keymap('n', '#',         [[#<Cmd>lua require('hlslens').start()<CR>]],                                             kopts)
-      vim.api.nvim_set_keymap('n', 'g*',        [[g*<Cmd>lua require('hlslens').start()<CR>]],                                            kopts)
-      vim.api.nvim_set_keymap('n', 'g#',        [[g#<Cmd>lua require('hlslens').start()<CR>]],                                            kopts)
-      vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>',                                                                           kopts)
-
+      vim.api.nvim_set_keymap('n', 'n',
+        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', 'N',
+        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+      vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
     end,
   },
   -- `gcc`でコメントアウトできる
@@ -93,7 +94,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
     },
-    config = function ()
+    config = function()
       -- Call the setup function to change the default behavior
       require("aerial").setup({
         -- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -123,6 +124,52 @@ return {
     main = "ibl",
     opts = {},
   },
-  -- バッファを中央に表示してくれる、とりあえず入れているがzen-modeでも場面は多い
-  {"shortcuts/no-neck-pain.nvim", version = "*"},
+  -- 右下にLSPの状態を表示
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   opts = {
+  --     -- options
+  --   },
+  -- },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,         -- use a classic bottom cmdline for search
+          command_palette = false,      -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = true,        -- add a border to hover docs and signature help
+        },
+      })
+    end
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {} -- this is equalent to setup({}) function
+  },
+  { 'lambdalisue/fern.vim' }
 }

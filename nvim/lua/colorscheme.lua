@@ -7,4 +7,3 @@ vim.g.gruvbox_material_foreground                = 'material'
 vim.g.gruvbox_material_ui_contrast               = 'high'
 
 vim.cmd('colorscheme gruvbox-material')
-
