@@ -68,7 +68,7 @@ return {
     config = function()
       require 'mason'.setup()
       require 'mason-lspconfig'.setup {
-        ensure_installed = { "lua_ls", "rust_analyzer" },
+        ensure_installed = { "lua_ls", "marksman" },
       }
 
       -- Global mappings.
@@ -131,15 +131,16 @@ return {
       }
     end
   },
-  {
-    'nvimdev/lspsaga.nvim',
-    event = 'LspAttach',
-    config = function()
-      require('lspsaga').setup({})
-    end,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',   -- optional
-      'nvim-tree/nvim-web-devicons',       -- optional
-    }
-  },
+  -- lsp装飾、ちょっとバギーなので利用しない
+  -- {
+  --   'nvimdev/lspsaga.nvim',
+  --   event = 'LspAttach',
+  --   config = function()
+  --     require('lspsaga').setup({})
+  --   end,
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',   -- optional
+  --     'nvim-tree/nvim-web-devicons',       -- optional
+  --   }
+  -- },
 }

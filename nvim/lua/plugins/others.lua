@@ -48,8 +48,7 @@ return {
     -- normal/insert/visualなどのモードによって行の背景色を変更できる
     -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
     'mvllow/modes.nvim',
-    version = 'v0.2.0',
-    -- enabled = false,
+    tag = 'v0.2.0',
     config = function()
       require('modes').setup()
     end
@@ -143,9 +142,12 @@ return {
       -- OPTIONAL:
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
+      -- "rcarriga/nvim-notify",
     },
     config = function()
+      -- require("notify").setup({
+      --   background_colour = "#000",
+      -- })
       require("noice").setup({
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -157,7 +159,6 @@ return {
         },
         -- you can enable a preset for easier configuration
         presets = {
-          bottom_search = true,         -- use a classic bottom cmdline for search
           command_palette = false,      -- position the cmdline and popupmenu together
           long_message_to_split = true, -- long messages will be sent to a split
           inc_rename = false,           -- enables an input dialog for inc-rename.nvim
@@ -171,5 +172,10 @@ return {
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
   },
-  { 'lambdalisue/fern.vim' }
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 }
