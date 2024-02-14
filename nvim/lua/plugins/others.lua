@@ -49,6 +49,7 @@ return {
     -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
+    enabled = false,
     config = function()
       require('modes').setup({
         ignore_filetypes = { "alpha", },

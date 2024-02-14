@@ -12,7 +12,7 @@ dimensions = {columns = 150, lines = 50}
 decorations = "none"
 opacity = 0.95
 blur = true
-padding = { x = 3, y = 0 }
+padding = { x = 3, y = 3 }
 dynamic_padding = true
 
 [cursor]
