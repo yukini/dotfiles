@@ -99,10 +99,10 @@ function ide () {
 
 export PATH="/opt/homebrew/sbin:$PATH"
 
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd j)"
 
 # Add the following line to your ~/.bash_profile or ~/.zshrc file:
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+# [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 bindkey -e
 

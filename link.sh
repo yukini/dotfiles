@@ -14,3 +14,6 @@ ln -sf $(pwd)/.tern-config ~/.tern-config
 
 ln -sf $(pwd)/nvim/ ~/.config/nvim
 ln -sf $(pwd)/tmux/ ~/.config/tmux
+ln -sf $(pwd)/wezterm/ ~/.config/wezterm
+ln -sf $(pwd)/alacritty/ ~/.config/alacritty
+ln -sf $(pwd)/zellij/ ~/.config/zellij

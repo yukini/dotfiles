@@ -50,7 +50,9 @@ return {
     'mvllow/modes.nvim',
     tag = 'v0.2.0',
     config = function()
-      require('modes').setup()
+      require('modes').setup({
+        ignore_filetypes = { "alpha", },
+      })
     end
   },
   {
@@ -77,6 +79,9 @@ return {
   -- https://github.com/numToStr/Comment.nvim/blob/master/lua/Comment/ft.lua
   {
     'numToStr/Comment.nvim',
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
     opts = {
       -- add any options here
     },
@@ -124,12 +129,12 @@ return {
     opts = {},
   },
   -- 右下にLSPの状態を表示
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   opts = {
-  --     -- options
-  --   },
-  -- },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -177,5 +182,29 @@ return {
     config = function()
       require('gitsigns').setup()
     end
-  }
+  },
+  {
+    'RRethy/vim-illuminate',
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      -- Your setup opts here
+    },
+  },
 }

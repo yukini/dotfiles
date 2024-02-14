@@ -5,7 +5,6 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      -- require('dap').setup()
       require('dapui').setup()
       local function map(mode, lhs, rhs, opts)
         local options = { noremap = true }
@@ -15,6 +14,7 @@ return {
         vim.api.nvim_set_keymap(mode, lhs, rhs, options)
       end
 
+      map("n", "<leader>G", ":lua require'dap'.continue()<CR>", { silent = true })
       map("n", "<leader>6", ":lua require'dap'.continue()<CR>", { silent = true })
       map("n", "<leader>7", ":lua require'dap'.step_over()<CR>", { silent = true })
       map("n", "<leader>8", ":lua require'dap'.step_into()<CR>", { silent = true })
@@ -28,8 +28,32 @@ return {
         ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
         { silent = true }
       )
-      map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true })
-      map("n", "<leader><leader>d", ":lua require'dapui'.eval()<CR>", { silent = true })
+      map("n", "<leader>D", ":lua require'dapui'.toggle()<CR>", { silent = true })
+      map("n", "<leader><leader>D", ":lua require'dapui'.eval()<CR>", { silent = true })
+
+      local dap = require('dap')
+      dap.configurations.go = {
+        {
+          type = "go",
+          name = "Debug",
+          request = "launch",
+          program = "${file}",
+        },
+        {
+          type = "go",
+          name = "Debug test",
+          request = "launch",
+          mode = "test",
+          program = "${file}",
+        },
+        {
+          type = "go",
+          name = "Debug test (go.mod)",
+          request = "launch",
+          mode = "test",
+          program = "./${relativeFileDirname}",
+        }
+      }
     end
   },
 }
