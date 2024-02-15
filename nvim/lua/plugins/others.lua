@@ -208,4 +208,7 @@ return {
       -- Your setup opts here
     },
   },
+  {
+    "fladson/vim-kitty"
+  }
 }

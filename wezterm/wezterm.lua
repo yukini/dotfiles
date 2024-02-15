@@ -1,25 +1,42 @@
--- Pull in the wezterm API
 local wezterm = require 'wezterm'
-
--- This will hold the configuration.
 local config = wezterm.config_builder()
-
--- This is where you actually apply your config choices
 
 -- theme
 config.color_scheme = 'Afterglow'
 
 -- tab
-config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
 
 -- window
-config.window_background_opacity = 0.95
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-config.window_padding = { left = 10, right = 10, top = 50, bottom = 5, }
+config.window_padding = { left = 10, right = 10, top = 50, bottom = 5 }
+config.window_background_opacity = 0.95
+config.macos_window_background_blur = 20
 
 -- font
-config.font = wezterm.font("HackGen35 Console NF")
-config.font_size = 14.0
+config.font = wezterm.font_with_fallback {
+  { family = "HackGen35 Console NF" },
+  { family = "Hack Nerd Font Mono" },
+  { family = "Menlo" },
+}
+config.font_size = 15.0
 
--- and finally, return the configuration to wezterm
+-- IME
+config.use_ime = true
+config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
+
+-- key bindings
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = wezterm.action({ PasteFrom = "Clipboard" }),
+  },
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'Clipboard',
+  },
+}
+
 return config

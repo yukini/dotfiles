@@ -3,14 +3,15 @@ import = ["~/.config/alacritty/themes/afterglow.toml"]
 [font]
 size = 15
 [font.normal]
-family = "HackGen35 Console NF"
+family = "UDEV Gothic 35NF"
+style = "Regular"
 
 [window]
-dimensions = {columns = 150, lines = 50}
+dimensions = { columns = 150, lines = 50 }
 # decorations = "transparent"
-# decorations = "buttonless"
-decorations = "none"
-opacity = 0.95
+decorations = "buttonless"
+# decorations = "none"
+opacity = 0.85
 blur = true
 padding = { x = 3, y = 3 }
 dynamic_padding = true
