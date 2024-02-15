@@ -26,6 +26,13 @@ config.use_ime = true
 config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
 
 -- key bindings
+config.keys = {
+  {
+    key = 'Return',
+    mods = 'CMD',
+    action = wezterm.action.ToggleFullScreen,
+  },
+}
 config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = "Right" } },
