@@ -74,7 +74,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 # zsh completion
 if type brew &>/dev/null
 then
-  # FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
   fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
   autoload -Uz compinit
@@ -100,9 +99,6 @@ function ide () {
 export PATH="/opt/homebrew/sbin:$PATH"
 
 eval "$(zoxide init zsh --cmd j)"
-
-# Add the following line to your ~/.bash_profile or ~/.zshrc file:
-# [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 bindkey -e
 

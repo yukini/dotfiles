@@ -2,18 +2,21 @@ import = ["~/.config/alacritty/themes/afterglow.toml"]
 
 [font]
 size = 15
+offset = { y = 1 }
+
 [font.normal]
-family = "UDEV Gothic 35NF"
+family = "Moralerspace Neon NF"
 style = "Regular"
 
 [window]
 dimensions = { columns = 150, lines = 50 }
 # decorations = "transparent"
 decorations = "buttonless"
+# decorations = "full"
 # decorations = "none"
 opacity = 0.85
 blur = true
-padding = { x = 3, y = 3 }
+padding = { x = 5, y = 4 }
 dynamic_padding = true
 
 [cursor]
