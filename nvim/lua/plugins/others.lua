@@ -209,6 +209,16 @@ return {
     },
   },
   {
-    "fladson/vim-kitty"
+    "nvim-zh/colorful-winsep.nvim",
+    event = { "WinNew" },
+    config = function()
+      require("colorful-winsep").setup({
+        hi = {
+          bg = "",
+          fg = "#94985D",
+        },
+        smooth = false,
+      })
+    end
   }
 }
