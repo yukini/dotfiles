@@ -109,4 +109,4 @@ eval "$(zoxide init zsh --cmd j)"
 
 bindkey -e
 
-export KALEIDOSCOPE_DIR=/Users/yukini/playground/keyboard/Kaleidoscope
+export KALEIDOSCOPE_DIR=/Users/yukini/playground/Kaleidoscope
