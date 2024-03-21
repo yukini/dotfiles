@@ -1,6 +1,7 @@
 return {
     'sainnhe/gruvbox-material',
     'AlexvZyl/nordic.nvim',
-    "EdenEast/nightfox.nvim",
-    "rebelot/kanagawa.nvim",
+    "savq/melange-nvim",
+    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
 }

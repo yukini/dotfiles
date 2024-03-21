@@ -7,7 +7,8 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-file-browser.nvim',
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        'nvim-telescope/telescope-frecency.nvim'
+        'nvim-telescope/telescope-frecency.nvim',
+        'smartpde/telescope-recent-files',
       }
     },
     config = function(_, opts)
@@ -44,11 +45,13 @@ return {
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('file_browser')
       require('telescope').load_extension('frecency')
+      require("telescope").load_extension("recent_files")
       local builtin = require('telescope.builtin')
 
       vim.keymap.set('n', '<leader><leader>', ':Telescope frecency<CR>')
       vim.keymap.set('n', '<leader>e', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
       vim.keymap.set('n', '<leader>fa', ':Telescope aerial<CR>', {})
+      vim.keymap.set('n', '<leader>fr', ':Telescope recent_files pick<CR>', { noremap = true, silent = true })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
       vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
