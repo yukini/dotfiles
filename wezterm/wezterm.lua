@@ -11,11 +11,12 @@ config.enable_tab_bar = false
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = { left = 10, right = 10, top = 50, bottom = 5 }
 config.window_background_opacity = 0.85
-config.macos_window_background_blur = 15
+config.macos_window_background_blur = 90
 
 -- font
 config.font = wezterm.font({ family = "HackGen35 Console NF", weight = "Regular" })
--- config.font = wezterm.font({ family = "PlemolJP35 Console NF", weight = "Medium" })
+config.font = wezterm.font({ family = "PlemolJP35 Console NF", weight = "Medium" })
+-- config.font = wezterm.font({ family = "Moralerspace Neon NF", weight = "Regular" })
 config.line_height = 1.05
 config.font_size = 15.0
 
