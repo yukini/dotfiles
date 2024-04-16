@@ -2,18 +2,18 @@
 
 cd $(dirname ${0})
 
-ln -sf $(pwd)/.zshrc ~/.zshrc
-ln -sf $(pwd)/.zshenv ~/.zshenv
-ln -sf $(pwd)/.bashrc ~/.bashrc
-ln -sf $(pwd)/.bash_profile ~/.bash_profile
-ln -sf $(pwd)/.vimrc ~/.vimrc
-ln -sf $(pwd)/.gvimrc ~/.gvimrc
-ln -sf $(pwd)/.ideavimrc ~/.ideavimrc
-ln -sf $(pwd)/.spacemacs ~/.spacemacs
-ln -sf $(pwd)/.tern-config ~/.tern-config
+ln -s $(pwd)/.zshrc ~/.zshrc
+ln -s $(pwd)/.zshenv ~/.zshenv
+ln -s $(pwd)/.bashrc ~/.bashrc
+ln -s $(pwd)/.bash_profile ~/.bash_profile
+ln -s $(pwd)/.vimrc ~/.vimrc
+ln -s $(pwd)/.gvimrc ~/.gvimrc
+ln -s $(pwd)/.ideavimrc ~/.ideavimrc
+ln -s $(pwd)/.spacemacs ~/.spacemacs
+ln -s $(pwd)/.tern-config ~/.tern-config
 
-ln -sf $(pwd)/nvim/ ~/.config/nvim
-ln -sf $(pwd)/tmux/ ~/.config/tmux
-ln -sf $(pwd)/wezterm/ ~/.config/wezterm
-ln -sf $(pwd)/alacritty/ ~/.config/alacritty
-ln -sf $(pwd)/zellij/ ~/.config/zellij
+ln -s $(pwd)/nvim/ ~/.config/nvim
+ln -s $(pwd)/tmux/ ~/.config/tmux
+ln -s $(pwd)/wezterm/ ~/.config/wezterm
+ln -s $(pwd)/alacritty/ ~/.config/alacritty
+ln -s $(pwd)/zellij/ ~/.config/zellij
