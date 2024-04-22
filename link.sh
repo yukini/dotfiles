@@ -12,6 +12,7 @@ ln -s $(pwd)/.ideavimrc ~/.ideavimrc
 ln -s $(pwd)/.spacemacs ~/.spacemacs
 ln -s $(pwd)/.tern-config ~/.tern-config
 
+mkdir -p ~/.config
 ln -s $(pwd)/nvim/ ~/.config/nvim
 ln -s $(pwd)/tmux/ ~/.config/tmux
 ln -s $(pwd)/wezterm/ ~/.config/wezterm
