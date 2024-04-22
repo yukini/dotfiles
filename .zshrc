@@ -54,6 +54,7 @@ setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
 
 #################################
 #  Aliases
