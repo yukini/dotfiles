@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopas
 vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>')
 vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>')
 vim.keymap.set('n', 'te', ':tabedit')
+vim.keymap.set('n', '<leader>s', ':ObsidianSearch<CR>')
 
 -- self variables
 vim.g.obsidian_vault = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/solani"
