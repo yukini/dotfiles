@@ -31,7 +31,7 @@ vim.opt.autochdir   = true   -- Change the current working directory automatical
 vim.opt.signcolumn  = 'yes'
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
-vim.opt.conceallevel = 1     -- 例えばJSONファイル開いたときにパラメータ名を囲うダブルクォーテーションを表示する設定。Obsidian.nvimがlevel=1を要求するため設定する。
+vim.opt.conceallevel = 0 
 -- vim.opt.mouse = ""
 
 -- Turn off paste mode when leaving insert
