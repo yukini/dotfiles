@@ -69,6 +69,7 @@ alias ll='ls -lF'
 alias la='ll -AF'
 alias rm="rm -i"
 alias cp="cp -i"
+alias k="kubectl"
 
 # Go lang
 export GOPATH=$HOME/go
@@ -113,3 +114,5 @@ eval "$(zoxide init zsh --cmd j)"
 bindkey -e
 
 export KALEIDOSCOPE_DIR=/Users/yukini/playground/Kaleidoscope
+
+source <(fzf --zsh)

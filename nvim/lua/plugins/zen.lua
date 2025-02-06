@@ -4,7 +4,7 @@ return {
     opts = {
       window = {
         options = {
-          -- number = false, -- disable number column
+          number = false, -- disable number column
         }
       },
     }
