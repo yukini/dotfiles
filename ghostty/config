@@ -1,0 +1,22 @@
+# comment
+theme = Afterglow
+
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = hidden
+cursor-style-blink = true
+
+# font-family = "HackGen35 Console NF"
+font-family = "PlemolJP35 Console NF"
+# font-style = Regular
+font-style = Medium
+font-size = 14
+
+# font-thicken = true
+# font-thicken-strength = 100
+
+background-opacity = 0.85
+background-blur-radius = 95
+
+window-padding-x = 20
+window-padding-y = 10
+
