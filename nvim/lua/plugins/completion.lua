@@ -115,20 +115,20 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })
       end
-      require 'mason-lspconfig'.setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
-            on_attach = on_attach,
-            settings = {
-              Lua = {
-                -- https://neovim.discourse.group/t/how-to-suppress-warning-undefined-global-vim/1882/6
-                diagnostics = { globals = { 'vim' } }
-              }
-            }
-          }
-        end
-      }
+      -- require 'mason-lspconfig'.setup_handlers {
+      --   function(server_name)
+      --     require('lspconfig')[server_name].setup {
+      --       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
+      --       on_attach = on_attach,
+      --       settings = {
+      --         Lua = {
+      --           -- https://neovim.discourse.group/t/how-to-suppress-warning-undefined-global-vim/1882/6
+      --           diagnostics = { globals = { 'vim' } }
+      --         }
+      --       }
+      --     }
+      --   end
+      -- }
     end
   },
   -- lsp装飾、ちょっとバギーなので利用しない
