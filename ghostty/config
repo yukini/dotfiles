@@ -3,13 +3,18 @@ theme = Afterglow
 
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden
+cursor-style = block
 cursor-style-blink = true
+shell-integration-features = no-cursor
 
 # font-family = "HackGen35 Console NF"
 font-family = "PlemolJP35 Console NF"
 # font-style = Regular
 font-style = Medium
 font-size = 14
+
+font-feature = -calt
+font-feature = -dlig
 
 # font-thicken = true
 # font-thicken-strength = 100
