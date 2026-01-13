@@ -1,62 +1,25 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
-      "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/vim-vsnip",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-emoji",
-    },
-    config = function()
-      local status, cmp = pcall(require, "cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-          end,
-        },
-        sources = cmp.config.sources({
-            { name = "nvim_lsp" },
-            { name = "vsnip" },
-            { name = "nvim_lsp_signature_help" },
-            { name = 'nvim_lsp_document_symbol' },
-          },
-          {
-            { name = "path" },
-            { name = "buffer" },
-          }),
-        mapping = cmp.mapping.preset.insert({
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-          }),
-        }),
-        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline(':', {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = cmp.config.sources({
-            { name = 'path' }
-          }, {
-            { name = 'cmdline' }
-          })
-        }),
-        cmp.setup.cmdline('/', {
-          mapping = cmp.mapping.preset.cmdline(),
-          sources = {
-            { name = 'buffer' }
-          }
-        }),
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
 
-      })
-    end
+    version = '*',
+
+    opts = {
+      keymap = { preset = 'default' },
+
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      
+      signature = { enabled = true }
+    },
+    opts_extend = { "sources.default" }
   },
   {
     "neovim/nvim-lspconfig",
@@ -108,27 +71,5 @@ return {
         end,
       })
     end,
-    -- init = function()
-    --   local capabilities = vim.lsp.protocol.make_client_capabilities()
-    --   local on_attach = function(_, bufnr)
-    --     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    --       vim.lsp.buf.format()
-    --     end, { desc = 'Format current buffer with LSP' })
-    --   end
-    --   -- require 'mason-lspconfig'.setup_handlers {
-    --   --   function(server_name)
-    --   --     require('lspconfig')[server_name].setup {
-    --   --       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
-    --   --       on_attach = on_attach,
-    --   --       settings = {
-    --   --         Lua = {
-    --   --           -- https://neovim.discourse.group/t/how-to-suppress-warning-undefined-global-vim/1882/6
-    --   --           diagnostics = { globals = { 'vim' } }
-    --   --         }
-    --   --       }
-    --   --     }
-    --   --   end
-    --   -- }
-    -- end
   },
 }
