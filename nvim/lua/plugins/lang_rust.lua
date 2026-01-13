@@ -6,6 +6,8 @@ return {
   --   end
   -- },
   {
+    -- Rust Plugin
+    -- Rust言語の強力なIDE機能 (LSP, DAP, Formattingなど) を提供
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
     ft = { 'rust' },

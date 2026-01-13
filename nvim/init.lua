@@ -1,3 +1,5 @@
+-- Neovim Configuration Entry Point
+-- 設定のエントリポイント。基本設定の読み込みとプラグインマネージャー(lazy.nvim)の起動を行う
 require('base')
 
 -- Bootstrap lazy.nvim

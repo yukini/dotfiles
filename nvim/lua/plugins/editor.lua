@@ -1,6 +1,8 @@
 -- telescope, treesitter などの汎用的なツール利用プラグイン管理
 return {
   {
+    -- Fuzzy Finder (files, lsp, etc)
+    -- 曖昧検索でファイルやバッファ、grep検索などができる強力なツール
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
@@ -62,6 +64,8 @@ return {
     ,
   },
   {
+    -- Syntax Highlighting
+    -- 高度なシンタックスハイライトを提供する
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
@@ -100,7 +104,8 @@ return {
     end,
   },
   {
-    -- カーソルがあたった位置の単語をハイライトしてくれる。地味に便利。
+    -- Word highlight
+    -- カーソル直下の単語と同じ単語をハイライト表示する
     'RRethy/vim-illuminate',
   },
 }

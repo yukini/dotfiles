@@ -1,5 +1,7 @@
 return {
   {
+    -- Completion Engine
+    -- 高速な自動補完エンジン (nvim-cmpの代替)
     'saghen/blink.cmp',
     dependencies = 'rafamadriz/friendly-snippets',
 
@@ -22,8 +24,12 @@ return {
     opts_extend = { "sources.default" }
   },
   {
+    -- LSP Configuration
+    -- Language Server Protocol の設定管理
     "neovim/nvim-lspconfig",
     dependencies = {
+      -- LSP/Linter/Formatter installer
+      -- 外部ツールのインストール管理 (LSP, DAP, Linter, Formatter)
       { 'williamboman/mason.nvim', config = true },
       "williamboman/mason-lspconfig.nvim",
       "nvim-lua/plenary.nvim",

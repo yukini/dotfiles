@@ -1,5 +1,7 @@
 return {
   {
+    -- Colorscheme
+    -- メインのカラースキーム (Gruvbox Material)
     'sainnhe/gruvbox-material',
     lazy = false,    -- 起動時に即座に読み込む
     priority = 1000, -- 他のプラグインより先にロードする
@@ -14,43 +16,8 @@ return {
     end
   },
   {
-    -- alpha
-    -- startupのui plugin
-    'goolord/alpha-nvim',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons'
-    },
-    config = function()
-      local hjkl_header = {
-        [[+-+-+-+-+-+-+-+-+]],
-        [[| h | j | k | l |]],
-        [[+-+-+-+-+-+-+-+-+]],
-      }
-      local theta = require'alpha.themes.theta'
-      local dashboard = require'alpha.themes.dashboard'
-      local obsidian_vault_path = vim.g.obsidian_vault
-      local buttons = {
-        val = {
-          { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
-          { type = "padding", val = 1 },
-
-          dashboard.button("e",     "  New file",       "<cmd>ene<CR>"),
-          dashboard.button("SPC n", "  New zt note",    "<cmd>ObsidianNew<CR>"),
-          dashboard.button("SPC d", "  Daily note",     "<cmd>ObsidianToday<CR>"),
-          dashboard.button("SPC c", "  Go to Obsidian", "<cmd>cd " .. obsidian_vault_path ..  " <CR>"),
-          dashboard.button("c",     "  Configuration",  "<cmd>cd ~/.config/nvim/ <CR>"),
-          dashboard.button("u",     "  Update plugins", "<cmd>Lazy sync<CR>"),
-          dashboard.button("q",     "󰢃   Quit",           "<cmd>qa<CR>"),
-        },
-      }
-
-      theta.header.val  = hjkl_header
-      theta.buttons.val = buttons.val
-      require'alpha'.setup(theta.config)
-    end
-  },
-  {
-    -- lualine
+    -- Statusline
+    -- ステータスラインの表示をカスタマイズする
     'nvim-lualine/lualine.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons'
@@ -98,22 +65,54 @@ return {
           theme = 'gruvbox-material',
           disabled_filetypes = {
             'alpha'
-          }
+           }
         },
       })
     end,
   },
   {
-    "folke/zen-mode.nvim",
+    -- Modern QoL Plugin Collection
+    -- Dashboard (起動画面) や Zen Mode などを提供するモダンなプラグイン集
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
     opts = {
-      window = {
-        options = {
-          number = false, -- disable number column
-        }
+      dashboard = {
+        enabled = true,
+        sections = {
+          { section = "header" },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { section = "keys", gap = 0, padding = 1 },
+          { section = "startup" },
+        },
+        preset = {
+          header = [[
++-+-+-+-+-+-+-+-+
+| h | j | k | l |
++-+-+-+-+-+-+-+-+]],
+          keys = {
+            { icon = " ", key = "e", desc = "New file", action = ":ene" },
+            { icon = " ", key = "n", desc = "New zt note", action = ":ObsidianNew" },
+            { icon = " ", key = "d", desc = "Daily note", action = ":ObsidianToday" },
+            -- Dynamic paths for dashboard actions are tricky in static opts without a function wrapper,
+            -- but snacks supports functions in keys.
+            { icon = " ", key = "c", desc = "Go to Obsidian", action = function() vim.cmd("cd " .. vim.g.obsidian_vault) end },
+            { icon = " ", key = "C", desc = "Configuration", action = ":cd ~/.config/nvim/" },
+            { icon = " ", key = "u", desc = "Update plugins", action = ":Lazy sync" },
+            { icon = "󰢃 ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
       },
+      zen = { enabled = true },
+    },
+    keys = {
+      { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
     }
   },
-  -- 右下にLSPの状態を表示
+  -- LSP Progress
+  -- LSPの起動状況や進捗などを右下に表示する
   {
     "j-hui/fidget.nvim",
     opts = {
@@ -121,6 +120,8 @@ return {
     },
   },
   {
+    -- Command Line UI
+    -- コマンドラインや通知メッセージをリッチなUIで表示する
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {

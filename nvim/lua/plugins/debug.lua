@@ -1,7 +1,11 @@
 return {
   {
+    -- Debug Adapter Protocol (DAP) Client
+    -- デバッグ機能を提供するコアプラグイン
     "mfussenegger/nvim-dap",
     dependencies = {
+      -- DAP UI
+      -- デバッグ情報をリッチなUIで表示する
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
     },
@@ -15,6 +19,8 @@ return {
         vim.api.nvim_set_keymap(mode, lhs, rhs, options)
       end
 
+      -- Keymaps
+      -- デバッグ操作のキーバインド
       map("n", "<leader>G", ":lua require'dap'.continue()<CR>", { silent = true })
       map("n", "<leader>6", ":lua require'dap'.continue()<CR>", { silent = true })
       map("n", "<leader>7", ":lua require'dap'.step_over()<CR>", { silent = true })

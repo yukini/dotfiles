@@ -2,6 +2,8 @@ local obsidian_vault = vim.g.obsidian_vault
 local obsidian_vault_path = vim.fn.expand(obsidian_vault)
 return {
   {
+    -- Markdown Preview
+    -- ブラウザでのMarkdownリアルタイムプレビュー
     'iamcco/markdown-preview.nvim',
     build = function()
       vim.fn["mkdp#util#install"]()
@@ -17,15 +19,19 @@ return {
     end,
   },
   {
+    -- PlantUML Syntax
+    -- PlantUMLのシンタックスハイライト
     'aklt/plantuml-syntax',
   },
   {
+    -- Obsidian Integration
+    -- Obsidian (ノートアプリ) との連携機能
     "epwalsh/obsidian.nvim",
     version = "*",   -- recommended, use latest release instead of latest commit
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp", -- removed in favor of blink.cmp
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter",
     },
