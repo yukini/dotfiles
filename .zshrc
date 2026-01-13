@@ -116,3 +116,6 @@ bindkey -e
 export KALEIDOSCOPE_DIR=/Users/yukini/playground/Kaleidoscope
 
 source <(fzf --zsh)
+
+# Added by Antigravity
+export PATH="/Users/yukini/.antigravity/antigravity/bin:$PATH"

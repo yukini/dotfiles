@@ -41,7 +41,7 @@ return {
           }
         },
       }
-      require('telescope').load_extension('aerial')
+      -- require('telescope').load_extension('aerial')
       require('telescope').load_extension('fzf')
       require('telescope').load_extension('file_browser')
       require('telescope').load_extension('frecency')
@@ -50,7 +50,7 @@ return {
 
       vim.keymap.set('n', '<leader><leader>', ':Telescope frecency<CR>')
       vim.keymap.set('n', '<leader>e', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { noremap = true })
-      vim.keymap.set('n', '<leader>fa', ':Telescope aerial<CR>', {})
+      -- vim.keymap.set('n', '<leader>fa', ':Telescope aerial<CR>', {})
       vim.keymap.set('n', '<leader>fr', ':Telescope recent_files pick<CR>', { noremap = true, silent = true })
       vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})

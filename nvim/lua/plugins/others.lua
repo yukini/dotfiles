@@ -44,18 +44,19 @@ return {
       -- refer to the configuration section below
     }
   },
-  {
-    -- normal/insert/visualなどのモードによって行の背景色を変更できる
-    -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
-    'mvllow/modes.nvim',
-    tag = 'v0.2.0',
-    enabled = false,
-    config = function()
-      require('modes').setup({
-        ignore_filetypes = { "alpha", },
-      })
-    end
-  },
+  -- {
+  --   -- normal/insert/visualなどのモードによって行の背景色を変更できる
+  --   -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
+  --   -- ↑2026-01 もうそんなことはないかも、gruvboxがupdateされた？
+  --   'mvllow/modes.nvim',
+  --   tag = 'v0.2.1',
+  --   enabled = false,
+  --   config = function()
+  --     require('modes').setup({
+  --       ignore_filetypes = { "alpha", },
+  --     })
+  --   end
+  -- },
   {
     -- 検索した際のhighlightの強化プラグイン、検索総数と何番目の検索結果かが表示される
     'kevinhwang91/nvim-hlslens',
@@ -91,31 +92,31 @@ return {
   -- アウトライン出してくれる
   -- ソース読むときには便利だけど、そんなにVimで読まない
   -- Telescopeとも連携していて、<leader>faでも呼び出せるが、そんなにVimで(ry
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      -- Call the setup function to change the default behavior
-      require("aerial").setup({
-        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-        on_attach = function(bufnr)
-          -- Jump forwards/backwards with '{' and '}'
-          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-        end,
-        -- Priority list of preferred backends for aerial.
-        -- This can be a filetype map (see :help aerial-filetype-map)
-        backends = { "treesitter", "lsp", "markdown", "man", "telekasten" },
-        -- You probably also want to set a keymap to toggle aerial
-        vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
-      })
-    end,
-  },
+  -- {
+  --   'stevearc/aerial.nvim',
+  --   opts = {},
+  --   -- Optional dependencies
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  --   config = function()
+  --     -- Call the setup function to change the default behavior
+  --     require("aerial").setup({
+  --       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  --       on_attach = function(bufnr)
+  --         -- Jump forwards/backwards with '{' and '}'
+  --         vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+  --         vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+  --       end,
+  --       -- Priority list of preferred backends for aerial.
+  --       -- This can be a filetype map (see :help aerial-filetype-map)
+  --       backends = { "treesitter", "lsp", "markdown", "man", "telekasten" },
+  --       -- You probably also want to set a keymap to toggle aerial
+  --       vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+  --     })
+  --   end,
+  -- },
   -- 行移動に追従するカーソルが出てくる、それだけ
   {
     'gen740/SmoothCursor.nvim',
@@ -185,19 +186,11 @@ return {
     end
   },
   {
+    -- カーソルがあたった位置の単語をハイライトしてくれる。地味に便利。
     'RRethy/vim-illuminate',
   },
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  },
-  {
+    -- アウトライン表示、長いコード読むときに使うくらい。
     "hedyhli/outline.nvim",
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
@@ -208,20 +201,21 @@ return {
       -- Your setup opts here
     },
   },
+  -- {
+  --   "nvim-zh/colorful-winsep.nvim",
+  --   event = { "WinNew" },
+  --   config = function()
+  --     require("colorful-winsep").setup({
+  --       hi = {
+  --         bg = "",
+  --         fg = "#94985D",
+  --       },
+  --       smooth = false,
+  --     })
+  --   end
+  -- },
   {
-    "nvim-zh/colorful-winsep.nvim",
-    event = { "WinNew" },
-    config = function()
-      require("colorful-winsep").setup({
-        hi = {
-          bg = "",
-          fg = "#94985D",
-        },
-        smooth = false,
-      })
-    end
-  },
-  {
+    -- カッコやクォーテーションで囲める。たまにしか使わないので、都度使い方を調べてる…
     "kylechui/nvim-surround",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
