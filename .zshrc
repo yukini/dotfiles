@@ -32,7 +32,7 @@ fi
 zplug load
 
 #################################
-# 3. Zsh System Configurations (補完・履歴・キーバインド等)
+# 2. Zsh System Configurations (補完・履歴・キーバインド等)
 #################################
 # zsh completion
 if type brew &>/dev/null
@@ -43,7 +43,6 @@ then
   compinit
 fi
 
-set completion-ignore-case on
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 #################################
@@ -64,7 +63,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
-setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 
 #################################
