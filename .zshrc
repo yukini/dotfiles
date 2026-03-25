@@ -77,6 +77,9 @@ alias la='ll -AF'
 alias rm="rm -i"
 alias cp="cp -i"
 alias k="kubectl"
+# tmux の default-terminal が tmux-256color のため、SSH 先に terminfo がないと
+# "unknown terminal type" エラーが出ることがある。SSH 時のみ xterm-256color に戻す。
+alias ssh='TERM=xterm-256color ssh'
 
 # tmux shortcut
 function ide () {
