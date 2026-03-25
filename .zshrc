@@ -1,5 +1,5 @@
 #################################
-# 1. Plugin Manager (zplugの初期化とロード)
+# Plugin Manager (zplugの初期化とロード)
 #################################
 source ~/.zplug/init.zsh
 
@@ -32,7 +32,7 @@ fi
 zplug load
 
 #################################
-# 2. Zsh System Configurations (補完・履歴・キーバインド等)
+# Zsh System Configurations (補完・履歴・キーバインド等)
 #################################
 # zsh completion
 if type brew &>/dev/null
