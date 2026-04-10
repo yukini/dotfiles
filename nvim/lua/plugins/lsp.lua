@@ -5,7 +5,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "hrsh7th/vim-vsnip",
+
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
@@ -16,12 +16,12 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            vim.snippet.expand(args.body)
           end,
         },
         sources = cmp.config.sources({
             { name = "nvim_lsp" },
-            { name = "vsnip" },
+
             { name = "nvim_lsp_signature_help" },
             { name = 'nvim_lsp_document_symbol' },
           },

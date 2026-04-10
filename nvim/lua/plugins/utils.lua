@@ -53,19 +53,7 @@ return {
       vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
     end,
   },
-  -- `gcc`でコメントアウトできる
-  -- 言語ごとのコメントアウト記法を全て管理しているのすごいね
-  -- https://github.com/numToStr/Comment.nvim/blob/master/lua/Comment/ft.lua
-  {
-    'numToStr/Comment.nvim',
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
-  },
+
   -- 行移動に追従するカーソルが出てくる、それだけ
   {
     'gen740/SmoothCursor.nvim',
