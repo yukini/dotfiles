@@ -11,14 +11,12 @@ return {
       },
       signature = { enabled = true },
       cmdline = {
+        keymap = {
+          preset = 'cmdline',
+          ['<CR>'] = { 'accept_and_enter', 'fallback' },
+        },
         completion = {
-          menu = { auto_show = true },
-          list = {
-            selection = {
-              preselect = true,
-              auto_insert = true
-            }
-          }
+          menu = { auto_show = true }
         }
       },
     },
