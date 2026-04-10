@@ -29,6 +29,7 @@ return {
       "nvim-treesitter",
     },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = "personal",
@@ -41,12 +42,6 @@ return {
       },
       ui = {
         enable = false,
-        -- Define how various check-boxes are displayed
-        checkboxes = {
-          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-          ["x"] = { char = "", hl_group = "ObsidianDone" },
-        },
       }
     },
   },
