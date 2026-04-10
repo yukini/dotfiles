@@ -35,8 +35,8 @@ return {
           { type = "padding", val = 1 },
 
           dashboard.button("e",     "  New file",       "<cmd>ene<CR>"),
-          dashboard.button("SPC n", "  New zt note",    "<cmd>ObsidianNew<CR>"),
-          dashboard.button("SPC d", "  Daily note",     "<cmd>ObsidianToday<CR>"),
+          dashboard.button("SPC n", "  New zt note",    "<cmd>Obsidian new<CR>"),
+          dashboard.button("SPC d", "  Daily note",     "<cmd>Obsidian today<CR>"),
           dashboard.button("SPC c", "  Go to Obsidian", "<cmd>cd " .. obsidian_vault_path ..  " <CR>"),
           dashboard.button("c",     "  Configuration",  "<cmd>cd ~/.config/nvim/ <CR>"),
           dashboard.button("u",     "  Update plugins", "<cmd>Lazy sync<CR>"),
