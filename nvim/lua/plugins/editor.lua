@@ -74,7 +74,7 @@ return {
       require('nvim-treesitter').install({
         "c", "lua", "vim", "vimdoc", "query", "java", "rust", "javascript",
         "go", "graphql", "json", "toml", "tsx", "yaml", "css", "html",
-        "markdown", "markdown_inline",
+        "markdown", "markdown_inline", "python",
       })
 
       -- Automatically start treesitter highlighting
