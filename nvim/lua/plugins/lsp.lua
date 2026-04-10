@@ -12,7 +12,13 @@ return {
       signature = { enabled = true },
       cmdline = {
         completion = {
-          menu = { auto_show = true }
+          menu = { auto_show = true },
+          list = {
+            selection = {
+              preselect = true,
+              auto_insert = true
+            }
+          }
         }
       },
     },
