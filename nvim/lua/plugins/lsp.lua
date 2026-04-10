@@ -26,20 +26,17 @@ return {
         ensure_installed = { "lua_ls", "marksman" },
       })
 
-      require('mason-lspconfig').setup_handlers({
-        function(server_name)
-          local opts = {
-            capabilities = require('blink.cmp').get_lsp_capabilities(),
+      -- Neovim 0.11+ native LSP configuration (replaces setup_handlers)
+      vim.lsp.config('*', {
+        capabilities = require('blink.cmp').get_lsp_capabilities(),
+      })
+
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { 'vim' } }
           }
-          if server_name == "lua_ls" then
-            opts.settings = {
-              Lua = {
-                diagnostics = { globals = { 'vim' } }
-              }
-            }
-          end
-          require('lspconfig')[server_name].setup(opts)
-        end
+        }
       })
 
       -- Global mappings.
