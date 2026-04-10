@@ -124,7 +124,7 @@ return {
     "kylechui/nvim-surround",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
     },
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
