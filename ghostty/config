@@ -1,6 +1,8 @@
 # comment
 theme = Afterglow
 
+macos-icon = chalkboard
+
 macos-titlebar-proxy-icon = hidden
 macos-titlebar-style = hidden
 cursor-style = block

@@ -7,7 +7,7 @@ return {
   -- },
   {
     'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
+    version = '^6', -- Recommended
     ft = { 'rust' },
     config = function()
       local bufnr = vim.api.nvim_get_current_buf()

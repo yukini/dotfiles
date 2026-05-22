@@ -1,3 +1,6 @@
+#################################
+# Plugin Manager (zplugの初期化とロード)
+#################################
 source ~/.zplug/init.zsh
 
 zplug "zplug/zplug", hook-build:'zplug --self-manage'
@@ -28,13 +31,18 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-
 #################################
-#  others
+# Zsh System Configurations (補完・履歴・キーバインド等)
 #################################
+# zsh completion
+if type brew &>/dev/null
+then
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
-set completion-ignore-case on
-# smart-case
+  autoload -Uz compinit
+  compinit
+fi
+
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 
 #################################
@@ -55,7 +63,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
-setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
 
 #################################
@@ -70,29 +77,9 @@ alias la='ll -AF'
 alias rm="rm -i"
 alias cp="cp -i"
 alias k="kubectl"
-
-# Go lang
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# iTerm2 language
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-
-# zsh completion
-if type brew &>/dev/null
-then
-  fpath+=("$(brew --prefix)/share/zsh/site-functions")
-
-  autoload -Uz compinit
-  compinit
-fi
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+# tmux の default-terminal が tmux-256color のため、SSH 先に terminfo がないと
+# "unknown terminal type" エラーが出ることがある。SSH 時のみ xterm-256color に戻す。
+alias ssh='TERM=xterm-256color ssh'
 
 # tmux shortcut
 function ide () {
@@ -107,15 +94,9 @@ function ide () {
 	fi
 }
 
-export PATH="/opt/homebrew/sbin:$PATH"
-
 eval "$(zoxide init zsh --cmd j)"
 
 bindkey -e
 
-export KALEIDOSCOPE_DIR=/Users/yukini/playground/Kaleidoscope
-
 source <(fzf --zsh)
 
-# Added by Antigravity
-export PATH="/Users/yukini/.antigravity/antigravity/bin:$PATH"

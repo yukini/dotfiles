@@ -1,20 +1,25 @@
 #!/bin/zsh
+set -euo pipefail
 
-cd $(dirname ${0})
+DOTDIR=$(cd "$(dirname "$0")" && pwd)
 
-ln -s $(pwd)/.zshrc ~/.zshrc
-ln -s $(pwd)/.zshenv ~/.zshenv
-ln -s $(pwd)/.bashrc ~/.bashrc
-ln -s $(pwd)/.bash_profile ~/.bash_profile
-# ln -s $(pwd)/.vimrc ~/.vimrc
-# ln -s $(pwd)/.gvimrc ~/.gvimrc
-ln -s $(pwd)/.ideavimrc ~/.ideavimrc
-ln -s $(pwd)/.spacemacs ~/.spacemacs
-ln -s $(pwd)/.tern-config ~/.tern-config
+link() {
+  local src=$1 dst=$2
+  if [ -e "$dst" ] || [ -L "$dst" ]; then
+    echo "⚠️  skip (already exists): $dst"
+  else
+    ln -s "$src" "$dst"
+    echo "✅ linked: $dst"
+  fi
+}
+
+link "$DOTDIR/.zshrc"     ~/.zshrc
+link "$DOTDIR/.zshenv"    ~/.zshenv
+link "$DOTDIR/.ideavimrc" ~/.ideavimrc
 
 mkdir -p ~/.config
-ln -s $(pwd)/nvim/ ~/.config/nvim
-ln -s $(pwd)/tmux/ ~/.config/tmux
-ln -s $(pwd)/wezterm/ ~/.config/wezterm
-ln -s $(pwd)/alacritty/ ~/.config/alacritty
-ln -s $(pwd)/zellij/ ~/.config/zellij
+link "$DOTDIR/nvim/"      ~/.config/nvim
+link "$DOTDIR/tmux/"      ~/.config/tmux
+link "$DOTDIR/wezterm/"   ~/.config/wezterm
+link "$DOTDIR/alacritty/" ~/.config/alacritty
+link "$DOTDIR/zellij/"    ~/.config/zellij

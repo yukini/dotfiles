@@ -20,16 +20,16 @@ return {
     'aklt/plantuml-syntax',
   },
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*",   -- recommended, use latest release instead of latest commit
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
       "nvim-telescope/telescope.nvim",
       "nvim-treesitter",
     },
     opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = "personal",
@@ -42,12 +42,6 @@ return {
       },
       ui = {
         enable = false,
-        -- Define how various check-boxes are displayed
-        checkboxes = {
-          -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-          [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-          ["x"] = { char = "", hl_group = "ObsidianDone" },
-        },
       }
     },
   },
