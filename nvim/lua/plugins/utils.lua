@@ -67,21 +67,12 @@ return {
     main = "ibl",
     opts = {},
   },
-  -- 右下にLSPの状態を表示
-
-
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {} -- this is equalent to setup({}) function
-  },
   {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
   },
-
   {
     -- アウトライン表示、長いコード読むときに使うくらい。
     "hedyhli/outline.nvim",
@@ -94,19 +85,6 @@ return {
       -- Your setup opts here
     },
   },
-  -- {
-  --   "nvim-zh/colorful-winsep.nvim",
-  --   event = { "WinNew" },
-  --   config = function()
-  --     require("colorful-winsep").setup({
-  --       hi = {
-  --         bg = "",
-  --         fg = "#94985D",
-  --       },
-  --       smooth = false,
-  --     })
-  --   end
-  -- },
   {
     -- カッコやクォーテーションで囲める。たまにしか使わないので、都度使い方を調べてる…
     "kylechui/nvim-surround",
