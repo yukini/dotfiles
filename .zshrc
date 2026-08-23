@@ -100,3 +100,10 @@ bindkey -e
 
 source <(fzf --zsh)
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/yukini/.local/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/yukini/.antigravity-ide/antigravity-ide/bin:$PATH"

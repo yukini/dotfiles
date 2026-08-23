@@ -1,25 +1,27 @@
 return {
-	{
+{
 		"saghen/blink.cmp",
 		dependencies = "rafamadriz/friendly-snippets",
 		version = "*",
 		opts = {
 			keymap = { preset = "super-tab" },
-			completion = { list = { selection = { preselect = false, auto_insert = false } } },
+			completion = { 
+				list = { selection = { preselect = false, auto_insert = false } },
+				accept = { auto_brackets = { enabled = true } },
+				documentation = { auto_show = true, auto_show_delay_ms = 200 },
+			},
 			appearance = {
 				use_nvim_cmp_as_default = true,
 				nerd_font_variant = "mono",
 			},
 			signature = { enabled = true },
 			cmdline = {
-			keymap = { preset = "super-tab" },
+				keymap = { preset = "super-tab" },
 				-- keymap = {
 				--   preset = 'cmdline',
 				--   ['<CR>'] = { 'accept_and_enter', 'fallback' },
 				-- },
 				completion = {
-					accept = { auto_brackets = { enabled = true } },
-					documentation = { auto_show = true, auto_show_delay_ms = 200 },
 					menu = { auto_show = true },
 				},
 			},

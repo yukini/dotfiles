@@ -24,3 +24,7 @@ source /Users/yukini/.config/broot/launcher/bash/br
 
 export KALEIDOSCOPE_DIR=/Users/yukini/playground/keyboard/Kaleidoscope
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/yukini/.local/bin:$PATH"
