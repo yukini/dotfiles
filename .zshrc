@@ -48,7 +48,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 #################################
 #  Prompt
 #################################
-PURE_PROMPT_SYMBOL="%B%F{1}❯%F{3}❯%F{2}❯%f%b"
+PURE_PROMPT_SYMBOL="❯❯❯"
+zstyle ':prompt:pure:prompt:success' color green
+zstyle ':prompt:pure:prompt:error' color red
 
 #################################
 #  History
