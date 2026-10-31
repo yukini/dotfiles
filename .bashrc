@@ -1,6 +1,3 @@
-# export HOMEBREW_GITHUB_API_TOKEN=a8a47ca0ee1480d1055c5e530f544af25dbddf08
-# export HOMEBREW_CASK_OPTS='--caskroom=/opt/homebrew-cask/Caskroom'
-
 figlet morning!
 alias ls='ls -Gp'
 alias ll='ls -l'
