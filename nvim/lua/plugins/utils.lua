@@ -10,18 +10,7 @@ return {
       }
     end
   },
-  -- {
-  --   -- 行番号を相対的に表示する
-  --   'myusuf3/numbers.vim',
-  --   config=function()
-  --     vim.g.numbers_exclude = {
-  --       'alpha',
-  --       'aerial',
-  --       'calendar',
-  --       'coc-explorer',
-  --     }
-  --   end,
-  -- },
+
   {
     -- いい感じにテキスト整形してくれる `gaip=`で=揃え、`gaip `でスペース揃えなど
     'junegunn/vim-easy-align',
@@ -44,19 +33,7 @@ return {
       -- refer to the configuration section below
     }
   },
-  -- {
-  --   -- normal/insert/visualなどのモードによって行の背景色を変更できる
-  --   -- gruvboxだとinsert時に背景が明るくなるが、これを入れると暗くなる
-  --   -- ↑2026-01 もうそんなことはないかも、gruvboxがupdateされた？
-  --   'mvllow/modes.nvim',
-  --   tag = 'v0.2.1',
-  --   enabled = false,
-  --   config = function()
-  --     require('modes').setup({
-  --       ignore_filetypes = { "alpha", },
-  --     })
-  --   end
-  -- },
+
   {
     -- 検索した際のhighlightの強化プラグイン、検索総数と何番目の検索結果かが表示される
     'kevinhwang91/nvim-hlslens',
@@ -76,47 +53,7 @@ return {
       vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
     end,
   },
-  -- `gcc`でコメントアウトできる
-  -- 言語ごとのコメントアウト記法を全て管理しているのすごいね
-  -- https://github.com/numToStr/Comment.nvim/blob/master/lua/Comment/ft.lua
-  {
-    'numToStr/Comment.nvim',
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
-  },
-  -- アウトライン出してくれる
-  -- ソース読むときには便利だけど、そんなにVimで読まない
-  -- Telescopeとも連携していて、<leader>faでも呼び出せるが、そんなにVimで(ry
-  -- {
-  --   'stevearc/aerial.nvim',
-  --   opts = {},
-  --   -- Optional dependencies
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  --   config = function()
-  --     -- Call the setup function to change the default behavior
-  --     require("aerial").setup({
-  --       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-  --       on_attach = function(bufnr)
-  --         -- Jump forwards/backwards with '{' and '}'
-  --         vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-  --         vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-  --       end,
-  --       -- Priority list of preferred backends for aerial.
-  --       -- This can be a filetype map (see :help aerial-filetype-map)
-  --       backends = { "treesitter", "lsp", "markdown", "man", "telekasten" },
-  --       -- You probably also want to set a keymap to toggle aerial
-  --       vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
-  --     })
-  --   end,
-  -- },
+
   -- 行移動に追従するカーソルが出てくる、それだけ
   {
     'gen740/SmoothCursor.nvim',
@@ -130,64 +67,11 @@ return {
     main = "ibl",
     opts = {},
   },
-  -- 右下にLSPの状態を表示
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      -- options
-    },
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      -- "rcarriga/nvim-notify",
-    },
-    config = function()
-      -- require("notify").setup({
-      --   background_colour = "#000",
-      -- })
-      require("noice").setup({
-        lsp = {
-          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-          },
-        },
-        -- you can enable a preset for easier configuration
-        presets = {
-          command_palette = false,      -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = true,        -- add a border to hover docs and signature help
-        },
-      })
-    end
-  },
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {} -- this is equalent to setup({}) function
-  },
   {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
-  },
-  {
-    -- カーソルがあたった位置の単語をハイライトしてくれる。地味に便利。
-    'RRethy/vim-illuminate',
   },
   {
     -- アウトライン表示、長いコード読むときに使うくらい。
@@ -201,25 +85,12 @@ return {
       -- Your setup opts here
     },
   },
-  -- {
-  --   "nvim-zh/colorful-winsep.nvim",
-  --   event = { "WinNew" },
-  --   config = function()
-  --     require("colorful-winsep").setup({
-  --       hi = {
-  --         bg = "",
-  --         fg = "#94985D",
-  --       },
-  --       smooth = false,
-  --     })
-  --   end
-  -- },
   {
     -- カッコやクォーテーションで囲める。たまにしか使わないので、都度使い方を調べてる…
     "kylechui/nvim-surround",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
     },
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
