@@ -49,8 +49,14 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 #  Prompt
 #################################
 PURE_PROMPT_SYMBOL="❯❯❯"
-zstyle ':prompt:pure:prompt:success' color green
-zstyle ':prompt:pure:prompt:error' color red
+
+# Restore 3-color gradient (red→yellow→green) for the prompt symbol.
+# Pure escapes %F in PURE_PROMPT_SYMBOL, so we patch PROMPT via precmd hook.
+function _pure_prompt_gradient() {
+  local gradient='%B%F{1}❯%F{3}❯%F{2}❯%f%b'
+  PROMPT="${PROMPT/❯❯❯/${gradient}}"
+}
+add-zsh-hook precmd _pure_prompt_gradient
 
 #################################
 #  History
